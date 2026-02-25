@@ -1,0 +1,126 @@
+:root {
+    --couleur-primaire: #7F69E5; 
+    --couleur-secondaire: #E2DFFF; 
+    --couleur-accent: #E0FF4F; 
+    --couleur-texte: #00272B; 
+    --couleur-fond-page: #FFFFFF; 
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: var(--couleur-fond-page);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: var(--couleur-texte);
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0; 
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: var(--couleur-fond-page);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo, .btn-header {
+    flex: 1;
+}
+
+header a img {
+    max-width: 400px;
+    max-height: 50px;
+    display: block;
+}
+
+header nav {
+    flex: 2;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: var(--couleur-texte);
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: var(--couleur-primaire);
+}
+
+.btn-header {
+    text-align: right;
+}
+
+.btn-header a {
+    text-decoration: none;
+    padding: 10px 25px;
+    background-color: var(--couleur-primaire);
+    color: var(--couleur-fond-page);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-header a:hover {
+    background-color: var(--couleur-secondaire);
+    color: var(--couleur-primaire);
+}
+
+footer {
+    display: flex;
+    margin-top: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    background-color: var(--couleur-primaire);
+    gap: 20px;
+}
+
+footer nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 30px;
+}
+
+footer nav ul li a {
+    text-decoration: none;
+    color: var(--couleur-texte);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+footer nav ul li a:hover {
+    color: var(--couleur-secondaire);
+}
+
+.bg-p p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--couleur-texte);
+    text-align: center;
+}
+
+.bg-p a {
+    color: var(--couleur-accent);
+    font-weight: bold;
+}

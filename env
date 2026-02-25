@@ -1,0 +1,4 @@
+DB_HOST=localhost
+DB_USER=hugo
+DB_PASSWORD=hugo
+DB_BASE=projetfinal
