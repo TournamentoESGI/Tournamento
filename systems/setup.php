@@ -1,21 +1,16 @@
 <?php
 $sql = "
-CREATE TABLE IF NOT EXISTS users(
-CURRENT_CONNECTIONS bigint,
-MAX_SESSION_CONTROLLED_MEMORY bigint unsigned,
-MAX_SESSION_TOTAL_MEMORY bigint unsigned,
-TOTAL_CONNECTIONS bigint,
-USER char(32),
-creation timestamp,
-date_naissance date,
-email varchar(255),
-id int,
-nom varchar(50),
-prenom varchar(50),
-password varchar(50),
-role varchar(10),
-telephone char(10),
-username varchar(15),
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50),
+    prenom VARCHAR(50),
+    username VARCHAR(15),
+    email VARCHAR(255),
+    password VARCHAR(255), /* Mis à 255 au cas où tu haches tes mots de passe avec bcrypt/argon2 */
+    role VARCHAR(10),
+    telephone CHAR(10),
+    date_naissance DATE,
+    creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ";
 

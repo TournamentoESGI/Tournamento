@@ -118,10 +118,47 @@
     <ul class="testimonials-list">
         <li>
             <h4>★ ★ ★ ★ ★</h4>
-            <img src="" alt="pdf-users">
-            <h5>Marc D.</h5>
-            <h6>Participant ● Paris</h6>
+            <div class="user-profile">
+                <div class="avatar"></div>
+                <div class="user-info">
+                    <h5>Marc D.</h5>
+                    <h6>Participant ● Paris</h6>
+                </div>
+            </div>
             <p>"Plateforme solide, service client rapide, que du bon !"</p>
         </li>
-        </ul>
+        <li>
+            <h4>★ ★ ★ ★ ★</h4>
+            <div class="user-profile">
+                <div class="avatar"></div>
+                <div class="user-info">
+                    <h5>Marc D.</h5>
+                    <h6>Participant ● Paris</h6>
+                </div>
+            </div>
+            <p>"Plateforme solide, service client rapide, que du bon !"</p>
+        </li>
+        <li>
+            <h4>★ ★ ★ ★ ★</h4>
+            <div class="user-profile">
+                <div class="avatar"></div>
+                <div class="user-info">
+                    <h5>Marc D.</h5>
+                    <h6>Participant ● Paris</h6>
+                </div>
+            </div>
+            <p>"Plateforme solide, service client rapide, que du bon !"</p>
+        </li>
+        <li>
+            <h4>★ ★ ★ ★ ★</h4>
+            <div class="user-profile">
+                <div class="avatar"></div>
+                <div class="user-info">
+                    <h5>Marc D.</h5>
+                    <h6>Participant ● Paris</h6>
+                </div>
+            </div>
+            <p>"Plateforme solide, service client rapide, que du bon !"</p>
+        </li>
+    </ul>
 </div>
