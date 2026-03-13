@@ -6,12 +6,12 @@
     <h1>Chaque tournoi commence <span class="text-yellow">ici</span> et chaque <span class="text-yellow">victoire</span> aussi. Organise, joue et <span class="text-yellow">domine</span> tes adversaires.</h1>
     <p>Tournamento est une plateforme moderne et dynamique ! Vous pouvez même parier en toute sécurité.</p>
     
-    <div class="hero-buttons">
+	<div class="hero-buttons">
         <div class="organize-btn">
-            <a href="/pages/login.php">Organiser un tournoi</a>
+		<a href=<?php getPagePath("login")?>>Organiser un tournoi</a>
         </div>
         <div class="discover-btn">
-            <a href="/pages/signin.php">Découvrir</a>
+            <a href=<?php getPagePath("signin")?>>Découvrir</a>
         </div>
     </div>
 </div>

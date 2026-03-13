@@ -1,7 +1,7 @@
 <?php
 $rootDir = __DIR__ . '/../';
 
-include_once($rootDir . "components/basics.php");
+include_once($rootDir."components/error.php");
 include_once($rootDir . "components/error.php");
 
 ini_set('display_errors', '1');
@@ -24,6 +24,6 @@ try {
 } catch (Exception $ex) {
     error_log($ex->getMessage()); 
     http_response_code(500);
-    display_page_error($ex->getMessage());
+    //display_page_error($ex->getMessage());
 }
 ?>
