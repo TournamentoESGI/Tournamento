@@ -13,9 +13,11 @@
 	<body>
 		
 		<?php include_once "./components/header.php";
-		$page = $_GET['page'];
-		if (is_null($page)) {
+		if (is_null($_GET['page'])) {
 			$page = "home";
+		}
+		else {
+			$page = $_GET['page'];
 		}
 		if (!file_exists("./pages/".$page.".php")) {
 			$page = "404";
