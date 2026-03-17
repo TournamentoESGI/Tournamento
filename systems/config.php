@@ -24,6 +24,6 @@ try {
 } catch (Exception $ex) {
     error_log($ex->getMessage()); 
     http_response_code(500);
-    //display_page_error($ex->getMessage());
+    //displayPageError($ex->getMessage());
 }
 ?>

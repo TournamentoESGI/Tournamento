@@ -1,5 +1,5 @@
 <div class="home-container">
-    <img src="/assets/background.png" alt="Background Image" class="background-image">
+    <img src="./assets/background.png" alt="Background Image" class="background-image">
     <div class="text-img">
         <p>● plateforme de tournoi n°1</p>
     </div>

@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<?php
-	include_once("components/basics.php");
-	?>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Tournamento</title>
-		<link rel="shortcut icon" href="./assets/flavicon.svg" type="image/x-icon">
-		<link rel="stylesheet" href="./index.css">
-	</head>
-	<body>
-		
-		<?php include_once "./components/header.php";
+	include_once("./components/basics.php");
+	include_once("./components/header.php");
 		if (is_null($_GET['page'])) {
 			$page = "home";
 		}
@@ -22,17 +12,31 @@
 		if (!file_exists("./pages/".$page.".php")) {
 			$page = "404";
 		}
-
+	?>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tournamento</title>
+		<link rel="shortcut icon" href="./assets/flavicon.svg" type="image/x-icon">
+		<link rel="stylesheet" href="./index.css">
+		<?php
+			if (file_exists("./styles/".$page.".css")) {
+				echo '<link rel="stylesheet" href="./styles/'.$page.'.css">';
+			}
+		?>
+	</head>
+	<body>
+		<?php
 		session_start();
-		include_once "./systems/config.php";
+		include_once("./systems/config.php");
 		?>
 		
 		<main>
 			<?php
-				include_once "./pages/".$page.".php";
+				include_once("./pages/".$page.".php");
 			?>
         </main>
         
-        <?php include_once "./components/footer.php"; ?>
+		<?php include_once("./components/footer.php"); ?>
 	</body>
 </html>
