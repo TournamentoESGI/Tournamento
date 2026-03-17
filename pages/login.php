@@ -1,5 +1,5 @@
 <div>
-    <img src="" alt="">
+    <img src="assets/background.png" alt="background">
     <div>
         <h1>Bon retour,<br>Prêt à parier ?</h1>
         <div></div>
@@ -9,7 +9,7 @@
         </p>
     </div>
     <div>
-        <img src="" alt="">
+        <img src="assets/second_logo.png" alt="Logo">
     </div>
     <div>
         <div>
