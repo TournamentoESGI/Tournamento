@@ -1,8 +1,10 @@
-<div class="research_tournament hor">
-	<input type="text"/>
-	<div class="buttons hor">
-		<button>Reset</button>
-		<button>Rerchercher</button>
+<div class="border-space">
+	<div class="research-tournament hor">
+		<input type="text" placeholder="Rerchercher un tournoi"/>
+		<div class="buttons hor">
+			<button>Reset</button>
+			<button>Rerchercher</button>
+		</div>
 	</div>
 </div>
 
@@ -16,18 +18,21 @@
 		<div class="graph"></div>
 	</div>
 </div>
+
 <div class="user ver">
 	<div class="infos hor">
 		<img src="./assets/background.png" alt="Icon" width="100" height="100"/>
 		<div class="desc ver">
-			<h2>Profil - Participant sélectionné * actif</h2>
+			<p><b>Profil - Participant sélectionné * actif</b></p>
 			<p>adresse@gmail.com</p>
 			<hr/>
-			<ul>
-				<li>Tournoi participé: 13 tournois terminé - 2 tournois en cours</li>
-				<li>Tournoi organisé : 2 tournois terminé - 3 tournois en brouillons</li>
-				<li>Paris effectué : 23 Paris - 72 % de réussite</li>
-			</ul>
+			<b>
+				<ul>
+					<li>Tournoi participé: 13 tournois terminé - 2 tournois en cours</li>
+					<li>Tournoi organisé : 2 tournois terminé - 3 tournois en brouillons</li>
+					<li>Paris effectué : 23 Paris - 72 % de réussite</li>
+				</ul>
+			</b>
 		</div>
 	</div>
 	<div class="options hor">
@@ -37,23 +42,26 @@
 	</div>
 </div>
 
-<div class="research_participant ver">
-	<div class="search hor">
-		<div class="filters hor">
-			<input type="text"/>
-			<select>
-				<option>actif</option>
-				<option>inactif</option>
-			</select>
-			<select>
-				<option>Paris</option>
-				<option>Nice</option>
-				<option>Bordeaux</option>
-			</select>
+<div class="border-space">
+	<div class="research-participant ver">
+		<div class="search hor">
+			<div class="filters hor">
+				<input type="text"/>
+				<select>
+					<option>actif</option>
+					<option>inactif</option>
+				</select>
+				<select>
+					<option>Paris</option>
+					<option>Nice</option>
+					<option>Bordeaux</option>
+				</select>
+			</div>
+			<button>Reset</button>
 		</div>
-		<button>Reset</button>
 	</div>
 </div>
+
 <div class="tournaments hor">
 	<div class="submissions ver">
 		<div class="title hor">
@@ -65,11 +73,11 @@
 				<img/>
 				<div class="desc">
 					<div class="infos hor">
-						<h2>Spring Battle Valorant 2026</h2>
-						<h2>Soumis par Jean D.</h2>
+						<p>Spring Battle Valorant 2026</p>
+						<p>Soumis par Jean D.</p>
 					</div>
 					<div class="tags hor">
-						<p>Valorant</p>					
+						<p>Valorant</p>
 						<p>24 équipes max</p>					
 						<p>Cashprize: 2000</p>					
 						<p>4 octobre 2026</p>					

@@ -7,3 +7,131 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.border-space {
+	padding: var(--medium);
+}
+
+.research-tournament {
+	box-shadow: var(--s-medium);
+	border-radius: var(--medium);
+	padding: var(--medium);
+	width: 100%;
+	justify-content: space-between;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.research-tournament > input {
+	padding: var(--small);
+}
+
+.research-tournament > .buttons {
+	gap: var(--small);
+}
+
+.research-tournament > .buttons > button {
+	padding: var(--small);
+}
+
+.graphs > .tournaments {
+	color: var(--c-text-dark);
+}
+
+.user {
+	gap: var(--small);
+	background: var(--c-accent);
+}
+
+.user > .infos {
+	padding: var(--medium);
+	padding-bottom: 0;
+	gap: var(--medium);
+	justify-content: start;
+	align-items: center;
+}
+
+.user > .infos > img {
+	border-radius: 50%;
+}
+
+.infos > .desc > * {
+	margin: var(--small);
+}
+
+.desc > b > ul {
+	margin: 0;
+}
+
+.user > .options {
+	width: 100%;
+	display: flex;
+	gap: var(--small);
+	justify-content: end;
+	padding: var(--medium);
+	padding-top: 0;
+}
+
+.user > .options > button {
+	padding: var(--small);
+}
+
+.research-participant {
+	box-shadow: var(--s-medium);
+	padding: var(--medium);
+}
+
+.research-participant > .search {
+	display: flex;
+	justify-content: space-between;
+}
+
+.search > .filters {
+	gap: var(--medium);
+}
+
+.tournaments {
+	padding: var(--medium);
+	color: var(--c-accent);
+}
+
+.tournaments > .submissions {
+	border-radius: var(--small);
+	padding: var(--small);
+	background: var(--c-dark-teal);
+}
+
+.tournaments > .submissions > .title {
+	display: flex;
+	justify-content: space-between;
+}
+
+.submissions > .title > button {
+	padding: var(--small);
+	height: fit-content;
+}
+
+.tournaments > .submissions > .content {
+	gap: var(--medium);
+}
+
+.content > .tournament {
+	background: var(--c-bg);
+}
+
+.desc > .tags {
+	padding: var(--small);
+	gap: var(--small);
+}
+
+.desc > .tags > p {
+	border-radius: var(--small);
+	color: var(--c-text-dark);
+	padding: var(--small);
+	background: var(--c-accent);
+}
+
+.tournament .choice {
+	display: flex;
+	align-items: center;
+}
