@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<?php
+	include_once("./systems/session.php");
 	include_once("./components/basics.php");
 	include_once("./components/header.php");
 		if (is_null($_GET['page'])) {
