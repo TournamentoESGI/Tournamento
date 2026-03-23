@@ -33,16 +33,16 @@ function createGraph($sql) {
 
 	$result = $stmt->fetchAll();
 	if (!$result) {
-		echo "Invalid Syntax or wront table";
+		echo "Invalid Syntax or wrong table";
 		echo "</div>";
 		return;
 	}
 
 	$col_count = count($result);
-	$max_value = $result[0][0];
+	$max_value = (int)$result[0][0];
 
 	for ($i = 0; $i<$col_count; $i++) {
-		$value = $result[$i];
+		$value = (int)$result[$i][0];
 
 		if ($value > $max_value) {
 			$max_value = $value;
@@ -51,7 +51,7 @@ function createGraph($sql) {
 
 	echo '<div class="graph">';
 	for ($i = 0; $i<$col_count; $i++) {
-		$value = $result[$i][0];
+		$value = (int)$result[$i][0];
 		createGraphColumn($value, $max_value, $col_count);
 	}
 	echo "</div>";
