@@ -7,7 +7,7 @@ function createGraphColumn($value, $maxValue, $count) {
 	echo "%'></div>";
 }
 
-function createGraph($sql) {
+function createGraph($sql, $pdo) {
 	if (!$pdo) {
 		return;
 	}
@@ -15,17 +15,19 @@ function createGraph($sql) {
 	$stmt->execute();
 
 	$result = $stmt->fetchAll();
+
+
 	if (!$result) {
-		echo "Invalid Syntax or wrong table";
+		echo "Invalid Syntax, wrong table or empty table";
 		echo "</div>";
 		return;
 	}
 
 	$col_count = count($result);
-	$max_value = (int)$result[0][0];
+	$max_value = (int)(array_values($result[0])[0]);
 
 	for ($i = 0; $i<$col_count; $i++) {
-		$value = (int)$result[$i][0];
+		$value = (int)(array_values($result[$i])[0]);
 
 		if ($value > $max_value) {
 			$max_value = $value;
@@ -34,7 +36,7 @@ function createGraph($sql) {
 
 	echo '<div class="graph">';
 	for ($i = 0; $i<$col_count; $i++) {
-		$value = (int)$result[$i][0];
+		$value = (int)(array_values($result[$i])[0]);
 		createGraphColumn($value, $max_value, $col_count);
 	}
 	echo "</div>";

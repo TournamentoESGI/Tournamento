@@ -11,7 +11,7 @@
 <div class="graphs hor statistics">
 	<div class="newcomers">
 		<?php 
-			//createGraph("SELECT * FROM USERS");
+			createGraph("SELECT password FROM USERS", $pdo);
 		?>
 		<h1>Inscription ces 6 derniers mois</h1>
 	</div>
