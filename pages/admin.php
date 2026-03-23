@@ -8,14 +8,15 @@
 	</div>
 </div>
 
-<div class="graphs hor">
+<div class="graphs hor statistics">
 	<div class="newcomers">
+		<?php 
+			createGraph("SELECT * FROM USERS");
+		?>
 		<h1>Inscription ces 6 derniers mois</h1>
-		<div class="graph"></div>
 	</div>
 	<div class="tournaments">
 		<h1>Tournoi actif ces 6 derniers mois</h1>
-		<div class="graph"></div>
 	</div>
 </div>
 

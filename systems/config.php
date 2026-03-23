@@ -10,6 +10,8 @@ error_reporting(E_ALL);
 
 $env = parse_ini_file($rootDir . '.env');
 
+$pdo = NULL;
+
 try {
     $dsn = sprintf("mysql:host=%s;dbname=%s;charset=utf8", $env['DB_HOST'], $env['DB_BASE']);
     $options = [

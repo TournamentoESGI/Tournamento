@@ -2,14 +2,32 @@
 	display: flex;
 	flex-direction: row;
 }
-
 .ver {
 	display: flex;
 	flex-direction: column;
 }
-
 .border-space {
 	padding: var(--medium);
+}
+
+.statistics {
+	display: flex;
+	justify-content: center;
+	height: fit-content;
+}
+
+.statistics > div {
+	width: 50%;
+	height: fit-content;
+	padding: 0;
+}
+
+.statistics > div > .graph {
+	height: 500px;
+}
+
+.graph > .graph-column {
+	background-color: red;
 }
 
 .research-tournament {
