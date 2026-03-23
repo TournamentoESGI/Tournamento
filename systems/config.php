@@ -1,6 +1,4 @@
 <?php
-$rootDir = __DIR__ . '/../';
-
 include_once($rootDir."components/error.php");
 include_once($rootDir . "components/error.php");
 
@@ -21,8 +19,10 @@ try {
     
     $pdo = new PDO($dsn, $env['DB_USER'], $env['DB_PASSWORD'], $options);
     
-    include_once(__DIR__ . '/setup.php');
+	include_once('./setup.php');
+	include_once('./visuals.php');
 
+	createGraph("ez");
 } catch (Exception $ex) {
     error_log($ex->getMessage()); 
     http_response_code(500);
