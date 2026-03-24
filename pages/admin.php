@@ -11,7 +11,7 @@
 <div class="graphs hor statistics">
 	<div class="newcomers">
 		<?php 
-			createGraph("SELECT COUNT(*) FROM USERS GROUP BY DAY(creation)", $pdo);
+			createGraph("SELECT COUNT(*) FROM USERS GROUP BY DAY(creation_date)", $pdo);
 		?>
 		<h1>Inscription ces 6 derniers mois</h1>
 	</div>

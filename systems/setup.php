@@ -10,8 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
     email_address VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     current_balance INT DEFAULT 0,
-    creation_date DATE DEFAULT CURRENT_DATE,
-    profil_picture DEFAULT 'default_profile_picture.jpg'
+    creation_date DATE DEFAULT CURRENT_DATE()
 );
 
 ";
