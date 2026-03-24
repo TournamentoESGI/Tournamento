@@ -1,5 +1,4 @@
 :root {
-	/*Colors*/
     --c-primary: #552c84;
     --c-primary-light: #6D51D6;
     --c-accent: #D9FF22;
@@ -7,9 +6,7 @@
     --c-text-dark: #000000;
     --c-text-light: #FFFFFF;
     --c-bg: #FFFFFF;
-	/*Shadows*/
 	--s-medium: 0 2px 10px rgba(0,0,0,0.05);
-	/*Sizes*/
 	--small: 8px;
 	--medium: 16px;
 }
