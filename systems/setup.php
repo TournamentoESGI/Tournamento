@@ -16,7 +16,7 @@ users (
     email_address VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     current_balance INT DEFAULT 0,
-    creation_date DATE DEFAULT CURRENT_DATE(),
+    creation_date DATE DEFAULT (CURRENT_DATE()),
     profil_picture VARCHAR(255) DEFAULT 'default_profile_picture.png'
 );
 ");
@@ -28,7 +28,7 @@ tournaments (
     description VARCHAR(255),
     games VARCHAR(50),
     status ENUM('ouvert','fermer'),
-    created_at DATE DEFAULT CURRENT_DATE(),
+    created_at DATE DEFAULT (CURRENT_DATE()),
     start_date DATE NOT NULL,
     end_date DATE NOT NULL
 );
