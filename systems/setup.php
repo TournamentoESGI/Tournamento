@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
     email_address VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     current_balance INT DEFAULT 0,
-    creation_date DATE DEFAULT CURRENT_DATE()
+    creation_date DATE
 );
 
 ";
