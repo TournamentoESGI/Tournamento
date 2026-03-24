@@ -23,6 +23,6 @@ try {
 } catch (Exception $ex) {
     error_log($ex->getMessage()); 
     http_response_code(500);
-    //displayPageError($ex->getMessage());
+    displayPageError($ex->getMessage());
 }
 ?>
