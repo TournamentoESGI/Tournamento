@@ -1,40 +1,46 @@
-<div class="home-container">
-    <img src="./assets/background.png" alt="Background Image" class="background-image">
-    <div class="text-img">
-        <p>● plateforme de tournoi n°1</p>
+<div class="above-the-fold">
+    <div class="home-container">
+        <div class="text-img">
+            <div class="circle"></div>
+            <p>plateforme de tournoi n°1</p>
+        </div>
+        <h1>Chaque tournoi commence<br> <span class="text-yellow">ici</span> et chaque <span class="text-yellow">victoire</span> aussi.<br> Organise, joue et <span class="text-yellow">domine<br></span> tes adversaires.</h1>
+        <div class="align-buttons">
+            <p>Tournamento est une plateforme moderne et dynamique !<br> Vous pouvez même parier en toute sécurité.</p>
+            <div class="top-buttons">
+                <div class="organize-btn">
+                    <a href=<?php getPagePath("login")?>>Organiser un tournoi</a>
+                </div>
+                <div class="discover-btn">
+                    <a href=<?php getPagePath("signin")?>>Découvrir</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <h1>Chaque tournoi commence <span class="text-yellow">ici</span> et chaque <span class="text-yellow">victoire</span> aussi. Organise, joue et <span class="text-yellow">domine</span> tes adversaires.</h1>
-    <p>Tournamento est une plateforme moderne et dynamique ! Vous pouvez même parier en toute sécurité.</p>
     
-	<div class="hero-buttons">
-        <div class="organize-btn">
-		<a href=<?php getPagePath("login")?>>Organiser un tournoi</a>
-        </div>
-        <div class="discover-btn">
-            <a href=<?php getPagePath("signin")?>>Découvrir</a>
-        </div>
+    <div class="home-stats">
+        <ul>
+           <li>
+                <h2>80 000+</h2>
+                <p>d'utilisateurs inscrits</p>
+           </li>
+           <li><div class="border-line"></div></li>
+           <li>
+                <h2>6732+</h2>
+                <p>Tournois Organisés</p>
+           </li>
+           <li><div class="border-line"></div></li>
+           <li>
+                <h2>93%</h2>
+                <p>Sont satisfaits</p>
+           </li>
+           <li><div class="border-line"></div></li>
+           <li>
+                <h2>32 000+</h2>
+                <p>Paries effectués</p>
+           </li>
+        </ul>
     </div>
-</div>
-
-<div class="home-stats">
-    <ul>
-       <li>
-            <h2>80 000+</h2>
-            <p>d'utilisateurs inscrits</p>
-       </li>
-       <li>
-            <h2>6732+</h2>
-            <p>Tournois Organisés</p>
-       </li>
-       <li>
-            <h2>93%</h2>
-            <p>Sont satisfaits</p>
-       </li>
-       <li>
-            <h2>32 000+</h2>
-            <p>Paries effectués</p>
-       </li>
-    </ul>
 </div>
 
 <div class="home-info">

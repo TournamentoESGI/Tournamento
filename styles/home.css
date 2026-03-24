@@ -1,0 +1,154 @@
+a {
+    text-decoration: none;
+}
+
+main {
+
+}
+
+.above-the-fold {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.above-the-fold > .home-container {
+    padding-left: var(--medium);
+    width: 100%;
+    overflow: hidden;
+    background-image: url("../assets/background.png");
+    background-size: cover;
+    height: 73%;
+}
+
+.above-the-fold > .home-container > .text-img {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    z-index: 1;
+    background-color: var(--c-accent);
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    margin-top: 12px;
+    padding: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 8px;
+}
+
+.above-the-fold > .home-container > .text-img > .circle {
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.above-the-fold > .home-container > .text-img > p {
+    margin: 0;
+}
+
+.above-the-fold > .home-container > h1 {
+    color: var(--c-text-light);
+    width: 50%;
+    font-size: 36px;
+}
+
+.above-the-fold > .home-container > h1 > span {
+    color: var(--c-accent);
+}
+
+.above-the-fold > .home-container > p {
+    color: var(--c-text-light);
+}
+
+.above-the-fold > .home-container > .align-buttons {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-right: px;
+}
+
+.above-the-fold > .home-container > .align-buttons > p {
+    color: var(--c-text-light);
+}
+
+.above-the-fold > .home-container > .align-buttons > .top-buttons {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    z-index: 1;
+}
+
+.above-the-fold > .home-container > .align-buttons > .top-buttons > .organize-btn {
+    background-color: var(--c-primary-light);
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 8px;
+}
+
+.above-the-fold > .home-container > .align-buttons > .top-buttons > .organize-btn > a:visited{
+    color: var(--c-text-light);
+}
+
+.above-the-fold > .home-container > .align-buttons > .top-buttons > .discover-btn {
+    background-color: var(--c-accent);
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 8px;
+}
+
+.above-the-fold > .home-container > .align-buttons > .top-buttons > .discover-btn > a:visited{
+    color: var(--c-dark-teal);
+}
+
+.above-the-fold > .home-stats {
+    position: relative;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+}
+
+.above-the-fold > .home-stats > ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    width: 100%;
+    background-color: var(--c-accent);
+}
+
+.above-the-fold > .home-stats > ul > li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.above-the-fold > .home-stats > ul > li > h2 {
+    margin: 0;
+}
+
+.above-the-fold > .home-stats > ul > li > p {
+    margin: 0;
+}
+
+.above-the-fold > .home-stats > ul > li > .border-line {
+    height: 100%;
+    width: 2px;
+    background-color: black;
+}
