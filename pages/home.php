@@ -1,3 +1,6 @@
+<?php
+include_once("./components/visuals.php");
+?>
 <section class="hero-section">
   <div class="container-fluid px-4 px-lg-5">
     <div class="row align-items-stretch" style="min-height: 60vh;">
@@ -18,7 +21,8 @@
         </p>
       </div>
 
-    <div class="col-12 col-lg-5 d-flex flex-row justify-content-end align-items-end pb-4 gap-3" style="min-height: 100%;">        <a href="<?php getPagePath('login') ?>" class="btn-organize">Organiser un tournoi</a>
+	<div class="col-12 col-lg-5 d-flex flex-row justify-content-end align-items-end pb-4 gap-3" style="min-height: 100%;">
+		<a href="<?php getPagePath('login') ?>" class="btn-organize">Organiser un tournoi</a>
         <a href="<?php getPagePath('signin') ?>" class="btn-discover">Découvrir</a>
     </div>
 

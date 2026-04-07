@@ -13,6 +13,6 @@ function getPagePath($path) {
 }
 
 function createLink($path, $text) {
-	echo "<a href=".getPagePath($path)."</a>";
+	echo "<a href=".getPagePath($path)."></a>";
 }
 ?>

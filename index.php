@@ -1,11 +1,12 @@
+<?php ob_start(); ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
-	<?php
-	include_once("./systems/session.php");
+	<?php 
 	include_once("./components/basics.php");
 	include_once("./components/header.php");
-
+		
 		if (!isset($_GET['page'])) {
    			$page = "home";
 		} else {
@@ -14,6 +15,7 @@
 		if (!file_exists("./pages/".$page.".php")) {		
     		$page = "404";
 		}
+
 	?>
 
 	<head>
@@ -34,8 +36,8 @@
 	<body>
 		
 		<?php
-		session_start();
 		include_once("./systems/config.php");
+		include_once("./systems/session.php");
 		?>
 		
 		<main>

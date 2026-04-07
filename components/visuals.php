@@ -39,4 +39,31 @@ function createGraph($sql,$pdo) {
 	}
 	echo "</div>";
 }
+
+function createCaptcha($img_path, $nb_piece) {
+	echo "<div class='captcha'>";
+	$size = 1/$nb_piece*100;
+	for ($y=0; $y<$nb_piece; $y++) {
+		for ($x=0; $x<$nb_piece; $x++) {
+			
+			echo "<div class='piece' ";
+			echo "style='";
+			echo "left:".$x*$size."%;";
+			echo "top:".$y*$size."%;";
+			echo "width:".$size."%;";
+			echo "height:".$size."%;";
+			echo "'>";
+
+				echo "<div style='";
+				echo "background-image:url(".$img_path.");";
+				echo "width:100%;height:100%;";
+				echo "background-position:".$x*$size."%".$y*$size."%;";
+				echo "'></div>";
+			
+			echo "</div>";
+		}
+	}
+	echo "</div>";
+}
+
 ?>

@@ -1,6 +1,5 @@
 <?php
 include_once("./components/error.php");
-include_once("./components/error.php");
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -10,7 +9,8 @@ $env = parse_ini_file('.env');
 
 try {
     $dsn = sprintf("mysql:host=%s;dbname=%s;charset=utf8", $env['DB_HOST'], $env['DB_BASE']);
-    $options = [
+
+	$options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ];
@@ -22,7 +22,7 @@ try {
 
 } catch (Exception $ex) {
     error_log($ex->getMessage()); 
-    http_response_code(500);
-    displayPageError($ex->getMessage());
+    //displayPageError($ex->getMessage());
+	//displayPageError("try");
 }
 ?>
