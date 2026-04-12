@@ -13,7 +13,7 @@
     		$page = $_GET['page'];
 		}
 		if (!file_exists("./pages/".$page.".php")) {		
-    		$page = "404";
+    		$page = "error";
 		}
 
 	?>

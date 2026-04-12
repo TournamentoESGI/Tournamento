@@ -22,7 +22,6 @@ try {
 
 } catch (Exception $ex) {
     error_log($ex->getMessage()); 
-    //displayPageError($ex->getMessage());
-	//displayPageError("try");
+    displayPageError($ex->getMessage());
 }
 ?>

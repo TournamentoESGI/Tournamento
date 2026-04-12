@@ -41,28 +41,28 @@ function createGraph($sql,$pdo) {
 }
 
 function createCaptcha($img_path, $nb_piece) {
-	echo "<div class='captcha'>";
-	$size = 1/$nb_piece*100;
-	for ($y=0; $y<$nb_piece; $y++) {
-		for ($x=0; $x<$nb_piece; $x++) {
-			
-			echo "<div class='piece' ";
-			echo "style='";
-			echo "left:".$x*$size."%;";
-			echo "top:".$y*$size."%;";
-			echo "width:".$size."%;";
-			echo "height:".$size."%;";
-			echo "'>";
+	echo "<div id='captcha' ";
+	echo "data-img='".$img_path."'";
+	echo "data-splits='".$nb_piece."'";
+	echo "></div>";
+	echo "<script src='./scripts/captcha.js'></script>";
+}
 
-				echo "<div style='";
-				echo "background-image:url(".$img_path.");";
-				echo "width:100%;height:100%;";
-				echo "background-position:".$x*$size."%".$y*$size."%;";
-				echo "'></div>";
-			
-			echo "</div>";
-		}
-	}
+function generateCaptcha($pdo) {
+	$stmt = $pdo->prepare("SELECT id, img_url, splits, valid FROM captchas");
+	$stmt->execute();
+	$result = $stmt->fetchAll();
+	$rnd = random_int(0, count($result)-1);
+	$captcha_info = $result[$rnd];
+	$captcha_img = $captcha_info["img_url"];
+	$captcha_objet = $captcha_info["id"];
+	$captcha_splits = $captcha_info["splits"];
+	$captcha_valids = $captcha_info["valid"];
+
+	echo "<div class='captcha-section'>";
+	echo "<p>Cochez les cases ou se trouve un ".$captcha_objet."</p>";
+	createCaptcha($captcha_img,$captcha_splits);
+	echo "<button>Envoyer les reponses</button>";
 	echo "</div>";
 }
 

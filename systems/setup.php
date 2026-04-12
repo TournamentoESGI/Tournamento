@@ -16,9 +16,9 @@ users (
     email_address VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     current_balance INT DEFAULT 0,
-    creation_date DATE DEFAULT (CURRENT_DATE()),
-    profil_picture VARCHAR(255) DEFAULT 'default_profile_picture.png'
-);
+    creation_date DATE,
+    profil_picture VARCHAR(255) DEFAULT NULL
+)
 ");
 
 createTable("
@@ -28,16 +28,26 @@ tournaments (
     description VARCHAR(255),
     games VARCHAR(50),
     status ENUM('ouvert','fermer'),
-    created_at DATE DEFAULT (CURRENT_DATE()),
+    created_at DATE,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL
-);
+)
 ");
 
 createTable("
 pools(
     id_pools INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(50)
-);
+)
+");
+
+createTable("
+captchas(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	img_url VARCHAR(50),
+	splits INT,
+	valid VARCHAR(50),
+	objet VARCHAR(50)
+)
 ");
 ?>
