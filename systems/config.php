@@ -15,10 +15,11 @@ try {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ];
     
-    $pdo = new PDO($dsn, $env['DB_USER'], $env['DB_PASSWORD'], $options);
+	$pdo = new PDO($dsn, $env['DB_USER'], $env['DB_PASSWORD'], $options);
     
 	include_once('./systems/setup.php');
-	include_once('./systems/visuals.php');
+	include_once('./systems/tests.php');
+	makeDatabase();
 
 } catch (Exception $ex) {
     error_log($ex->getMessage()); 

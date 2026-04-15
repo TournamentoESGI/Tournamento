@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+
 	<?php 
+	$include_js_list = [];
 	include_once("./components/basics.php");
-	include_once("./components/header.php");
-		
 		if (!isset($_GET['page'])) {
    			$page = "home";
 		} else {
@@ -36,6 +36,7 @@
 	<body>
 		
 		<?php
+		include_once("./components/header.php");
 		include_once("./systems/config.php");
 		include_once("./systems/session.php");
 		?>
@@ -46,6 +47,10 @@
 			?>
         </main>
         
-		<?php include_once("./components/footer.php"); ?>
+		<?php include_once("./components/footer.php");
+		foreach($include_js_list as $js_path) {
+			echo "<script src='".$js_path."'></script>";
+		}
+		?>
 	</body>
 </html>

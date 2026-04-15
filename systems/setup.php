@@ -1,8 +1,29 @@
 <?php
-function createTable($table) {
+
+$tables = [];
+
+function createTable($new_table) {
+	global $tables;
+	$table_name = explode("(",$new_table)[0];
+	$query = "CREATE TABLE IF NOT EXISTS ".$new_table.";";
+	array_push($tables, ["name"=>$table_name,"query"=>$query]);
+}
+
+function deleteDatabase() {
+    global $tables;
+	global $pdo;
+	foreach($tables as $table) {
+		$query = "DROP TABLE ".$table["name"].";";
+		$pdo->exec($query);
+	}
+}
+
+function makeDatabase() {
+    global $tables;
     global $pdo;
-    $query = "CREATE TABLE IF NOT EXISTS ".$table.";";
-    $pdo->exec($query);
+	foreach($tables as $table) {
+		$pdo->exec($table["query"]);
+	}
 }
 
 createTable("
@@ -45,9 +66,9 @@ createTable("
 captchas(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	img_url VARCHAR(50),
-	splits INT,
-	valid VARCHAR(50),
-	objet VARCHAR(50)
+	posX INT,
+	posY INT,
+	scale INT
 )
 ");
 ?>

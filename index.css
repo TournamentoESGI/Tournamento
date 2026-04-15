@@ -155,35 +155,20 @@ footer nav ul li a:hover {
 }
 
 .captcha-section {
-	padding: var(--small);
-	gap: var(--small);
+	width: 100%;
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	flex-direction: column;
-	height: fit-content;
+	align-items: center;
 }
 
-.captcha-section > button {
+.captcha {
 	width: fit-content;
 }
 
-#captcha {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: start;
+.captcha > .puzzle {
+	position: absolute;
 }
 
-#captcha > div {
-	border: 2px solid transparent;
-}
-#captcha > .selected  {
-	border: 2px solid var(--c-primary);
-}
-
-#captcha > div > .img {
+.captcha > input {
 	width: 100%;
-	height: 100%;
-	pointer-events: none;
 }
-
