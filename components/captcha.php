@@ -19,7 +19,9 @@ function generateCaptcha($pdo) {
 
 		echo "<p>Deplacer le puzzle dans l'emplacement vide</p>";
 		createCaptcha($captcha["img_url"], $captcha["posX"], $captcha["posY"], $captcha["scale"]);
-		echo "<button>Valider</button>";
+		echo "<form class='form' method='post'>";
+		echo "<button type='submit'>Valider</button>";
+		echo "</form>";
 	}
 	catch(PDOException) {
 		echo "<p>Problème de connection à la db</p>";
