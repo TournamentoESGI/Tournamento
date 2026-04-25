@@ -1,33 +1,28 @@
-<?php
-include_once("./components/visuals.php");
-?>
 <section class="hero-section">
-  <div class="container-fluid px-4 px-lg-5">
-    <div class="row align-items-stretch" style="min-height: 60vh;">
+	<div class="container-fluid px-4 px-lg-5">
+		<div class="row align-items-stretch" style="min-height: 60vh;">
+			<div class="col-12 col-lg-7 pt-2 pb-4">
+				<div class="badge-platform">plateforme de tournoi n°1</div>
 
-      <div class="col-12 col-lg-7 pt-2 pb-4">
-        <div class="badge-platform">plateforme de tournoi n°1</div>
+				<h1 class="hero-title">
+				  Chaque tournoi commence<br>
+				  <span class="text-yellow">ici</span> et chaque <span class="text-yellow">victoire</span> aussi.<br>
+				  Organise, joue et <span class="text-yellow">domine</span><br>
+				  tes adversaires.
+				</h1>
 
-        <h1 class="hero-title">
-          Chaque tournoi commence<br>
-          <span class="text-yellow">ici</span> et chaque <span class="text-yellow">victoire</span> aussi.<br>
-          Organise, joue et <span class="text-yellow">domine</span><br>
-          tes adversaires.
-        </h1>
+				<p class="hero-subtitle">
+				  Tournamento est une plateforme moderne et dynamique !<br>
+				  Vous pouvez même parier en toute sécurité.
+				</p>
+			</div>
 
-        <p class="hero-subtitle">
-          Tournamento est une plateforme moderne et dynamique !<br>
-          Vous pouvez même parier en toute sécurité.
-        </p>
-      </div>
-
-	<div class="col-12 col-lg-5 d-flex flex-row justify-content-end align-items-end pb-4 gap-3" style="min-height: 100%;">
-		<a href="<?php getPagePath('login') ?>" class="btn-organize">Organiser un tournoi</a>
-        <a href="<?php getPagePath('signin') ?>" class="btn-discover">Découvrir</a>
-    </div>
-
-    </div>
-  </div>
+			<div class="col-12 col-lg-5 d-flex flex-row justify-content-end align-items-end pb-4 gap-3" style="min-height: 100%;">
+				<a href="<?php getPagePath('login') ?>" class="btn-organize">Organiser un tournoi</a>
+				<a href="<?php getPagePath('signin') ?>" class="btn-discover">Découvrir</a>
+			</div>
+		</div>
+	</div>
 </section>
 
 <div class="stats-bar">
@@ -193,11 +188,11 @@ include_once("./components/visuals.php");
           <div class="d-flex align-items-center gap-2 mb-3">
             <div class="avatar"></div>
             <div>
-              <h5><?= htmlspecialchars($t['name']) ?></h5>
-              <h6><?= htmlspecialchars($t['role']) ?></h6>
+              <h5><?echo $t['name']?></h5>
+              <h6><?echo $t['role']?></h6>
             </div>
           </div>
-          <p><?= htmlspecialchars($t['text']) ?></p>
+          <p><?$t['text']?></p>
         </div>
       </div>
       <?php endforeach; ?>
