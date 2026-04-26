@@ -153,3 +153,49 @@ footer nav ul li a:hover {
 	height: 100%;
 	position: relative;
 }
+
+.captcha-section {
+	position: relative;
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+}
+
+.captcha-section .container {
+	width: 100%;
+}
+.captcha {
+	width: 100%;
+	height: fit-content;
+}
+
+
+
+.captcha .background {
+	position: relative;
+	width: 100%;
+	height: auto;
+	z-index: -2;
+}
+
+.captcha .puzzle {
+	position: relative;
+	outline: solid 2px white;
+}
+
+.captcha .target {
+	position: relative;
+	background-color: black;
+	filter: opacity(0.325);
+	z-index: -1;
+}
+.captcha-section .slider_v {
+	position: relative;
+	width: fit-content;
+}
+
+.captcha-section .slider_h {
+	width: 100%;
+}
