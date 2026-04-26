@@ -33,12 +33,13 @@ users (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     date_of_birth DATE NOT NULL,
-    phone INT(10) NOT NULL UNIQUE,
+    phone VARCHAR(15) NOT NULL UNIQUE,
     email_address VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     current_balance INT DEFAULT 0,
-    creation_date DATE,
-    profil_picture VARCHAR(255) DEFAULT NULL
+    creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    profil_picture VARCHAR(255) DEFAULT 'default_profile_picture.png'
+
 )
 ");
 
@@ -49,14 +50,14 @@ tournaments (
     description VARCHAR(255),
     games VARCHAR(50),
     status ENUM('ouvert','fermer'),
-    created_at DATE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL
 )
 ");
 
 createTable("
-pools(
+pools (
     id_pools INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(50)
 )
