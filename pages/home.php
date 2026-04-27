@@ -1,3 +1,7 @@
+<?php
+include_once("./components/captcha.php");
+?>
+
 <section class="hero-section">
 	<div class="container-fluid px-4 px-lg-5">
 		<div class="row align-items-stretch" style="min-height: 60vh;">
