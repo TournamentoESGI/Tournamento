@@ -2,9 +2,7 @@
 deleteDatabase();
 makeDatabase();
 $sql = "
-INSERT INTO captchas(id, img_url, posX, posY, scale) VALUES(1, './assets/background.png', 5, 5, 20); 
-INSERT INTO captchas(id, img_url, posX, posY, scale) VALUES(2, './assets/background.png', 5, 100, 32); 
-INSERT INTO captchas(id, img_url, posX, posY, scale) VALUES(3, './assets/background.png', 25, 55, 25); 
+INSERT INTO users(id_users, username, first_name, last_name, date_of_birth, phone, email_address, password, role) VALUES(1, 'boss', 'pat', 'rick', '2006-11-06', '12 34 56 78 90', 'pat_rick@gmail.com', 'ez', 'Admin');
 ";
 $pdo->exec($sql);
 ?>

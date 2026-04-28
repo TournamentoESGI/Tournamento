@@ -1,155 +1,342 @@
-.hor {
-	display: flex;
-	flex-direction: row;
-}
-.ver {
-	display: flex;
-	flex-direction: column;
-}
-.border-space {
-	padding: var(--medium);
-}
-
-.statistics {
-	display: flex;
-	justify-content: center;
-	height: fit-content;
+:root {
+    --c-primary: #552c84;
+    --c-primary-light: #6D51D6;
+    --c-accent: #D9FF22;
+    --c-dark-teal: #04262A;
+    --c-text-dark: #000000;
+    --c-text-light: #FFFFFF;
+    --c-bg: #FFFFFF;
+	--s-medium: 0 2px 10px rgba(0,0,0,0.05);
+	--small: 8px;
+	--medium: 16px;
 }
 
-.statistics > div {
-	width: 50%;
-	height: fit-content;
-	padding: 0;
+.denied-container {
+    background-color: var(--c-dark-teal);
+    height: 200px;
+    width: 700px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 400px;
+    margin-bottom: 185px;
+    margin-top: 100px;
 }
 
-.statistics > div > .graph {
-	height: 500px;
+.denied-container h1 {
+    color: red;
 }
 
-.graph > .graph-column {
-	background-color: red;
+.denied-container .denied-button {
+    background-color: red;
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
 }
 
-.research-tournament {
-	box-shadow: var(--s-medium);
-	border-radius: var(--medium);
-	padding: var(--medium);
-	width: 100%;
-	justify-content: space-between;
-	box-sizing: border-box;
-	position: relative;
+.denied-container .denied-button a {
+    text-decoration: none;
+    color: var(--c-text-light);
 }
 
-.research-tournament > input {
-	padding: var(--small);
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 50px;
+    margin-left: 130px;
+    margin-top: 35px;
+    margin-bottom: 50px;
 }
 
-.research-tournament > .buttons {
-	gap: var(--small);
+.container-profil {
+    width: 250px;
+    height: 325px;
+    background: linear-gradient(to top, var(--c-primary), var(--c-primary-light));
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px var(--c-dark-teal);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-.research-tournament > .buttons > button {
-	padding: var(--small);
+.container-profil .profil {
+    width: 150px;
+    height: 150px;
+    border: 5px solid var(--c-dark-teal);
+    border-radius: 50%;
+    margin-top: 20px;
 }
 
-.graphs > .tournaments {
-	color: var(--c-text-dark);
+.container-profil .profil img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 
-.user {
-	gap: var(--small);
-	background: var(--c-accent);
+.container-profil .profil-text {
+    color: var(--c-text-light);
+    text-align: center;
 }
 
-.user > .infos {
-	padding: var(--medium);
-	padding-bottom: 0;
-	gap: var(--medium);
-	justify-content: start;
-	align-items: center;
+.container-profil .profil-text h1 {
+    font-size: 30px;
 }
 
-.user > .infos > img {
-	border-radius: 50%;
+.container-profil .profil-text p {
+    font-size: 15px;
 }
 
-.infos > .desc > * {
-	margin: var(--small);
+.container-profil .container-profil-button {
+    height: 35px;
+    width: 100px;
+    border-radius: 12px;
+    background-color: var(--c-primary);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
-.desc > b > ul {
-	margin: 0;
+.container-profil .container-profil-button img {
+    width: 15px;
+    height: 20px;
+    margin-left: 10px;
 }
 
-.user > .options {
-	width: 100%;
-	display: flex;
-	gap: var(--small);
-	justify-content: end;
-	padding: var(--medium);
-	padding-top: 0;
+.container-profil .container-profil-button h1 {
+    color: var(--c-accent);
+    font-size: 12px;
+    margin-bottom: 0;
 }
 
-.user > .options > button {
-	padding: var(--small);
+.container-dashboard {
+    width: 750px;
+    height: 450px;
+    background-color: var(--c-bg);
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px var(--c-dark-teal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.research-participant {
-	box-shadow: var(--s-medium);
-	padding: var(--medium);
+.container-dashboard .top-container-dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-.research-participant > .search {
-	display: flex;
-	justify-content: space-between;
+.container-dashboard .top-container-dashboard .duo-box-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
-.search > .filters {
-	gap: var(--medium);
+.container-dashboard .top-container-dashboard .duo-box-top .button-back {
+    background-color: red;
+    outline: 1px var(--c-bg) solid;
+    border-radius: 8px;
 }
 
-.tournaments {
-	padding: var(--medium);
-	color: var(--c-accent);
+.container-dashboard .top-container-dashboard .duo-box-top .button-back a {
+    text-decoration: none;
+    color: var(--c-text-light);
 }
 
-.tournaments > .submissions {
-	border-radius: var(--small);
-	padding: var(--small);
-	background: var(--c-dark-teal);
+.container-dashboard .top-container-dashboard .duo-box-top .button-back:hover {
+    background-color: var(--c-dark-teal);
+    outline: 1px red solid;
+    border-radius: 8px;
 }
 
-.tournaments > .submissions > .title {
-	display: flex;
-	justify-content: space-between;
+.container-dashboard .top-container-dashboard .duo-box-top .button-back:hover a {
+    text-decoration: none;
+    color: red;
 }
 
-.submissions > .title > button {
-	padding: var(--small);
-	height: fit-content;
+.container-dashboard .top-container-dashboard .duo-box-top .button-settings {
+    background-color: var(--c-primary);
+    outline: 1px var(--c-bg) solid;
+    border-radius: 8px;
 }
 
-.tournaments > .submissions > .content {
-	gap: var(--medium);
+.container-dashboard .top-container-dashboard .duo-box-top .button-settings a {
+    text-decoration: none;
+    color: var(--c-text-light);
 }
 
-.content > .tournament {
-	background: var(--c-bg);
+.container-dashboard .top-container-dashboard .duo-box-top .button-settings:hover {
+    background-color: var(--c-primary-light);
+    outline: 1px var(--c-primary);
+    border-radius: 8px;
 }
 
-.desc > .tags {
-	padding: var(--small);
-	gap: var(--small);
+.container-dashboard .top-container-dashboard .duo-box-top .button-settings:hover a {
+    text-decoration: none;
+    color: var(--c-primary);
 }
 
-.desc > .tags > p {
-	border-radius: var(--small);
-	color: var(--c-text-dark);
-	padding: var(--small);
-	background: var(--c-accent);
+.container-dashboard .top-container-dashboard h1 {
+    font-size: 25px;
 }
 
-.tournament .choice {
-	display: flex;
-	align-items: center;
+.container-dashboard .mid-container-dashboard {
+    background-color: var(--c-dark-teal);
+    width: 700px;
+    height: 120px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-dashboard .mid-container-dashboard h1 {
+    color: var(--c-accent);
+    font-size: 20px;
+    margin: 10px;
+    margin-left: 20px;
+}
+
+.container-dashboard .mid-container-dashboard .container-button-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.container-dashboard .mid-container-dashboard .container-button-nav button {
+    background-color: var(--c-accent);
+    border-radius: 10px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.container-dashboard .mid-container-dashboard .container-button-nav button a {
+    text-decoration: none;
+    color: var(--c-dark-teal);
+    font-weight: 500;
+}
+
+.container-dashboard .mid-container-dashboard .container-button-nav button:hover {
+    background-color: var(--c-dark-teal);
+    border-radius: 10px;
+    padding-left: 35px;
+    padding-right: 35px;
+    outline: 1px var(--c-accent) solid;
+}
+
+.container-dashboard .mid-container-dashboard .container-button-nav button:hover a {
+    text-decoration: none;
+    color: var(--c-accent);
+    font-weight: 500;
+}
+
+.container-dashboard .container-separasion {
+    width: 450px;
+    height: 1px;
+    background-color: var(--c-dark-teal);
+    border-radius: 2px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.container-dashboard .bottom-container-dashboard {
+    background-color: var(--c-dark-teal);
+    width: 700px;
+    height: 170px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+.container-dashboard .bottom-container-dashboard .top-button {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    width: 75%;
+}
+
+.container-dashboard .bottom-container-dashboard .top-button button {
+    background-color: var(--c-accent);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.container-dashboard .bottom-container-dashboard .top-button button a {
+    text-decoration: none;
+    color: var(--c-dark-teal);
+    font-weight: 500;
+}
+
+.container-dashboard .bottom-container-dashboard .top-button button:hover {
+    background-color: var(--c-dark-teal);
+    border-radius: 10px;
+    width: 100%;
+    outline: 1px var(--c-accent) solid;
+}
+
+.container-dashboard .bottom-container-dashboard .top-button button:hover a {
+    text-decoration: none;
+    color: var(--c-accent);
+    font-weight: 500;
+}
+
+.container-dashboard .bottom-container-dashboard .bottom-button {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    width: 75%;
+}
+
+.container-dashboard .bottom-container-dashboard .bottom-button button {
+    background-color: var(--c-accent);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.container-dashboard .bottom-container-dashboard .bottom-button .button-logout-dashboard {
+    background-color: red;
+}
+
+.container-dashboard .bottom-container-dashboard .bottom-button .button-logout-dashboard a {
+    color: var(--c-text-light);
+}
+
+.container-dashboard .bottom-container-dashboard .bottom-button .button-logout-dashboard:hover {
+    background-color: var(--c-dark-teal);
+    outline: 1px red solid;
+}
+
+.container-dashboard .bottom-container-dashboard .bottom-button .button-logout-dashboard:hover a {
+    color: red;
+}
+
+.container-dashboard .bottom-container-dashboard .bottom-button button a {
+    text-decoration: none;
+    color: var(--c-dark-teal);
+    font-weight: 500;
+}
+
+.container-dashboard .bottom-container-dashboard .bottom-button button:hover {
+    background-color: var(--c-dark-teal);
+    border-radius: 10px;
+    width: 100%;
+    outline: 1px var(--c-accent) solid;
+}
+
+.container-dashboard .bottom-container-dashboard .bottom-button button:hover a {
+    text-decoration: none;
+    color: var(--c-accent);
+    font-weight: 500;
 }
