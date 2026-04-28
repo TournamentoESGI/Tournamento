@@ -23,6 +23,7 @@ function createGraph($sql,$pdo) {
 
 	$col_count = count($result);
 	$max_value = (int)$result[0][0];
+	print_r($result);
 
 	for ($i = 0; $i<$col_count; $i++) {
 		$value = (int)$result[$i][0];
