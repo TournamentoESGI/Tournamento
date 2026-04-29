@@ -67,9 +67,7 @@ createTable("
 captchas(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	img_url VARCHAR(50),
-	posX INT,
-	posY INT,
-	scale INT
+	splits INT
 )
 ");
 ?>
