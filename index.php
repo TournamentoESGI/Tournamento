@@ -28,7 +28,7 @@
 
 		<?php
 			if (file_exists("./styles/".$page.".css")) {
-				echo '<link rel="stylesheet" href="./styles/'.$page.'.css">';
+				echo '<link rel="stylesheet" href="./styles/'.$page.'.css?'.time().'">';
 			}
 		?>
 
@@ -46,10 +46,10 @@
 				include_once("./pages/".$page.".php");
 			?>
         </main>
-        
+
 		<?php include_once("./components/footer.php");
 		foreach($include_js_list as $js_path) {
-			echo "<script src='".$js_path."'></script>";
+				echo "<script src='".$js_path."?".time()."'></script>";
 		}
 		?>
 	</body>

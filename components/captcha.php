@@ -1,21 +1,11 @@
 <?php
 
 function createCaptcha($img_path, $splits) {
-	echo "<div style='width: 100%;height: auto;position: relative;'>";
-	echo "<div style='background-image:url(".$img_path.");'></div>";
-	/*$size = 1/$splits*100;
-	for ($x=0; $x<$splits; $x++) {
-		for ($y=0; $y<$splits; $y++) {
-			echo "<div style='position:absolute;";
-			echo "left:".($size*$x)."%;";
-			echo "top:".($size*$y)."%;";
-			echo "background: red;";
-			echo "height:".$size."%;";
-			echo "width:".$size."%;";
-			echo "'>"."</div>";
-		}
-	}*/
-	echo "</div>";
+	echo "<div class='captcha' ";
+	echo 'data-splits="'.$splits.'"';
+	echo 'data-img="'.$img_path.'"';
+	echo "></div>";
+	include_js("./scripts/captcha.js");
 }
 
 function generateCaptcha($pdo) {
