@@ -4,7 +4,7 @@ include_once("./components/captcha.php");
 
 //generateCaptcha($pdo);
 ?>
-<div style="padding: 64px; height:100%">
+<div style="width: 100%;">
 <?php
 generateCaptcha($pdo);
 ?>
