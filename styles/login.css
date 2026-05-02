@@ -12,16 +12,15 @@
     padding-right: 50px;
 }
 
-.h1 { 
+.login-texte h1 { 
     font-size: 64px; font-weight: bold; color: rgb(255, 255, 255);
 }
 
-.p {
+.login-texte p {
     font-size: 24px; opacity: 0.85; color: rgb(255, 255, 255);
-}
-
+    }
 .login-texte img { 
-    max-width: 160px; opacity: 0.3; 
+    max-width: 160px;  opacity: 0.3; 
 }
 
 .login-formulaire {
@@ -31,7 +30,9 @@
     padding-right: 5%;
 }
 
-.login-carte { width: 420px; }
+.login-carte {
+    width: 420px;
+}
 
 .login-carte-titre {
     background-color: #0c2415;
@@ -43,43 +44,27 @@
     margin-bottom: 1.5rem;
 }
 
-.login-carte-titre h2 { color: #D9FF22; font-size: 1rem; margin: 0; }
-.login-carte label { color: white; }
+.login-carte-titre h2 { color: #D9FF22;; font-size: 1rem; margin: 0; }
+.login-carte label { color: rgb(255, 255, 255); }
 
-.btn-google {
+.btn-valider, .btn-google {
     border: none;
     border-radius: 8px;
     width: 100%;
     padding: 10px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #0c2415;
-    color: #D9FF22;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    }
+}
 
-.btn-valider { 
-    border: none;
-    border-radius: 8px;
-    width: 100%;
-    padding: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: #D9FF22; 
-    color: #04262A; 
-    margin-top: 0.5rem; 
-    }
-
+.btn-valider { background-color: #D9FF22; color: #04262A; margin-top: 0.5rem; }
+.btn-google { background-color: #0c2415; color: #D9FF22; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
 .separateur {
     display: flex;
     align-items: center;
     gap: 10px;
     margin: 1rem 0;
-    color: white;
+    color:  rgb(255, 255, 255);
 }
 
 .separateur div { flex: 1; height: 1px; background-color: rgba(255,255,255,0.3); }
