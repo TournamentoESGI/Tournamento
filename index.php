@@ -4,7 +4,8 @@
 <html lang="fr">
 
 
-<?php 
+<?php
+	include_once("./systems/constants.php");
 	$include_js_list = [];
 
 	function includeJsFiles() {
@@ -20,7 +21,7 @@
 		} else {
     		$page = $_GET['page'];
 		}
-		if (!file_exists("./pages/".$page.".php")) {		
+		if (!file_exists(DIR_PAGES.$page.".php")) {		
     		$page = "error";
 		}
 
@@ -35,8 +36,8 @@
 		<link rel="stylesheet" href="./index.css">
 
 		<?php
-			if (file_exists("./styles/".$page.".css")) {
-				echo '<link rel="stylesheet" href="./styles/'.$page.'.css?'.time().'">';
+			if (file_exists(DIR_STYLES.$page.".css")) {
+				echo '<link rel="stylesheet" href="'.DIR_STYLES.$page.'.css?'.time().'">';
 			}
 		?>
 
@@ -46,13 +47,12 @@
 		<?php
 		include_once("./components/header.php");
 		include_once("./systems/config.php");
-		echo "ez";
 		include_once("./systems/session.php");
 		?>
 		
 		<main>
 			<?php
-				include_once("./pages/".$page.".php");
+				include_once(DIR_PAGES.$page.".php");
 			?>
         </main>
 

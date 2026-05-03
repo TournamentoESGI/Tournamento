@@ -9,7 +9,7 @@ enum CaptchaMode
 function createCaptcha($img_path, $splits, $gaps, CaptchaMode $mode) {
 	echo "<div class='captcha' ";
 	echo 'data-splits="'.$splits.'"';
-	echo 'data-img="'.$img_path.'"';
+	echo 'data-img="'.DIR_CAPTCHAS.$img_path.'"';
 	echo 'data-gap="'.$gaps.'"';
 	switch ($mode) {
 		case CaptchaMode::Make:

@@ -42,7 +42,6 @@ function updateCaptchaData(dataLine, puzzlesContainer) {
 	var puzzlesList = Array.from(puzzlesContainer.children);
 	dataLine.value = "";
 	puzzlesList.forEach((element) => {
-		console.log(element);
 		dataLine.value += element.dataset.x;
 		dataLine.value += ";";
 		dataLine.value += element.dataset.y;
@@ -63,70 +62,72 @@ document.addEventListener("DOMContentLoaded", function(_event) {
 		backgroundContainer.className = "image";
 		captcha.appendChild(backgroundContainer);
 
-		var captchaHeight = captcha.clientHeight;
-		var captchaWidth = captcha.clientWidth;
+		backgroundContainer.addEventListener("load", function(event) {
+			var captchaHeight = captcha.clientHeight;
+			var captchaWidth = captcha.clientWidth;
 
-		captcha.dataset.width = captchaWidth;
-		captcha.dataset.height = captchaHeight;
+			captcha.dataset.width = captchaWidth;
+			captcha.dataset.height = captchaHeight;
 
-		var puzzlesContainer = document.createElement("div");
-		puzzlesContainer.className = "puzzles";
-		puzzlesContainer.style.height = captchaHeight+"px";
-		puzzlesContainer.style.top = -captchaHeight+"px";
-		captcha.appendChild(puzzlesContainer);
+			var puzzlesContainer = document.createElement("div");
+			puzzlesContainer.className = "puzzles";
+			puzzlesContainer.style.height = captchaHeight+"px";
+			puzzlesContainer.style.top = -captchaHeight+"px";
+			captcha.appendChild(puzzlesContainer);
 
-		var dataInput = document.createElement("input");
-		dataInput.type = "hidden";
-		dataInput.name = "captcha";
-		captcha.appendChild(dataInput);
+			var dataInput = document.createElement("input");
+			dataInput.type = "hidden";
+			dataInput.name = "captcha";
+			captcha.appendChild(dataInput);
 
-		var tileWidth = 1/paramSplits*captchaWidth-paramGap;
-		var tileHeight = 1/paramSplits*captchaHeight-paramGap;
+			var tileWidth = 1/paramSplits*captchaWidth-paramGap;
+			var tileHeight = 1/paramSplits*captchaHeight-paramGap;
 
-		for (let y=0; y<paramSplits; y++) {
-			for (let x=0; x<paramSplits; x++) {
-				var puzzleTile = document.createElement("div");
+			for (let y=0; y<paramSplits; y++) {
+				for (let x=0; x<paramSplits; x++) {
+					var puzzleTile = document.createElement("div");
 
-				movePuzzleToPos(captcha, puzzleTile, x, y);
-				
-				puzzleTile.style.width = tileWidth+"px";
-				puzzleTile.style.height = tileHeight+"px";
-
-				var puzzleImage = document.createElement("img");
-				puzzleImage.src = paramImage;
-				puzzleImage.style.height = captchaHeight+"px";
-
-				puzzleImage.style.left = -tileWidth*x+"px";
-				puzzleImage.style.top = -tileHeight*y+"px";
-
-				puzzleTile.appendChild(puzzleImage);
-				puzzlesContainer.appendChild(puzzleTile);
-
-				puzzleTile.onclick = function(event) {
-					switchPuzzlesPlaces(captcha, puzzlesContainer, event.target);
-					event.target.className = event.target.className?"":"selected";
+					movePuzzleToPos(captcha, puzzleTile, x, y);
 					
+					puzzleTile.style.width = tileWidth+"px";
+					puzzleTile.style.height = tileHeight+"px";
+
+					var puzzleImage = document.createElement("img");
+					puzzleImage.src = paramImage;
+					puzzleImage.style.height = captchaHeight+"px";
+
+					puzzleImage.style.left = -tileWidth*x+"px";
+					puzzleImage.style.top = -tileHeight*y+"px";
+
+					puzzleTile.appendChild(puzzleImage);
+					puzzlesContainer.appendChild(puzzleTile);
+
+					puzzleTile.onclick = function(event) {
+						switchPuzzlesPlaces(captcha, puzzlesContainer, event.target);
+						event.target.className = event.target.className?"":"selected";
+						
+						
+					};
+				}
+			}
+			captcha.style.height = captchaHeight+"px";
+
+			if (paramMode == "solve") {
+				let childrens = Array.from(puzzlesContainer.children);
+				for (let i=0;i<paramSplits; i++) {
+					var randomId = 0;
+					randomId = Math.floor(Math.random()*(childrens.length));
+					var randFromPuzzle = childrens[randomId];
+
+					randomId = Math.floor(Math.random()*(childrens.length));
+					var randToPuzzle = childrens[randomId];
 					
-				};
+					randToPuzzle.className = "selected";
+					switchPuzzlesPlaces(captcha, puzzlesContainer, randFromPuzzle);
+				}
 			}
-		}
-		captcha.style.height = captchaHeight+"px";
 
-		if (paramMode == "solve") {
-			let childrens = Array.from(puzzlesContainer.children);
-			for (let i=0;i<paramSplits; i++) {
-				var randomId = 0;
-				randomId = Math.floor(Math.random()*(childrens.length));
-				var randFromPuzzle = childrens[randomId];
-
-				randomId = Math.floor(Math.random()*(childrens.length));
-				var randToPuzzle = childrens[randomId];
-				
-				randToPuzzle.className = "selected";
-				switchPuzzlesPlaces(captcha, puzzlesContainer, randFromPuzzle);
-			}
-		}
-
-		updateCaptchaData(dataInput, puzzlesContainer);
+			updateCaptchaData(dataInput, puzzlesContainer);
+		});
 	})
 });
