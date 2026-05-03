@@ -22,7 +22,6 @@ try {
 	makeDatabase();
 
 } catch (Exception $ex) {
-    error_log($ex->getMessage()); 
     displayPageError($ex->getMessage());
 }
 ?>

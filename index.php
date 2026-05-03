@@ -4,15 +4,24 @@
 <html lang="fr">
 
 
-	<?php 
+<?php
+	include_once("./systems/constants.php");
 	$include_js_list = [];
+
+	function includeJsFiles() {
+		global $include_js_list;
+		foreach($include_js_list as $js_path) {
+				echo "<script src='".$js_path."?".time()."'></script>";
+		}
+	}
+
 	include_once("./components/basics.php");
 		if (!isset($_GET['page'])) {
    			$page = "home";
 		} else {
     		$page = $_GET['page'];
 		}
-		if (!file_exists("./pages/".$page.".php")) {		
+		if (!file_exists(DIR_PAGES.$page.".php")) {		
     		$page = "error";
 		}
 
@@ -27,8 +36,8 @@
 		<link rel="stylesheet" href="./index.css">
 
 		<?php
-			if (file_exists("./styles/".$page.".css")) {
-				echo '<link rel="stylesheet" href="./styles/'.$page.'.css">';
+			if (file_exists(DIR_STYLES.$page.".css")) {
+				echo '<link rel="stylesheet" href="'.DIR_STYLES.$page.'.css?'.time().'">';
 			}
 		?>
 
@@ -43,14 +52,12 @@
 		
 		<main>
 			<?php
-				include_once("./pages/".$page.".php");
+				include_once(DIR_PAGES.$page.".php");
 			?>
         </main>
-        
+
 		<?php include_once("./components/footer.php");
-		foreach($include_js_list as $js_path) {
-			echo "<script src='".$js_path."'></script>";
-		}
+		includeJsFiles();
 		?>
 	</body>
 </html>

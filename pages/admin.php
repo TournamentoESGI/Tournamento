@@ -1,96 +1,85 @@
-<div class="border-space">
-	<div class="research-tournament hor">
-		<input type="text" placeholder="Rerchercher un tournoi"/>
-		<div class="buttons hor">
-			<button>Reset</button>
-			<button>Rerchercher</button>
+<?php
+
+$user_role = $_SESSION['role'] ?? null;
+
+if ($user_role !== 'Admin') {
+    ?>
+	<div class="denied-container">
+		<h1>Access denied</h1>
+		<button class="denied-button">
+			<a href="<?php echo getPagePath('home') ?>">Retour au site</a>
+		</button>
+	</div>
+    <?php
+	include_once("./components/footer.php");
+    exit;
+}
+
+?>
+
+
+<div class="main-container">
+	<div class="container-profil">
+		<div class="profil">
+			<img src="<?php 
+				$stmt = $pdo->prepare("SELECT profil_picture FROM users WHERE id_users = 1");
+				$stmt->execute();
+				$result = $stmt->fetchAll();
+				print_r(current($result[0]));
+				?>" alt="profil-picture">
+		</div>
+		<div class="profil-text">
+			<h1><?php 
+				$stmt = $pdo->prepare("SELECT username FROM users WHERE id_users = 1");
+				$stmt->execute();
+				$result = $stmt->fetchAll();
+				print_r(current($result[0]));
+				?></h1>
+			<p><?php 
+				$stmt = $pdo->prepare("SELECT email_address FROM users WHERE id_users = 1");
+				$stmt->execute();
+				$result = $stmt->fetchAll();
+				print_r(current($result[0]));
+				?></p>
+		</div>
+		<div class="container-profil-button">
+			<img src="./assets/role_icon.png" alt="role-icon">
+			<h1><?php 
+				$stmt = $pdo->prepare("SELECT role FROM users WHERE id_users = 1");
+				$stmt->execute();
+				$result = $stmt->fetchAll();
+				print_r(current($result[0]));
+				?></h1>
 		</div>
 	</div>
-</div>
-
-<div class="graphs hor statistics">
-	<div class="newcomers">
-		<?php 
-			createGraph("SELECT COUNT(*) FROM users GROUP BY DAY(creation_date)", $pdo);
-		?>
-		<h1>Inscription ces 6 derniers mois</h1>
-	</div>
-	<div class="tournaments">
-		<h1>Tournoi actif ces 6 derniers mois</h1>
-	</div>
-</div>
-
-<div class="user ver">
-	<div class="infos hor">
-		<img src="./assets/background.png" alt="Icon" width="100" height="100"/>
-		<div class="desc ver">
-			<p><b>Profil - Participant sélectionné * actif</b></p>
-			<p>adresse@gmail.com</p>
-			<hr/>
-			<b>
-				<ul>
-					<li>Tournoi participé: 13 tournois terminé - 2 tournois en cours</li>
-					<li>Tournoi organisé : 2 tournois terminé - 3 tournois en brouillons</li>
-					<li>Paris effectué : 23 Paris - 72 % de réussite</li>
-				</ul>
-			</b>
-		</div>
-	</div>
-	<div class="options hor">
-		<button>+ de détails</button>
-		<button>Supprimer</button>
-		<button>Modifier</button>
-	</div>
-</div>
-
-<div class="border-space">
-	<div class="research-participant ver">
-		<div class="search hor">
-			<div class="filters hor">
-				<input type="text"/>
-				<select>
-					<option>actif</option>
-					<option>inactif</option>
-				</select>
-				<select>
-					<option>Paris</option>
-					<option>Nice</option>
-					<option>Bordeaux</option>
-				</select>
+	<div class="container-dashboard">
+		<div class="top-container-dashboard">
+			<h1>Tableau de bord : Admin / Menu</h1>
+			<div class="duo-box-top">
+				<button class="button-back"><a href="<?php echo getPagePath("home") ?>">Retour au site</a></button>
+				<button class="button-settings"><a href="">Paramètre</a></button>
 			</div>
-			<button>Reset</button>
 		</div>
-	</div>
-</div>
-
-<div class="tournaments hor">
-	<div class="submissions ver">
-		<div class="title hor">
-			<h2>Demande de Création de tournoi</h2>
-			<button>Agrandir</button>
+		<div class="mid-container-dashboard">
+			<h1>Option de navigation :</h1>
+			<div class="container-button-nav">
+				<button><a href="">Tournoi</a></button>
+				<button><a href="">Profil utilisateur</a></button>
+				<button><a href="">Statistiques</a></button>
+			</div>
 		</div>
-		<div class="content ver">
-			<div class="tournament hor">
-				<img/>
-				<div class="desc">
-					<div class="infos hor">
-						<p>Spring Battle Valorant 2026</p>
-						<p>Soumis par Jean D.</p>
-					</div>
-					<div class="tags hor">
-						<p>Valorant</p>
-						<p>24 équipes max</p>					
-						<p>Cashprize: 2000</p>					
-						<p>4 octobre 2026</p>					
-					</div>
-				</div>
-				<div class="choice">
-					<button>Accepter</button>
-					<button>Refuser</button>
-				</div>
+		<div class="container-separasion"></div>
+		<div class="bottom-container-dashboard">
+			<div class="top-button">
+				<button><a href="">Bannis</a></button>
+				<button><a href="">Signalement</a></button>
+				<button><a href="">Messages</a></button>
+			</div>
+			<div class="bottom-button">
+				<button><a href="">Système de notes</a></button>
+				<button><a href="">Gestion des logs</a></button>
+				<button class="button-logout-dashboard"><a href="">Déconnexion</a></button>
 			</div>
 		</div>
 	</div>
 </div>
-
-<?php //displayPageError("Error test !") ?>

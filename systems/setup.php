@@ -38,8 +38,8 @@ users (
     password VARCHAR(255) NOT NULL,
     current_balance INT DEFAULT 0,
     creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    profil_picture VARCHAR(255) DEFAULT 'default_profile_picture.png'
-
+    profil_picture VARCHAR(255) DEFAULT './assets/profil_picture/default_profile_picture.png',
+    role VARCHAR(10) DEFAULT 'Membre'
 )
 ");
 
@@ -67,9 +67,7 @@ createTable("
 captchas(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	img_url VARCHAR(50),
-	posX INT,
-	posY INT,
-	scale INT
+	splits INT
 )
 ");
 ?>
