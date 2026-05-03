@@ -4,8 +4,16 @@
 <html lang="fr">
 
 
-	<?php 
+<?php 
 	$include_js_list = [];
+
+	function includeJsFiles() {
+		global $include_js_list;
+		foreach($include_js_list as $js_path) {
+				echo "<script src='".$js_path."?".time()."'></script>";
+		}
+	}
+
 	include_once("./components/basics.php");
 		if (!isset($_GET['page'])) {
    			$page = "home";
@@ -38,6 +46,7 @@
 		<?php
 		include_once("./components/header.php");
 		include_once("./systems/config.php");
+		echo "ez";
 		include_once("./systems/session.php");
 		?>
 		
@@ -48,9 +57,7 @@
         </main>
 
 		<?php include_once("./components/footer.php");
-		foreach($include_js_list as $js_path) {
-				echo "<script src='".$js_path."?".time()."'></script>";
-		}
+		includeJsFiles();
 		?>
 	</body>
 </html>
