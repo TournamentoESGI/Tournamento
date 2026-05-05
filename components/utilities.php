@@ -22,4 +22,12 @@ function include_js($path) {
 		array_push($include_js_list, $path);
 	}
 }
+
+function sendLog($message) {
+	global $pdo;
+	$author = "guest";
+
+	$sql = "INSERT INTO logs(author, message) VALUES($author,$message)";
+	$pdo->exec($sql);
+}
 ?>

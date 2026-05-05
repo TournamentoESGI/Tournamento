@@ -1,4 +1,10 @@
 <?php
+echo "</main>";
+echo '<script src="./scripts/error.js"> </script>';
+echo '<script>
+cleanPage();
+</script>';
+echo '<link rel="stylesheet" href="./index.css">';
 $error_parts = explode(":",$errorPageMessage);
 if (count($error_parts) > 2) {
     $error_code = $error_parts[0];
@@ -23,7 +29,6 @@ if (count($error_parts) > 2) {
 	echo "<p>$errorPageMessage</p>";
 	echo "</div>";
 	echo "</div>";
-	include_js("./scripts/error.js");
 }
 else {
     echo "<h1>".$errorPageMessage."</h1>";

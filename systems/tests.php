@@ -1,6 +1,5 @@
 <?php
-$reload=count($_GET)==0;
-
+$reload = isset($_GET['reload']);
 if ($reload) {
 	deleteDatabase();
 }

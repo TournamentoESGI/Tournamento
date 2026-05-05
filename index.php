@@ -15,14 +15,15 @@
 		}
 	}
 
-	include_once("./components/basics.php");
+	include_once("./components/error.php");
+	include_once("./components/utilities.php");
 		if (!isset($_GET['page'])) {
    			$page = "home";
 		} else {
     		$page = $_GET['page'];
 		}
-		if (!file_exists(DIR_PAGES.$page.".php")) {		
-    		$page = "error";
+		if (!file_exists(DIR_PAGES.$page.".php")) {
+			displayPageError("Error: Page $page not found");
 		}
 
 	?>
@@ -50,7 +51,7 @@
 		include_once("./systems/session.php");
 		?>
 		
-		<main>
+		<main id="main">
 			<?php
 				include_once(DIR_PAGES.$page.".php");
 			?>
