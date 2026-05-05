@@ -75,7 +75,8 @@ createTable("
 logs (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	message VARCHAR(255),
-	author VARCHAR(255)
+	author VARCHAR(255),
+	date DATETIME
 )
 ");
 ?>

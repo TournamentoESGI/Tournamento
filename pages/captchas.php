@@ -20,9 +20,10 @@ if (isset($_POST['submit_image'])) {
 
 		if ($file_size >= 0) {
 			move_uploaded_file($_FILES["image"]["tmp_name"], $captcha_path);
-			$sql = "INSERT INTO captchas (img_url, splits) VALUES ('$file_name', '$splits')";
+			$sql = "INSERT INTO captchas (img_url, splits) VALUES ('$file_name', '$splits');";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
+			sendLog("Created captcha");
 		}
 		else {
 			echo "No image !";

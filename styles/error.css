@@ -1,0 +1,4 @@
+.error {
+	position: relative;
+	padding: var(--medium);
+}

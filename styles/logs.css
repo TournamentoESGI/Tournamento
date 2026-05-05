@@ -1,0 +1,29 @@
+.logs {
+	display: flex;
+	flex-direction: column;
+	padding: var(--medium);
+	gap: var(--medium);
+}
+
+.log {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.log > div {
+	width: fit-content;
+}
+
+.log > .content {
+	gap: var(--medium);
+	display: flex;
+	flex-direction: row;
+}
+
+.log > .content > .info {
+	gap: var(--small);
+	display: flex;
+	flex-direction: row;
+}

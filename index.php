@@ -52,9 +52,9 @@
 		?>
 		
 		<main id="main">
-			<?php
-				include_once(DIR_PAGES.$page.".php");
-			?>
+		<?php
+		include_once(DIR_PAGES.$page.".php");
+		?>
         </main>
 
 		<?php include_once("./components/footer.php");

@@ -26,8 +26,9 @@ function include_js($path) {
 function sendLog($message) {
 	global $pdo;
 	$author = "guest";
+	$now = date("Y-m-d H:i:s");
 
-	$sql = "INSERT INTO logs(author, message) VALUES($author,$message)";
+	$sql = "INSERT INTO logs(author, message, date) VALUES('$author','$message', '$now');";
 	$pdo->exec($sql);
 }
 ?>

@@ -54,7 +54,8 @@
                     $_SESSION['username'] = $user['username'];
                     header("Location: profile.php");
                     exit;
-                } else {
+				} else {
+					sendLog("Tentative de connection a ".$username);
                     $_SESSION['error'] = "Identifiants ou Mot de passe incorrects.";
                 }
             }
