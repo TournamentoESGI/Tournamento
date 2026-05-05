@@ -7,18 +7,40 @@
     padding: 2rem;
 }
 
+.signup-form h2 {
+    color: white;
+}
+
+.signup-form input {
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+}
+
 .login-texte {
     width: 45%;
     padding-right: 50px;
 }
 
 .login-texte h1 { 
+<<<<<<< HEAD
     font-size: 64px; font-weight: bold; color: rgb(255, 255, 255);
 }
 
 .login-texte p {
     font-size: 24px; opacity: 0.85; color: rgb(255, 255, 255);
     }
+=======
+    font-size: 64px; font-weight: bold; color: white; 
+}
+
+.login-texte p {
+    font-size: 24px; opacity: 0.85; color: white;
+}
+
+>>>>>>> 636501e (Sécurisation/CSS Page Signup)
 .login-texte img { 
     max-width: 160px;  opacity: 0.3; 
 }
