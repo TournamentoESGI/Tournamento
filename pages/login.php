@@ -9,7 +9,6 @@
         </p>
         <img src="assets/second_logo.png" alt="Logo" class="second-logo">
     </div>
-
     <div class="login-formulaire">
         <div class="login-carte">
             <div class="login-carte-titre">
@@ -60,16 +59,6 @@
                 }
             }
             ?>
-
-            <div class="separateur">
-                <div></div>
-                <p class="mb-0">ou</p>
-                <div></div>
-            </div>
-            <button class="btn-google">
-                <img src="" alt="">
-                <p class="mb-0">Se connecter avec Google<i class="fa fa-google" aria-hidden="true"></i></p>
-            </button>
         </div>
     </div>
 </div>
