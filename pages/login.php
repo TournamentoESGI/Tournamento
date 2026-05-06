@@ -24,12 +24,17 @@
                     <label for="password">Mot de passe :</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="mot de passe">
                 </div>
-                <div class="mb-3">
-                    <label class="checkbox d-flex align-items-center gap-2">
+                <div class="options">
+
+                    <div class="checkbox_lign">
                         <input type="checkbox" name="remember" id="remember">
                         <span class="checkmark"></span>
                         <p class="mb-0">Rester connecté</p>
-                    </label>
+                    </div>
+
+                    <a href="?page=signup" style="color: #bef13a;">S'inscrire</a>
+
+
                     <?php
                     if (isset($_POST['remember'])) {
                         $token = bin2hex(random_bytes(32));
@@ -43,6 +48,7 @@
             </form>
 
             <?php
+            echo "<div class='erreurs'>";
             if (isset($_POST['login'])) {
                 $username = htmlspecialchars(trim($_POST['username']));
                 $password = $_POST['password'];
@@ -54,10 +60,12 @@
                     $_SESSION['username'] = $user['username'];
                     header("Location: profile.php");
                     exit;
-				} else {
-					sendLog("Tentative de connection a ".$username);
-                    $_SESSION['error'] = "Identifiants ou Mot de passe incorrects.";
+
+                } else {
+                    echo "<p>Identifiants ou Mot de passe incorrects</p>";
+
                 }
+                echo "</div>";
             }
             ?>
         </div>

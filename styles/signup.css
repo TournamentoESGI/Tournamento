@@ -99,3 +99,20 @@
     color: #04262A; 
     margin-top: 0.5rem; 
 }
+
+.erreurs p {
+    color: #ff4d4d;
+    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid #ff4d4d;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin: 4px 0;
+}
+
+.success p {
+    color: #00b300;
+    border-left: 3px solid #00b300;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin: 4px 0;
+}
