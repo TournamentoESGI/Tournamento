@@ -76,7 +76,8 @@ logs (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	message VARCHAR(255),
 	author VARCHAR(255),
-	date DATETIME
+	date DATETIME,
+	page VARCHAR(63) DEFAULT ''
 )
 ");
 ?>

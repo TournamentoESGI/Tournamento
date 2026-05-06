@@ -7,15 +7,32 @@ enum CaptchaMode
 };
 
 function createCaptcha($img_path, $splits, $gaps, CaptchaMode $mode) {
+	$img_path = DIR_CAPTCHAS.$img_path;
 	echo "<div class='captcha' ";
+	if (!file_exists($img_path)) {
+		echo ">";
+		switch ($mode) {
+			case CaptchaMode::Make:
+				echo "<p>Image $img_path not found</p>";
+				break;
+			case CaptchaMode::Solve:
+				echo "<p>Image not found</p>";
+				break;
+		}
+		echo "</div>";
+		return;
+	}
 	echo 'data-splits="'.$splits.'"';
-	echo 'data-img="'.DIR_CAPTCHAS.$img_path.'"';
+		
+	echo 'data-img="'.$img_path.'"';
 	echo 'data-gap="'.$gaps.'"';
 	switch ($mode) {
 		case CaptchaMode::Make:
 			echo 'data-mode="make"';
+			break;
 		case CaptchaMode::Solve:
 			echo 'data-mode="solve"';
+			break;
 	}
 	echo "></div>";
 	include_js("./scripts/captcha.js");
@@ -51,4 +68,5 @@ function isCaptchaValid($data) {
 	}
 	return $valid;
 }
+
 ?>

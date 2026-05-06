@@ -27,8 +27,9 @@ function sendLog($message) {
 	global $pdo;
 	$author = "guest";
 	$now = date("Y-m-d H:i:s");
+	$page = $_GET['page']?$_GET['page']:'';
 
-	$sql = "INSERT INTO logs(author, message, date) VALUES('$author','$message', '$now');";
+	$sql = "INSERT INTO logs(author, message, date, page) VALUES('$author','$message', '$now', '$page');";
 	$pdo->exec($sql);
 }
 ?>

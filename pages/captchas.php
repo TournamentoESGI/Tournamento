@@ -40,11 +40,15 @@ if (isset($_POST['submit_delete'])) {
 		$result = $stmt->fetchAll();
 		if (count($result) == 1) {
 			$captcha_path = DIR_CAPTCHAS.$result[0]["img_url"];
-
-			unlink($captcha_path);
+			
+			if (file_exists($captcha_path)) {
+				unlink($captcha_path);
+			}
 			$sql = "DELETE FROM captchas WHERE id=".$captcha_id.";";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
+
+			sendLog("Deleted captcha");
 		}
 	}
 	catch(PDOException $ex) {
