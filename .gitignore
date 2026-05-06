@@ -1,2 +1,4 @@
 .env
 composer.json
+systems/tests.php
+assets/captchas/

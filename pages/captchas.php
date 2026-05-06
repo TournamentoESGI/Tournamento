@@ -20,9 +20,10 @@ if (isset($_POST['submit_image'])) {
 
 		if ($file_size >= 0) {
 			move_uploaded_file($_FILES["image"]["tmp_name"], $captcha_path);
-			$sql = "INSERT INTO captchas (img_url, splits) VALUES ('$file_name', '$splits')";
+			$sql = "INSERT INTO captchas (img_url, splits) VALUES ('$file_name', '$splits');";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
+			sendLog("Created captcha");
 		}
 		else {
 			echo "No image !";
@@ -39,11 +40,15 @@ if (isset($_POST['submit_delete'])) {
 		$result = $stmt->fetchAll();
 		if (count($result) == 1) {
 			$captcha_path = DIR_CAPTCHAS.$result[0]["img_url"];
-
-			unlink($captcha_path);
+			
+			if (file_exists($captcha_path)) {
+				unlink($captcha_path);
+			}
 			$sql = "DELETE FROM captchas WHERE id=".$captcha_id.";";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
+
+			sendLog("Deleted captcha");
 		}
 	}
 	catch(PDOException $ex) {

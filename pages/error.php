@@ -1,31 +1,29 @@
 <?php
-$error_parts = explode(":",$errorPageMessage);
-if (count($error_parts) > 2) {
-    $error_code = $error_parts[0];
-    $error_type = $error_parts[1];
-    $error_message = $error_parts[2];
+echo '<script src="./scripts/error.js"> </script>';
+echo '<script> cleanPage(); </script>';
 
-	echo "<div style='display:flex; flex-direction: column; padding: 16px;'>";
-    echo "<h1>";
-    echo "Erreur ".$error_code;
-    echo "</h1>";
-    
-    echo "<p>";
-    echo $error_type;
-    echo "</p>";
-    
-    echo "<p>";
-	echo $error_message;
-	echo "</p>";
+echo '<link rel="stylesheet" href="./index.css">';
+echo '<link rel="stylesheet" href="./styles/error.css">';
 
-	echo "<button style='width: fit-content' id='errorButton'>See full error</button>";
-	echo "<div id='errorContainer'>";
-	echo "<p>$errorPageMessage</p>";
-	echo "</div>";
-	echo "</div>";
-	include_js("./scripts/error.js");
+$error_parts = explode(";",$errorPageMessage);
+$type = $error_parts[0];
+echo "<div class='container'>";
+echo "<div class='error'>";
+if ($type == "Auto") {
+	$err_number = $error_parts[1];
+	$err_message = $error_parts[2];
+	$err_file = $error_parts[3];
+	$err_line = $error_parts[4];
+	echo "<h1>Error n°$err_number</h1>";
+	echo "<h2>$err_message</h2>";
+	echo "<hr/>";
+	echo "<h3>In file $err_file</h3>";
+	echo "<h3>On line $err_line</h3>";
 }
 else {
-    echo "<h1>".$errorPageMessage."</h1>";
+	echo "<h1>".$errorPageMessage."</h1>";
 }
+echo "</div>";
+echo "</div>";
+
 ?>
