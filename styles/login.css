@@ -1,7 +1,7 @@
 .login-presentation {
     background-image: url("../assets/background.png");
     background-size: cover;
-    min-height: 76.8vh;
+    min-height: 74.5vh;
     display: flex;
     align-items: center;
     padding: 2rem;
@@ -72,4 +72,28 @@
     gap: 10px;
     margin: 1rem 0;
     color: white;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.checkbox_lign {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: white;
+}
+
+.erreurs p {
+    color: #ff4d4d;
+    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid #ff4d4d;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin: 8px 0;
 }

@@ -41,11 +41,13 @@ function switchPuzzlesPlaces(captcha, puzzlesContainer, puzzle) {
 function updateCaptchaData(dataLine, puzzlesContainer) {
 	var puzzlesList = Array.from(puzzlesContainer.children);
 	dataLine.value = "";
-	puzzlesList.forEach((element) => {
+	puzzlesList.forEach((element, index) => {
 		dataLine.value += element.dataset.x;
 		dataLine.value += ";";
 		dataLine.value += element.dataset.y;
-		dataLine.value += " ";
+		if (index != puzzlesList.length-1) {
+			dataLine.value += " ";
+		}
 	});
 }
 
@@ -105,8 +107,7 @@ document.addEventListener("DOMContentLoaded", function(_event) {
 					puzzleTile.onclick = function(event) {
 						switchPuzzlesPlaces(captcha, puzzlesContainer, event.target);
 						event.target.className = event.target.className?"":"selected";
-						
-						
+						updateCaptchaData(dataInput, puzzlesContainer);
 					};
 				}
 			}
