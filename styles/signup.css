@@ -1,35 +1,38 @@
 .signup-presentation {
     background-image: url("../assets/background.png");
     background-size: cover;
-    min-height: 76.8vh;
+    min-height: 74vh;
     display: flex;
     align-items: center;
     padding: 2rem 4%;
 }
 
 .signup-texte { 
-    width: 50%;
-    padding-left: 200px;
+    width: 70%;
+    padding-left: 8%;
     text-align: center;
-}
-.signup-texte h1 {
-    font-size: 44px;
+    h1 {
+    font-size: 130%;
     font-weight: bold;
     color: white;
-}
-.signup-texte p {
-    font-size: 22px;
+    }
+    p {
+    font-size: 110%;
     opacity: 0.85;
     color: white;
+    }
 }
-.signup-texte img {
-    max-width: 20%;
+
+.second-logo {
+    max-width: 15%;
     opacity: 0.3;
 }
 
 .signup-carte {
-    width: 49%;
-    border-radius: 12px;
+    width: 46%;
+    label {
+    color: white;
+    }
 }
 
 .signup-carte-titre {
@@ -42,15 +45,12 @@
     gap: 12px;
     margin: 0 auto 1.5rem;
     width: 25%;
-}
-
-.signup-carte-titre h2 {
+    
+    h2 {
     color: #D9FF22;
     font-size: 1rem;
     margin: 0;
-}
-.signup-carte label {
-    color: white;
+    }
 }
 .signup-form h2 {
     display: none;
@@ -64,23 +64,22 @@
 .signup-form input {
     background: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 9px;
     width: 100%;
-    padding: 10px;
+    padding: 3%;
 }
 
 .signup-actions {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    margin-top: 1rem;
+    margin-top: 0.1rem;
 }
 
 .signup-actions label {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     white-space: nowrap;
     color: white;
 }
@@ -92,7 +91,7 @@
     border-radius: 8px;
     width: 70%;
     margin-left: 15%;
-    padding: 10px;
+    padding: 1%;
     font-weight: bold;
     cursor: pointer;
     background-color: #D9FF22; 
@@ -115,4 +114,62 @@
     padding: 6px 12px;
     border-radius: 4px;
     margin: 4px 0;
+}
+
+.captcha-section {
+    display: flex;
+    flex-direction: row;
+    margin-left : 15%;
+    align-items: center;
+    p {
+        color: white;
+        margin-right: 20%;
+        font-size:small;
+        justify-content: row;
+    }
+}
+
+.captcha {
+    display :block;
+    max-width: 29%;
+    max-height: 29%;
+}
+
+@media screen and (max-width: 1024px ) {
+    .signup-presentation {
+        flex-direction: column;
+        padding: 1rem;
+        align-items: stretch;
+    }
+
+    .signup-carte {
+        width: 100%;
+    }
+
+    .signup-texte {
+        width: 80%;
+        padding-left: 0;
+        margin-top: 2rem;
+    }
+
+    .signup-form .mb-3 {
+        width: 100%;
+        display: block;
+        margin-right: 0;
+    }
+
+    .signup-carte-titre {
+        width: fit-content;
+    }
+
+    .btn-signup {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .captcha-section {
+        margin-left: 0;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

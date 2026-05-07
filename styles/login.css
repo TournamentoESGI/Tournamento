@@ -1,7 +1,7 @@
 .login-presentation {
     background-image: url("../assets/background.png");
     background-size: cover;
-    min-height: 76.8vh;
+    min-height: 74.5vh;
     display: flex;
     align-items: center;
     padding: 2rem;
