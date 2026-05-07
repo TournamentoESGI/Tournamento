@@ -23,6 +23,12 @@ function include_js($path) {
 	}
 }
 
+function sendDebug($message) {
+	global $debugPageMessage;
+	$debugPageMessage = $debugPageMessage.$message."\n";
+	echo "<script>console.log('$message')</script>";
+}
+
 function sendLog($message) {
 	global $pdo;
 	$author = "guest";

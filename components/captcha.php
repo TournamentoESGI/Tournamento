@@ -54,7 +54,7 @@ function generateCaptcha($pdo) {
 
 function isCaptchaValid($data) {
 	$values = explode(" ", $data);
-	$rowLength = sqrt(count($values));
+	$rowLength = floor(sqrt(count($values)));
 	$valid = true;
 	for ($i=0; $i<count($values);$i++) {
 		$x = explode(";",$values[$i])[0];

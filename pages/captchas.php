@@ -41,7 +41,7 @@ if (isset($_POST['submit_delete'])) {
 		if (count($result) == 1) {
 			$captcha_path = DIR_CAPTCHAS.$result[0]["img_url"];
 			
-			if (file_exists($captcha_path)) {
+			if (file_exists($captcha_path) && $captcha_path!=DIR_CAPTCHAS) {
 				unlink($captcha_path);
 			}
 			$sql = "DELETE FROM captchas WHERE id=".$captcha_id.";";

@@ -21,7 +21,15 @@ if ($type == "Auto") {
 	echo "<h3>On line $err_line</h3>";
 }
 else {
-	echo "<h1>".$errorPageMessage."</h1>";
+	$error_parts = explode(";",$errorPageMessage);
+	$err_message = $error_parts[1];
+	echo "<h1>".$err_message."</h1>";
+}
+echo "</div>";
+echo "<div>";
+global $debugPageMessage;
+foreach(explode("\n",$debugPageMessage) as $debug) {
+	echo "<p>$debug</p>";
 }
 echo "</div>";
 echo "</div>";
