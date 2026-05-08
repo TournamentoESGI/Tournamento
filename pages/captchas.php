@@ -1,5 +1,5 @@
 <?php
-role();
+verifieRoleAdmin();
 ?>
 
 <h1>My captchas</h1>

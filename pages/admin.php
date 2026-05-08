@@ -1,5 +1,5 @@
 <?php
-role();
+verifieRoleAdmin();
 ?>
 
 <div class="main-container">
