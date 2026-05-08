@@ -1,3 +1,7 @@
+<?php
+role();
+?>
+
 <h1>My captchas</h1>
 
 <div style="padding: 16px; display: flex; flex-direction: column">

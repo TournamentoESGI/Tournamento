@@ -1,5 +1,6 @@
 <?php
 include_once("./components/captcha.php");
+role();
 ?>
 
 <div class="signup-presentation">

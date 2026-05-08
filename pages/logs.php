@@ -1,3 +1,7 @@
+<?php
+role();
+?>
+
 <div class= login-presentation>
 
 <h1>Tableau de bord : Logs</h1>
