@@ -38,8 +38,8 @@
                     <?php
                     if (isset($_POST['remember'])) {
                         $token = bin2hex(random_bytes(32));
-                        $stmt = $pdo->prepare("UPDATE users SET remember_token = ? WHERE id = ?");
-                        $stmt->execute([$token, $user['id']]);
+                        $stmt = $pdo->prepare("UPDATE users SET remember_token = ? WHERE id_users = ?");
+                        $stmt->execute([$token, $user['id_users']]);
                         setcookie("remember", $token, time() + (86400 * 10), "/", "", true, true);
                     }
                     ?>
@@ -56,9 +56,10 @@
                 $stmt->execute([$username]);
                 $user = $stmt->fetch();
                 if ($user && password_verify($password, $user['password'])) {
-                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['user_id'] = $user['id_users'];
                     $_SESSION['username'] = $user['username'];
                     header("Location: profile.php");
+                    sendlog("Connexion");
                     exit;
 
                 } else {
