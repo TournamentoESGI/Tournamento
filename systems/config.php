@@ -5,6 +5,8 @@ error_reporting(E_ALL);
 
 $env = parse_ini_file('.env');
 
+include_once('./components/security.php');
+
 try {
     $dsn = sprintf("mysql:host=%s;dbname=%s;charset=utf8", $env['DB_HOST'], $env['DB_BASE']);
 

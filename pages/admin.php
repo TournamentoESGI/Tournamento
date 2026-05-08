@@ -1,22 +1,6 @@
 <?php
-
-$user_role = $_SESSION['role'] ?? null;
-
-if ($user_role !== 'Admin') {
-    ?>
-	<div class="denied-container">
-		<h1>Access denied</h1>
-		<button class="denied-button">
-			<a href="<?php echo getPagePath('home') ?>">Retour au site</a>
-		</button>
-	</div>
-    <?php
-	include_once("./components/footer.php");
-    exit;
-}
-
+verifieRoleAdmin();
 ?>
-
 
 <div class="main-container">
 	<div class="container-profil">

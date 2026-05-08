@@ -36,11 +36,9 @@
 
 
                     <?php
-                    if (isset($_POST['remember'])) {
-                        $token = bin2hex(random_bytes(32));
-                        $stmt = $pdo->prepare("UPDATE users SET remember_token = ? WHERE id_users = ?");
-                        $stmt->execute([$token, $user['id_users']]);
-                        setcookie("remember", $token, time() + (86400 * 10), "/", "", true, true);
+                    if (isset($_POST['user'])) {
+                        //$token = bin2hex(random_bytes(32));
+                        //setcookie("remember", $token, time() + (86400 * 10), "/", "", true, true);
                     }
                     ?>
                 </div>
@@ -50,16 +48,17 @@
             <?php
             echo "<div class='erreurs'>";
             if (isset($_POST['login'])) {
-                $username = htmlspecialchars(trim($_POST['username']));
+                $username = trim($_POST['username']);
                 $password = $_POST['password'];
                 $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
                 $stmt->execute([$username]);
                 $user = $stmt->fetch();
                 if ($user && password_verify($password, $user['password'])) {
                     $_SESSION['user_id'] = $user['id_users'];
-                    $_SESSION['username'] = $user['username'];
-                    header("Location: profile.php");
+					$_SESSION['username'] = $user['username'];
+					$_SESSION['role'] = $user['role'];
                     sendlog("Connexion");
+                    header("Location: ?page=profile");
                     exit;
 
                 } else {
