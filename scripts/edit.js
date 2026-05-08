@@ -21,6 +21,8 @@ function addPool(poolName) {
 	var poolPlayersContainer = document.createElement("div");
 	poolPlayersContainer.className = "players";
 
+	var poolAddContainer = document.createElement("div");
+	poolAddContainer.className="add-container";
 	var poolAdd = document.createElement("button");
 	poolAdd.textContent = "Add place";
 	poolAdd.className = "add";
@@ -30,7 +32,8 @@ function addPool(poolName) {
 
 	var anchor = document.getElementById("anchor");
 	pool.appendChild(poolTitle);
-	pool.appendChild(poolAdd);
+	poolAddContainer.appendChild(poolAdd);
+	pool.appendChild(poolAddContainer);
 	pool.appendChild(poolPlayersContainer);
 
 	pool.ondblclick = function(event) {
@@ -53,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	var posY = window.innerHeight/2;
 	var middleClick = false;
 	var leftClick = false;
+	var hoverX = 0;
+	var hoverY = 0;
 	var selectedPool = null;
 
 	document.addEventListener("mousedown", (event) => {
@@ -66,6 +71,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			selectPool(selectedPool, false);
 			selectedPool = event.target;
 			selectPool(event.target, true);
+			hoverX = selectedPool.style.x-event.offsetX;
+			hoverY = selectedPool.style.y-event.offsetY;
 		}
 		else {
 			selectPool(selectedPool, false);
@@ -90,8 +97,17 @@ document.addEventListener("DOMContentLoaded", function() {
 		if (leftClick) {
 			if (selectedPool) {
 				var anchorRect = anchor.getBoundingClientRect();
-				selectedPool.style.left = event.clientX-anchorRect.left+"px";
-				selectedPool.style.top = event.clientY-anchorRect.top+"px";
+				selectedPool.style.left = event.clientX-anchorRect.left+hoverX+"px";
+				selectedPool.style.top = event.clientY-anchorRect.top+hoverY+"px";
+			}
+		}
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key == "Delete") {
+			if (selectedPool) {
+				selectedPool.remove();
+				selectedPool = null;
 			}
 		}
 	});
@@ -99,7 +115,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	var buttonAddPool = document.getElementById("button-create");
 	buttonAddPool.onclick = function() {
 		var newPool = addPool("New pool");
-		addPlayerToPool(newPool, "User");
 	};
 
 	navigate(0,0);

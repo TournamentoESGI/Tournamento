@@ -78,7 +78,7 @@ h1 {
 }
 
 .pool.selected {
-	outline: 2px solid var(--c-primary);
+	outline: 4px solid var(--c-primary);
 }
 
 .pool > input.title {
@@ -94,10 +94,16 @@ h1 {
 }
 
 .pool > input.title:focus {
-	border: none;
+	color: var(--c-accent);
+	outline: none;
 }
 
-.pool > button {
+.pool > .add-container {
+	padding: var(--small);
+}
+
+.pool > .add-container > button {
+	border-radius: var(--small);
 	border: none;
 	width: 100%;
 	display: block;
