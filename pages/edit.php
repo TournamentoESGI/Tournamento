@@ -1,14 +1,5 @@
 <div class="editor">
 	<div id="anchor">
-		<div class="pool">
-			<p>Pool 1</p>
-			<div class="players">
-				<p>Player 1</p>
-				<p>Player 2</p>
-				<p>Player 3</p>
-				<p>Player 4</p>
-			</div>
-		</div>
 	</div>
 </div>
 <div class="tool-container">
@@ -19,6 +10,12 @@
 		<button id="button-create">
 			<h1> P </h1>
 		</button>
+	</div>
+</div>
+<div class="infos-container">
+	<div class="infos">
+		<p>Tournament Editor</p>
+		<input type="text" placeholder="project name"/>
 	</div>
 </div>
 <?php
