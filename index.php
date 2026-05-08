@@ -59,7 +59,10 @@
 		?>
         </main>
 
-		<?php include_once("./components/footer.php");
+		<?php 
+		if ($page != "edit") {
+			include_once("./components/footer.php");
+		}
 		includeJsFiles();
 		?>
 	</body>

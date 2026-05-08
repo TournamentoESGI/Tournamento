@@ -1,0 +1,82 @@
+main {
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+}
+
+h1 {
+	margin: 0;
+}
+
+.tool-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	padding: var(--small);
+
+	overflow: hidden;
+}
+
+.toolbar {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 100%;
+	width: fit-content;
+
+	background-color: var(--c-bg);
+	border-radius: var(--medium);
+	padding: var(--medium);
+	box-shadow: var(--s-medium);
+}
+
+.toolbar > button {
+	border-radius: var(--medium);
+	padding: var(--medium);
+	background-color: var(--c-accent);
+}
+
+.editor {
+	height: 100%;
+	width: 100%;
+}
+
+#anchor {
+	position: relative;
+	width: 0;
+	height: 0;
+	left: 50%;
+	top: 50%;
+}
+
+.pool {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: var(--c-accent);
+	
+	overflow: hidden;
+
+	border-radius: var(--small);
+	box-shadow: var(--s-medium);
+	color: var(--c-text-light);
+}
+
+.pool > p {
+	white-space: nowrap;
+	text-align: center;
+	padding: var(--small);
+	background-color: var(--c-dark-teal);
+}
+
+.pool > .players {
+	padding: var(--small);
+}
+
+.pool > .players > p {
+	position: relative;
+	white-space: nowrap;
+	border-radius: var(--small);
+	padding: var(--small);
+	background-color: var(--c-dark-teal);
+}

@@ -34,6 +34,9 @@ html, body {
     margin: 0;
 }
 
+main {
+}
+
 body {
     background-color: var(--c-bg);
     display: flex;
@@ -49,7 +52,7 @@ header {
     align-items: center;
     padding: 16px 5%;
     background-color: var(--c-bg);
-    box-shadow: var(--s-m);
+    box-shadow: var(--s-medium);
 }
 
 hr {
@@ -106,6 +109,7 @@ header nav ul li a:hover {
 }
 
 footer {
+	position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
