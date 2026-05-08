@@ -3,13 +3,22 @@
 <h1>Tableau de bord : Logs</h1>
 
 <?php
-$author = isset($_GET['author']) ? $_GET['author'] : '';
-$message = isset($_GET['message']) ? $_GET['message'] : '';
+$id= isset($_POST['id']) ? $_POST['id'] : '';
+$author = isset($_POST['author']) ? $_POST['author'] : '';
+$message = isset($_POST['message']) ? $_POST['message'] : '';
 
 $sql = "SELECT id, author, message, page, date FROM logs";
 
-if ($author && $message) {
+if ($author && $message && $id) {
+    $sql .= " WHERE author LIKE '%$author%' AND message LIKE '%$message%' AND id LIKE '%$id%'";
+} else if ($author && $id) {
+    $sql .= " WHERE author LIKE '%$author%' AND id LIKE '%$id%'";
+} else if ($author && $message) {
     $sql .= " WHERE author LIKE '%$author%' AND message LIKE '%$message%'";
+} else if ($id && $message) {
+    $sql .= " WHERE id LIKE '%$id%' AND message LIKE '%$message%'";
+} else if ($id) {
+    $sql .= " WHERE id LIKE '%$id%'";
 } else if ($author) {
     $sql .= " WHERE author LIKE '%$author%'";
 } else if ($message) {
@@ -22,8 +31,8 @@ $stmt->execute();
 $results = $stmt->fetchAll();
 ?>
 
-<form method="get" class="logs-filtres">
-	
+<form action="?page=logs" method="post" class="logs-filtres">
+	<input type="text" name="id" placeholder="Logs id" value="<?php echo $id; ?>">	
 	<input type="text" name="author" placeholder="Utilisateur" value="<?php echo $author; ?>">
 	<input type="text" name="message" placeholder="Message" value="<?php echo $message; ?>">
 
