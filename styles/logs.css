@@ -1,9 +1,13 @@
-main {
-	padding: 16px;
+.login-presentation {
+    background-image: url("../assets/background.png");
+    background-size: cover;
+    min-height: 74.5vh;
+    align-items: center;
+	padding: 2rem;
 }
 
 .logs {
-	border: 2px solid var(--c-accent);
+	border: 3px solid var(--c-accent);
 	background-color: var(--c-dark-teal);
 	color: var(--c-text-light);
 	display: flex;
@@ -23,13 +27,7 @@ main {
 
 .logs-row {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
-
-.logs-row > .timestamp {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .log {
@@ -38,12 +36,43 @@ main {
 }
 
 .log > * {
-	padding: var(--medium);
+
+	padding-top: var(--medium);
+	padding-bottom: var(--medium);
+	padding-left: 20px;
 	width: 100%;
-	border-top: 2px solid var(--c-accent);
+	border-top: 3px solid var(--c-accent);
 }
 
+h1 {
+	color: #021407;
+	font-weight: bold;
+}
 p {
 	width: fit-content;
 	margin: 0;
+}
+
+.logs-filtres {
+	display: flex;
+	flex-direction: row;
+	gap: var(--small);
+	padding-bottom: 44px;
+
+	input {
+    background-color: var(--c-dark-teal);
+    color: var(--c-text-light);
+    border-radius: 8px;
+    padding: 6px 12px;
+	}
+	
+	button {
+    background-color: var(--c-accent);
+    color: var(--c-dark-teal);
+    border-radius: var(--medium);
+    padding: 6px 16px;
+    cursor: pointer;
+    font-weight: bold;
+	}
+
 }

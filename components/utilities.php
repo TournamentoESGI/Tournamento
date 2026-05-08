@@ -31,7 +31,7 @@ function sendDebug($message) {
 
 function sendLog($message) {
 	global $pdo;
-	$author = "guest";
+	$author = $_SESSION['username']?? 'guest';
 	$now = date("Y-m-d H:i:s");
 	$page = $_GET['page']?$_GET['page']:'';
 
