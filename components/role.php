@@ -4,6 +4,7 @@ function role() {
     $user_role = $_SESSION['role'] ?? null;
     
     if ($user_role !== 'Admin') {
+		sendDebug($user_role);
         ?>
         <?php include_once("./components/header.php"); ?>
         <div class="denied-container">

@@ -5,6 +5,7 @@
 
 
 <?php
+	session_start();
 	include_once("./systems/constants.php");
 	$include_js_list = [];
 
@@ -37,6 +38,9 @@
 		<link rel="stylesheet" href="./index.css">
 
 		<?php
+			print_r($_SESSION);
+			$user_role = $_SESSION['role'] ?? null;
+			sendDebug($user_role);
 			if (file_exists(DIR_STYLES.$page.".css")) {
 				echo '<link rel="stylesheet" href="'.DIR_STYLES.$page.'.css?'.time().'">';
 			}
