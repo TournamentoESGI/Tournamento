@@ -46,7 +46,7 @@ users (
 
 createTable("
 tournaments (
-    id_tournaments INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(50),
     description VARCHAR(255),
     games VARCHAR(50),
@@ -59,16 +59,24 @@ tournaments (
 
 createTable("
 pools (
-    id_pools INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(50)
 )
 ");
 
 createTable("
-captchas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    img_url VARCHAR(50),
-    splits INT
+participants (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	user INT,
+	tournament INT
+)
+");
+
+createTable("
+captchas(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	img_url VARCHAR(50),
+	splits INT
 )
 ");
 
