@@ -191,7 +191,6 @@ footer nav ul li a:hover {
 	outline: 2px solid black;
 }
 
-
 .denied-container {
     background-color: var(--c-dark-teal);
     height: 200px;
@@ -222,3 +221,53 @@ footer nav ul li a:hover {
     color: var(--c-text-light);
 }
 
+
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+
+}
+
+.burger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--c-text-dark);
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 1024px) {
+    .burger {
+        display: flex;
+    }
+
+    header nav {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background-color: #ffffffdf;
+        padding: 16px;
+    }
+
+    header nav.open { display: block; }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .btn-header {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 18px;
+    }
+}
