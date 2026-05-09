@@ -1,14 +1,15 @@
 <?php
-function SendMail($email, $sujet, $contenu) {
+function SendMail($email, $subject, $contenu) {
     
     $mail = new PHPMailer(true);
+    $env = parse_ini_file('.env');
     
     try {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'noreplytournamento@gmail.com';
-        $mail->Password = getenv('SMTP_PASSWORD');
+        $mail->Password = env['SMTP_PASSWORD'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
     
@@ -16,7 +17,7 @@ function SendMail($email, $sujet, $contenu) {
         $mail->addAddress($email);
     
         $mail->isHTML(true);
-        $mail->Subject = $sujet;
+        $mail->Subject = $subject;
         $mail->Body    = $contenu;
     
         $mail->send();

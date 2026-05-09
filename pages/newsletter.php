@@ -46,6 +46,7 @@ if (isset($_POST['submit_newsletter'])) {
 
     foreach ($users as $user) {
         $email = $user['email_address'];
+        SendMail($email, $sujet, $contenu);
     }
     $total = count($users);
     sendLog("Newsletter - $sujet (à $total utilisateurs)");
