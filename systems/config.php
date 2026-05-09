@@ -7,10 +7,6 @@ $env = parse_ini_file('.env');
 
 include_once('./components/security.php');
 
-require './vendor/autoload.php';
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
 include_once('./components/mail.php');
 
 try {
