@@ -16,6 +16,9 @@
 	<div class="infos">
 		<p>Tournament Editor</p>
 		<input type="text" placeholder="project name"/>
+		<div class="players">
+			<p>Hello</p>
+		</div>
 	</div>
 </div>
 <?php
