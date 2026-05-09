@@ -6,11 +6,12 @@ error_reporting(E_ALL);
 $env = parse_ini_file('.env');
 
 include_once('./components/security.php');
-include_once('./components/mail.php');
 
 require './vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+include_once('./components/mail.php');
 
 try {
     $dsn = sprintf("mysql:host=%s;dbname=%s;charset=utf8", $env['DB_HOST'], $env['DB_BASE']);
