@@ -1,4 +1,8 @@
 <?php
+require './vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 function SendMail($email, $subject, $contenu) {
     
     $mail = new PHPMailer(true);
