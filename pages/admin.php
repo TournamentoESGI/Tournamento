@@ -6,7 +6,7 @@ verifieRoleAdmin();
 	<div class="container-profil">
 		<div class="profil">
 			<img src="<?php 
-				$stmt = $pdo->prepare("SELECT profil_picture FROM users WHERE id_users = 1");
+				$stmt = $pdo->prepare("SELECT profil_picture FROM users WHERE id = 1");
 				$stmt->execute();
 				$result = $stmt->fetchAll();
 				print_r(current($result[0]));
@@ -14,13 +14,13 @@ verifieRoleAdmin();
 		</div>
 		<div class="profil-text">
 			<h1><?php 
-				$stmt = $pdo->prepare("SELECT username FROM users WHERE id_users = 1");
+				$stmt = $pdo->prepare("SELECT username FROM users WHERE id = 1");
 				$stmt->execute();
 				$result = $stmt->fetchAll();
 				print_r(current($result[0]));
 				?></h1>
 			<p><?php 
-				$stmt = $pdo->prepare("SELECT email_address FROM users WHERE id_users = 1");
+				$stmt = $pdo->prepare("SELECT email_address FROM users WHERE id = 1");
 				$stmt->execute();
 				$result = $stmt->fetchAll();
 				print_r(current($result[0]));
@@ -29,7 +29,7 @@ verifieRoleAdmin();
 		<div class="container-profil-button">
 			<img src="./assets/role_icon.png" alt="role-icon">
 			<h1><?php 
-				$stmt = $pdo->prepare("SELECT role FROM users WHERE id_users = 1");
+				$stmt = $pdo->prepare("SELECT role FROM users WHERE id = 1");
 				$stmt->execute();
 				$result = $stmt->fetchAll();
 				print_r(current($result[0]));

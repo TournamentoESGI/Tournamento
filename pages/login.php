@@ -33,14 +33,6 @@
                     </div>
 
                     <a href="?page=signup" style="color: #bef13a;">S'inscrire</a>
-
-
-                    <?php
-                    if (isset($_POST['user'])) {
-                        //$token = bin2hex(random_bytes(32));
-                        //setcookie("remember", $token, time() + (86400 * 10), "/", "", true, true);
-                    }
-                    ?>
                 </div>
                 <button type="submit" name="login" class="btn-valider">Valider</button>
             </form>
@@ -50,11 +42,11 @@
             if (isset($_POST['login'])) {
                 $username = trim($_POST['username']);
                 $password = $_POST['password'];
-                $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+                $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
                 $stmt->execute([$username]);
                 $user = $stmt->fetch();
                 if ($user && password_verify($password, $user['password'])) {
-                    $_SESSION['user_id'] = $user['id_users'];
+                    $_SESSION['user_id'] = $user['id'];
 					$_SESSION['username'] = $user['username'];
 					$_SESSION['role'] = $user['role'];
                     sendlog("Connexion");
