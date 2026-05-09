@@ -1,6 +1,5 @@
 <?php
 include_once("./components/captcha.php");
-verifieRoleAdmin();
 ?>
 
 <div class="signup-presentation">
