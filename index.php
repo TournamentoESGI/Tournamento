@@ -38,7 +38,6 @@
 
 		<?php
 			$user_role = $_SESSION['role'] ?? null;
-			sendDebug($user_role);
 			if (file_exists(DIR_STYLES.$page.".css")) {
 				echo '<link rel="stylesheet" href="'.DIR_STYLES.$page.'.css?'.time().'">';
 			}
@@ -50,7 +49,6 @@
 		<?php
 		include_once("./components/header.php");
 		include_once("./systems/config.php");
-		include_once("./systems/session.php");
 		?>
 		
 		<main id="main">

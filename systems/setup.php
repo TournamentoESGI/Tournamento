@@ -11,11 +11,9 @@ function createTable($new_table) {
 
 function deleteDatabase() {
     global $tables, $pdo;
-    $pdo->exec("SET FOREIGN_KEY_CHECKS = 0;");
     foreach (array_reverse($tables) as $table) {
         $pdo->exec("DROP TABLE IF EXISTS " . $table["name"] . ";");
     }
-    $pdo->exec("SET FOREIGN_KEY_CHECKS = 1;");
 }
 
 function makeDatabase() {
@@ -46,14 +44,14 @@ users (
 
 createTable("
 tournaments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	author INT,
     title VARCHAR(50),
-    description VARCHAR(255),
-    games VARCHAR(50),
+    description VARCHAR(255) DEFAULT '',
     status ENUM('ouvert','fermer'),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL
+    start_date DATE,
+    end_date DATE
 )
 ");
 
@@ -68,7 +66,8 @@ createTable("
 participants (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	user INT,
-	tournament INT
+	tournament INT,
+	nickname VARCHAR(20)
 )
 ");
 
@@ -95,8 +94,7 @@ email_verification (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     token VARCHAR(65) NOT NULL,
-    expires_at DATETIME NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id_users) ON DELETE CASCADE
+    expires_at DATETIME NOT NULL
 )
 ");
 

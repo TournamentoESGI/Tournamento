@@ -16,8 +16,17 @@
 	<div class="infos">
 		<p>Tournament Editor</p>
 		<input type="text" placeholder="project name"/>
-		<div class="players">
-			<p>Hello</p>
+		<div class="participants-container">
+			<?php
+				$stmt = $pdo->prepare("SELECT nickname FROM participants");
+				$stmt->execute();
+				$result = $stmt->fetchAll();
+				foreach($result as $participant) {
+					echo "<div class='participant'>";
+					echo $participant['nickname'];
+					echo "</div>";
+				}
+			?>
 		</div>
 	</div>
 </div>

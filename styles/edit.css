@@ -52,6 +52,19 @@ h1 {
 	box-shadow: var(--s-medium);
 }
 
+.infos .participants-container {
+	display: flex;
+	padding: var(--small);
+}
+
+.infos .participant {
+	border-radius: var(--small);
+	color: var(--c-text-light);
+	padding: var(--small);
+	width: 100%;
+	background-color: var(--c-primary);
+}
+
 .editor {
 	overflow: visible;
 	position: relative;
