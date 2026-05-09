@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-
 <?php
 	session_start();
 	include_once("./systems/constants.php");
