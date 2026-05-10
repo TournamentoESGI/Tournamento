@@ -3,7 +3,7 @@
     <nav id="nav">
         <ul>
             <?php
-            if(isset($_SESSION['user_id'])) {
+            if(isset($_SESSION['id'])) {
                 print "<li><a href=".getPagePath("config_tournoi").">Organiser un Tournoi</a></li>";
             } else {
                 print "<li><a href=".getPagePath("login").">Organiser un Tournoi</a></li>";
@@ -15,7 +15,7 @@
     </nav>
     <div class="btn-header">
         <?php
-        if(isset($_SESSION['user_id'])) {
+        if(isset($_SESSION['id'])) {
             print "<a href=".getPagePath("profil").">Mon Profil</a>";
         } else {
             print "<a href=".getPagePath("login").">Se Connecter</a>";

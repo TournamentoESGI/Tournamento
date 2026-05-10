@@ -1,5 +1,20 @@
 <?php
-echo $_SESSION['id'];
+verifieCompteConnecte();
+
+$tournament_id = $_GET['id'];
+
+if (!isset($_GET['id'])) {
+	displayPageError("No access");
+}
+$sql = "SELECT * FROM tournaments WHERE author = ".$_SESSION['id']." AND id = ".$_GET['id'].";";
+sendDebug($sql);
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$results = $stmt->fetchAll();
+if (count($results) == 0) {
+	displayPageError("No access");
+}
+
 ?>
 
 <div class="editor">

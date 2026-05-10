@@ -37,7 +37,6 @@
 		<link rel="stylesheet" href="./index.css">
 
 		<?php
-			$user_role = $_SESSION['role'] ?? null;
 			if (file_exists(DIR_STYLES.$page.".css")) {
 				echo '<link rel="stylesheet" href="'.DIR_STYLES.$page.'.css?'.time().'">';
 			}

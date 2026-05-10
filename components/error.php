@@ -17,6 +17,7 @@ function autoErrorHandler($errno, $errstr, $errfile, $errline) {
 set_error_handler("autoErrorHandler");
 
 function displayPageError($error_message) {
+	echo "</main>";
 	global $errorPageMessage;
 	include_once("./components/header.php");
 	$errorPageMessage = "Manuel;".$error_message;

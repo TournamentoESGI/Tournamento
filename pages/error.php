@@ -28,14 +28,14 @@ else {
 
 global $debugPageMessage;
 if ($debugPageMessage) {
-    echo "<h1>Debugger :</h1>";
-    echo "<div class='debug'>";
-    if (str_contains($debugPageMessage,"\n")) {
-        foreach(explode("\n",$debugPageMessage) as $debug) {
-            echo "<p>$debug</p>";
-        }
-    }
-    echo "</div>";
+	echo "<h1>Debugger :</h1>";
+	echo "<div class='debug'>";
+	if (str_contains($debugPageMessage,"\n")) {
+		foreach(explode("\n",$debugPageMessage) as $debug) {
+			echo "<p>$debug</p>";
+		}
+	}
+	echo "</div>";
 }
 echo "</div>";
 echo "</div>";
