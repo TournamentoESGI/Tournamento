@@ -1,3 +1,7 @@
+<?php
+echo $_SESSION['id'];
+?>
+
 <div class="editor">
 	<div id="anchor">
 	</div>
@@ -16,6 +20,7 @@
 	<div class="infos">
 		<p>Tournament Editor</p>
 		<input type="text" placeholder="project name"/>
+		<p>Participants</p>
 		<div class="participants-container">
 			<?php
 				$stmt = $pdo->prepare("SELECT nickname FROM participants");

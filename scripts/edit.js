@@ -117,5 +117,5 @@ document.addEventListener("DOMContentLoaded", function() {
 		var newPool = addPool("New pool");
 	};
 
-	navigate(0,0);
+	navigate(posX,posY);
 });
