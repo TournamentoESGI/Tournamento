@@ -1,12 +1,11 @@
 <?php
 require './vendor/autoload.php';
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 function SendMail($email, $subject, $contenu) {
 
-    $env = parse_ini_file(__DIR__ . '/../.env');
+    $env = parse_ini_file('.env');
     $mail = new PHPMailer(true);
 
     try {
@@ -26,7 +25,7 @@ function SendMail($email, $subject, $contenu) {
         $mail->Body    = $contenu;
         $mail->send();
     } catch (Exception $e) {
-        echo "Erreur : {$mail->ErrorInfo}";
+        displayPageError($mail->ErrorInfo);
     }
 }
 
