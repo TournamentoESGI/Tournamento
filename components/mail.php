@@ -46,5 +46,5 @@ function verifMail($user_id, $email) {
         <p>Cliquez ci-dessous pour valider votre compte :</p>
         <a href='$link' style='padding: 12px 20px; background:#007bff; color:white; text-decoration:none; border-radius:6px;'>Valider mon compte</a>
     ";
-    sendMail($email, "V&#233;rifiez votre compte Tournamento", $contenu);
+    sendMail($email, "V\u{00E9}rifiez votre compte Tournamento", $contenu);
 }
