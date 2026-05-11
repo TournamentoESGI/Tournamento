@@ -160,11 +160,14 @@ if (isset($_POST['submit'])) {
         
         echo "<p>Compte créé avec succès !</p>";
         
+        include_once('./components/mail.php');
+
         $stmt = $pdo->prepare("SELECT user_id FROM users WHERE email_address = ?");
         $stmt->execute([$email_address]);
         $user_id = $stmt->fetchColumn();
-        echo "</main>";
-        verifMail($user_id, $email_address);
+        //verifMail($user_id, $email_address);
+
+        echo "<script>setTimeout(() => { window.location.replace('?page=login'); }, 5000);</script>";
         }
     echo "</div>";
 }
