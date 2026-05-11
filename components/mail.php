@@ -36,6 +36,7 @@ function verifMail($user_id, $email) {
     $expires = date("Y-m-d H:i:s", time() + 3600);
     $link = "https://tournamento.ovh/pages/verify.php?token=" . $token;
 
+    global $pdo;
     $stmt = $pdo->prepare("INSERT INTO email_verification (user_id, token, expires_at) VALUES (?, ?, ?)");
     $stmt->execute([$user_id, $token, $expires]);
 
