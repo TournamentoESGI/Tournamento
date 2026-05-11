@@ -154,8 +154,8 @@ if (isset($_POST['submit'])) {
     echo "<div class='success'>";
 
     if ($count_error==0) {
-        $sql = "INSERT INTO users (username, first_name, last_name, email_address, password, date_of_birth, phone)
-                VALUES ('$username', '$first_name', '$last_name', '$email_address', '$password', '$date_of_birth', '$num_numeric')";
+        $sql = "INSERT INTO users (username, first_name, last_name, email_address, password, date_of_birth, phone, is_verified)
+                VALUES ('$username', '$first_name', '$last_name', '$email_address', '$password', '$date_of_birth', '$num_numeric', '0')";
         $pdo->query($sql);
         
         echo "<p>Compte créé avec succès !</p>";
@@ -164,7 +164,7 @@ if (isset($_POST['submit'])) {
         $stmt->execute([$email_address]);
         $user_id = $stmt->fetchColumn();
         verifMail($user_id, $email_address);
-        
+
         echo "<script>setTimeout(() => { window.location.replace('?page=login'); }, 2000);</script>";
         }
     echo "</div>";
