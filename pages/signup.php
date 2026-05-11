@@ -37,7 +37,7 @@ include_once("./components/captcha.php");
 
                 <div class="mb-3">
                     <label for="phone">Numéro de téléphone:</label>
-                    <input type="tel" id="phone" name="phone" minlength="10" maxlength="10" placeholder="Ex. +33 7 68 65.." required>
+                    <input type="tel" id="phone" name="phone" minlength="10" maxlength="10" placeholder="Ex. 07 68 65 42 10" required>
                 </div>
                 
                 <div class="mb-3">
@@ -58,122 +58,126 @@ include_once("./components/captcha.php");
                 </div>
                 
                 <div class="captcha-section">
-                        <p>CAPTCHA: Veuillez assembler cette image:</p>
-                        <?php
-                        generateCaptcha($pdo);
-                        ?>
+                    <p>CAPTCHA: Veuillez assembler cette image:</p>
+                    <?php generateCaptcha($pdo); ?>
                 </div>
-                <button type="submit" name="submit" class="btn-signup">Sign Up</button>
 
+                <button type="submit" name="submit" class="btn-signup">Sign Up</button>
             </form>
         </div>
     </div>
 
     <div class="signup-texte">
-        <h1>Bienvenue!<br>Organiser, Participer, Parier : Vous y retrouverez votre compte </h1>
+        <h1>Bienvenue!<br>Organiser, Participer, Parier : Vous y retrouverez votre compte</h1>
         <p>Tournamento est la plateforme idéale pour organiser et regarder des tournois !
-             Si vous êtes embitieux et souhaitez participer à un tournoi pour gagner de l'argent,
-              n'hésitez pas et sautez dans l'arène ! 
-            </p>
-            <img src="assets/second_logo.png" alt="Logo" class="second-logo" >
-
-    
-
-
+            Si vous êtes ambitieux et souhaitez participer à un tournoi pour gagner de l'argent,
+            n'hésitez pas et sautez dans l'arène !
+        </p>
+        <img src="assets/second_logo.png" alt="Logo" class="second-logo">
 
 <?php
-try {
-
 if (isset($_POST['submit'])) {
-    
-    $username= $_POST['username'];
-    $first_name= $_POST['first_name'];
-    $last_name= $_POST['last_name'];
-    $email_address= $_POST['email_address'];
-    $password= password_hash($_POST['password'],PASSWORD_DEFAULT);
-    $date_of_birth= $_POST['date_of_birth'];
-    $num_brute= $_POST['phone'];
+    try {
 
-        
-    $count_error=0;
-    $date = DateTime::createFromFormat('Y-m-d', $date_of_birth);
-    $today = new DateTime();
-    $age = $today->diff($date)->y;
+        $username      = trim($_POST['username']);
+        $first_name    = trim($_POST['first_name']);
+        $last_name     = trim($_POST['last_name']);
+        $email_address = trim($_POST['email_address']);
+        $date_of_birth = $_POST['date_of_birth'];
+        $num_brute     = trim($_POST['phone']);
+        $password_raw  = $_POST['password'];
 
-    echo "<div class='erreurs'>";
-    if (str_starts_with ($num_brute, '+') ||
-        str_starts_with ($num_brute, '+33') || 
-        str_starts_with ($num_brute, '33')) {
+        $count_error = 0;
+
+        $date  = DateTime::createFromFormat('Y-m-d', $date_of_birth);
+        $today = new DateTime();
+        $age   = $today->diff($date)->y;
+
+        echo "<div class='erreurs'>";
+
+        if (
+            str_starts_with($num_brute, '+') ||
+            str_starts_with($num_brute, '+33') ||
+            str_starts_with($num_brute, '33')
+        ) {
             echo '<p>Veuillez suivre ce format Ex: 07 08 67 65 42</p>';
-            $count_error+=1;
-    }
-    $num_numeric=str_replace(['+', ' '], '', $num_brute);
-
-    if (strlen($_POST['password']) < 8) {
-        echo "<p>Le mot de passe doit faire au moins 8 caractères.</p>";
-        $count_error += 1;
-
-    } if ($age < 16) {
-        echo "<p>Vous devez avoir au moins 16 ans pour vous inscrire.</p>";
-        $count_error += 1;
-
-    } if ($_POST['password']!= $_POST['passwordverify']) {
-        echo "<p>Les mots de passe ne correspondent pas. </p>";
-        $count_error+=1;
-
-    } if (!strpos ($email_address , '@')) {
-        echo "<p> Pas un email valide. </p>";
-        $count_error+=1;
-
-    } if (!is_numeric($num_numeric)){
-        echo "<p>Numéro de téléphone contenant uniquement des chiffres.</p>";
-        $count_error+=1;
-
-    } if (!isset($_POST['termconditions'])) {
-        echo "<p>Vous devez accepter les termes et conditions</p>";
-        $count_error += 1;
-
-    } if (!isCaptchaValid($_POST['captcha'])) {
-    echo "<p> Captcha Invalide </p>";
-    $count_error += 1;
-    
-    }
-
-    $sql= "SELECT * FROM users WHERE username = '$username' OR email_address = '$email_address'";
-    $stmt= $pdo->query($sql);
-    $result= $stmt->fetchAll();
-
-      if (count($result) > 0) {
-        echo "<p>Nom d'utilisateur ou email déjà utilisé. </p>";
-        $count_error+=1;
-
-    }
-
-    echo "</div>";
-    
-    echo "<div class='success'>";
-
-    if ($count_error==0) {
-        $sql = "INSERT INTO users (username, first_name, last_name, email_address, password, date_of_birth, phone, is_verified)
-                VALUES ('$username', '$first_name', '$last_name', '$email_address', '$password', '$date_of_birth', '$num_numeric', '0')";
-        $pdo->query($sql);
-        
-        echo "<p>Compte créé avec succès !</p>";
-        
-        include_once('./components/mail.php');
-
-        $stmt = $pdo->prepare("SELECT user_id FROM users WHERE email_address = ?");
-        $stmt->execute([$email_address]);
-        $user_id = $stmt->fetchColumn();
-        verifMail($user_id, $email_address);
-
-        echo "<script>setTimeout(() => { window.location.replace('?page=login'); }, 5000);</script>";
+            $count_error++;
         }
-    echo "</div>";
-}
+        $num_numeric = str_replace(['+', ' ', '-', '.'], '', $num_brute);
 
-} catch (Exception $ex) {
-    displayPageError($ex->getMessage());
+        if (!is_numeric($num_numeric)) {
+            echo "<p>Numéro de téléphone : uniquement des chiffres.</p>";
+            $count_error++;
+        }
+
+        if (strpos($email_address, '@') === false) {
+            echo "<p>Pas un email valide.</p>";
+            $count_error++;
+        }
+
+        if (strlen($password_raw) < 8) {
+            echo "<p>Le mot de passe doit faire au moins 8 caractères.</p>";
+            $count_error++;
+        }
+
+        if ($password_raw !== $_POST['passwordverify']) {
+            echo "<p>Les mots de passe ne correspondent pas.</p>";
+            $count_error++;
+        }
+
+        if ($age < 16) {
+            echo "<p>Vous devez avoir au moins 16 ans pour vous inscrire.</p>";
+            $count_error++;
+        }
+
+        if (!isset($_POST['termconditions'])) {
+            echo "<p>Vous devez accepter les termes et conditions.</p>";
+            $count_error++;
+        }
+
+        if (!isCaptchaValid($_POST['captcha'] ?? '')) {
+            echo "<p>Captcha invalide.</p>";
+            $count_error++;
+        }
+
+        $stmt = $pdo->prepare(
+            "SELECT COUNT(*) FROM users WHERE username = ? OR email_address = ?"
+        );
+        $stmt->execute([$username, $email_address]);
+        if ($stmt->fetchColumn() > 0) {
+            echo "<p>Nom d'utilisateur ou email déjà utilisé.</p>";
+            $count_error++;
+        }
+
+        echo "</div>";
+
+        if ($count_error === 0) {
+            $password_hash = password_hash($password_raw, PASSWORD_DEFAULT);
+
+            $stmt = $pdo->prepare(
+                "INSERT INTO users
+                    (username, first_name, last_name, email_address, password, date_of_birth, phone, is_verified)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, 0)"
+            );
+            $stmt->execute([
+                $username, $first_name, $last_name,
+                $email_address, $password_hash,
+                $date_of_birth, $num_numeric
+            ]);
+
+            $user_id = (int) $pdo->lastInsertId();
+
+            echo "<div class='success'><p>Compte créé avec succès !</p></div>";
+
+            include_once('./components/mail.php');
+            verifMail($user_id, $email_address);
+
+            echo "<script>setTimeout(() => { window.location.replace('?page=login'); }, 5000);</script>";
+        }
+
+    } catch (Exception $ex) {
+        echo "<div class='erreurs'><p>Erreur inattendue : " . htmlspecialchars($ex->getMessage()) . "</p></div>";
+    }
 }
 ?>
 
