@@ -169,7 +169,6 @@ if (isset($_POST['submit'])) {
 
             echo "<div class='success'><p>Compte créé avec succès !</p></div>";
 
-            include_once('./components/mail.php');
             verifMail($user_id, $email_address);
 
             echo "<script>setTimeout(() => { window.location.replace('?page=login'); }, 5000);</script>";
