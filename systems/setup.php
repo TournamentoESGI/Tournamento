@@ -83,7 +83,7 @@ logs (
 ");
 
 createTable("
-email_verifications (
+email_verification (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     token VARCHAR(65) NOT NULL,
