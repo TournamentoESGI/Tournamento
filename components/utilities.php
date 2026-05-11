@@ -30,12 +30,19 @@ function sendDebug($message) {
 }
 
 function sendLog($message) {
-	global $pdo;
-	$author = $_SESSION['username']?? 'guest';
-	$now = date("Y-m-d H:i:s");
-	$page = $_GET['page']?$_GET['page']:'';
+    global $pdo;
+    $author = $_SESSION['username'] ?? 'guest';
+    $now = date("Y-m-d H:i:s");
+    $page = $_GET['page'] ?? '';
 
-	$sql = "INSERT INTO logs(author, message, date, page) VALUES('$author','$message', '$now', '$page');";
-	$pdo->exec($sql);
+    $sql = "INSERT INTO logs (author, message, date, page) VALUES (:author, :message, :date, :page)";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':author'  => $author,
+        ':message' => $message,
+        ':date'    => $now,
+        ':page'    => $page
+    ]);
 }
 ?>
