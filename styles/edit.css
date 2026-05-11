@@ -135,15 +135,29 @@ p {
 
 
 .pool > .players {
-	pointer-events: none;
+	display: flex;
+	flex-direction: column;
+	gap: var(--small);
 	padding: var(--small);
 }
 
-.pool > .players > p {
-	position: relative;
-	white-space: nowrap;
-	user-select: none;
+.pool > .players > div {
+	display: flex;
+	flex-direction: row;
 	border-radius: var(--small);
 	padding: var(--small);
 	background-color: var(--c-dark-teal);
+	justify-content: space-between;
+}
+
+.pool > .players p {
+	pointer-events: none;
+	text-align: center;
+}
+
+.pool > .players button {
+	color: var(--c-text-light);
+	border: none;
+	border-radius: var(--small);
+	background-color: var(--c-primary-light);
 }

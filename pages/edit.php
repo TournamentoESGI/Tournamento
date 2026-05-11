@@ -1,20 +1,28 @@
 <?php
 verifieCompteConnecte();
 
-$tournament_id = $_GET['id'];
 
 if (!isset($_GET['id'])) {
-	displayPageError("No access");
+	displayPageNotFound();
 }
-$sql = "SELECT * FROM tournaments WHERE author = ".$_SESSION['id']." AND id = ".$_GET['id'].";";
+$tournament_id = $_GET['id'];
+if (!isset($_GET['id'])) {
+	displayPageNotFound();
+}
+
+
+$sql = "SELECT title FROM tournaments WHERE author = ".$_SESSION['id']." AND id = ".$_GET['id'].";";
 sendDebug($sql);
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $results = $stmt->fetchAll();
+
 if (count($results) == 0) {
-	displayPageError("No access");
+	displayPageNotFound();
 }
 
+$results = current($results);
+$tournament_title = $results['title'];
 ?>
 
 <div class="editor">
@@ -34,7 +42,7 @@ if (count($results) == 0) {
 <div class="infos-container">
 	<div class="infos">
 		<p>Tournament Editor</p>
-		<input type="text" placeholder="project name"/>
+		<input type="text" value=<?php echo '"'.$tournament_title.'"'?> placeholder="project name"/>
 		<p>Participants</p>
 		<div class="participants-container">
 			<?php

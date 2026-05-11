@@ -9,6 +9,10 @@ function selectPool(pool, isSelected) {
 	}
 }
 
+function setPlayerToTag(tag, playerId) {
+	tag.textContent = playerId;
+}
+
 function addPool(poolName) {
 	var pool = document.createElement("div");
 	pool.className = "pool";
@@ -40,15 +44,33 @@ function addPool(poolName) {
 		poolTitle.focus();
 	};
 
+	pool.style.left = -(anchor.style.left.split("px")[0]-window.innerWidth/2)+"px";
+	pool.style.top = -(anchor.style.top.split("px")[0]-window.innerHeight/2)+"px";
+
 	anchor.appendChild(pool);
 	return pool;
 }
 
 function addPlayerToPool(pool, playerName) {
 	var poolPlayersContainer = pool.children[2];
+	var playerNameContainer = document.createElement("div");
+
+	
+
+	var playerDeleteButton = document.createElement("button");
 	var playerNameTag = document.createElement("p");
 	playerNameTag.textContent = playerName;
-	poolPlayersContainer.appendChild(playerNameTag);
+
+	playerDeleteButton.onclick = function() {
+		//setPlayerToTag(playerNameTag, 1);
+		playerNameContainer.remove();
+	};
+
+	playerNameContainer.appendChild(playerNameTag);
+	playerNameContainer.appendChild(playerDeleteButton);
+	playerDeleteButton.textContent = "Delete";
+
+	poolPlayersContainer.appendChild(playerNameContainer);
 }
 
 document.addEventListener("DOMContentLoaded", function() {

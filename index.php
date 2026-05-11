@@ -22,8 +22,8 @@
 		} else {
     		$page = $_GET['page'];
 		}
-		if (!file_exists(DIR_PAGES.$page.".php")) {
-			displayPageError("Error: Page $page not found");
+	if (!file_exists(DIR_PAGES.$page.".php")) {
+			displayPageNotFound();
 		}
 
 	?>
