@@ -12,7 +12,7 @@ function createTable($new_table) {
 function deleteDatabase() {
     global $tables;
 	global $pdo;
-	foreach($tables as $table) {
+	foreach(array_reverse($tables) as $table) {
 		$query = "DROP TABLE ".$table["name"].";";
 		$pdo->exec($query);
 	}
