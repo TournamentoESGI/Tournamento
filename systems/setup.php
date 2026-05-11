@@ -3,27 +3,27 @@
 $tables = [];
 
 function createTable($new_table) {
-	global $tables;
-	$table_name = explode("(",$new_table)[0];
-	$query = "CREATE TABLE IF NOT EXISTS ".$new_table.";";
-	array_push($tables, ["name"=>$table_name,"query"=>$query]);
+    global $tables;
+    $table_name = trim(explode("(", $new_table)[0]);
+    $query = "CREATE TABLE IF NOT EXISTS " . $new_table . ";";
+    $tables[] = ["name" => $table_name, "query" => $query];
 }
 
 function deleteDatabase() {
-    global $tables;
-	global $pdo;
-	foreach(array_reverse($tables) as $table) {
-		$query = "DROP TABLE ".$table["name"].";";
-		$pdo->exec($query);
-	}
+    global $tables, $pdo;
+    $pdo->exec("SET FOREIGN_KEY_CHECKS = 0;");
+    foreach (array_reverse($tables) as $table) {
+        $pdo->exec("DROP TABLE IF EXISTS " . $table["name"] . ";");
+    }
+    $pdo->exec("SET FOREIGN_KEY_CHECKS = 1;");
 }
 
 function makeDatabase() {
-    global $tables;
-    global $pdo;
-	foreach($tables as $table) {
-		$pdo->exec($table["query"]);
-	}
+    global $tables, $pdo;
+
+    foreach ($tables as $table) {
+        $pdo->exec($table["query"]);
+    }
 }
 
 createTable("
@@ -40,7 +40,7 @@ users (
     creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     profil_picture VARCHAR(255) DEFAULT './assets/profil_picture/default_profile_picture.png',
     role VARCHAR(10) DEFAULT 'Membre',
-    is_verified TINYINT(1) NOT NULL DEFAULT 0;
+    is_verified TINYINT(1) NOT NULL DEFAULT 0
 )
 ");
 
@@ -65,20 +65,20 @@ pools (
 ");
 
 createTable("
-captchas(
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	img_url VARCHAR(50),
-	splits INT
+captchas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    img_url VARCHAR(50),
+    splits INT
 )
 ");
 
 createTable("
 logs (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	message VARCHAR(255),
-	author VARCHAR(255),
-	date DATETIME,
-	page VARCHAR(63) DEFAULT ''
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    message VARCHAR(255),
+    author VARCHAR(255),
+    date DATETIME,
+    page VARCHAR(63) DEFAULT ''
 )
 ");
 
@@ -91,4 +91,5 @@ email_verification (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 )
 ");
+
 ?>
