@@ -8,6 +8,6 @@ $user_id = "1";
 SendMail($email, $subject, $contenu);
 verifMail($user_id, $email);
 
-echo <h1>DEBUG</h1>;
+echo '<h1>DEBUG</h1>';
 
 ?>
