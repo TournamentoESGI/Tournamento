@@ -165,7 +165,7 @@ if (isset($_POST['submit'])) {
         $stmt = $pdo->prepare("SELECT user_id FROM users WHERE email_address = ?");
         $stmt->execute([$email_address]);
         $user_id = $stmt->fetchColumn();
-        //verifMail($user_id, $email_address);
+        verifMail($user_id, $email_address);
 
         echo "<script>setTimeout(() => { window.location.replace('?page=login'); }, 5000);</script>";
         }
