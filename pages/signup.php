@@ -163,8 +163,7 @@ if (isset($_POST['submit'])) {
         $stmt = $pdo->prepare("SELECT user_id FROM users WHERE email_address = ?");
         $stmt->execute([$email_address]);
         $user_id = $stmt->fetchColumn();
-        var_dump("DEBUG: verifMail va être appelée");
-        echo "</main>"
+        echo "</main>";
         verifMail($user_id, $email_address);
         }
     echo "</div>";

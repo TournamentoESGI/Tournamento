@@ -32,7 +32,6 @@ function SendMail($email, $subject, $contenu) {
 }
 
 function verifMail($user_id, $email) {
-    var_dump("DEBUG: verifMail OK");
     $token = bin2hex(random_bytes(32));
     $expires = date("Y-m-d H:i:s", time() + 3600);
     $link = "https://tournamento.ovh/pages/verify.php?token=" . $token;
