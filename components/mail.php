@@ -32,6 +32,7 @@ function SendMail($email, $subject, $contenu) {
 }
 
 function verifMail($user_id, $email) {
+    var_dump("DEBUG: verifMail OK");
     $token = bin2hex(random_bytes(32));
     $expires = date("Y-m-d H:i:s", time() + 3600);
     $link = "https://tournamento.ovh/pages/verify.php?token=" . $token;
@@ -46,5 +47,6 @@ function verifMail($user_id, $email) {
         <p>Cliquez ci-dessous pour valider votre compte :</p>
         <a href='$link' style='padding: 12px 20px; background:#007bff; color:white; text-decoration:none; border-radius:6px;'>Valider mon compte</a>
     ";
-    sendMail($email, "Vérifiez votre compte Tournamento", $contenu);
+    SendMail($email, "Verifiez votre compte Tournamento", $contenu);
+    echo "<script>setTimeout(() => { window.location.replace('?page=login'); }, 5000);</script>";
 }
