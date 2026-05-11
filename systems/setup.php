@@ -88,7 +88,7 @@ email_verification (
     user_id INT NOT NULL,
     token VARCHAR(65) NOT NULL,
     expires_at DATETIME NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id_users) ON DELETE CASCADE
 )
 ");
 
