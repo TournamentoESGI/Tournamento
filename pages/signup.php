@@ -159,13 +159,14 @@ if (isset($_POST['submit'])) {
         $pdo->query($sql);
         
         echo "<p>Compte créé avec succès !</p>";
-        echo "<script>setTimeout(() => { window.location.replace('?page=login'); }, 2000);</script>";
-
+        
         $stmt = $pdo->prepare("SELECT user_id FROM users WHERE email_address = ?");
         $stmt->execute([$email_address]);
         $user_id = $stmt->fetchColumn();
         verifMail($user_id, $email_address);
-    }
+        
+        echo "<script>setTimeout(() => { window.location.replace('?page=login'); }, 2000);</script>";
+        }
     echo "</div>";
 }
 
