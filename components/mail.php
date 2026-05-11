@@ -7,7 +7,6 @@ use PHPMailer\PHPMailer\Exception;
 function SendMail($email, $subject, $contenu) {
 
     $env = parse_ini_file(__DIR__ . '/../.env');
-
     $mail = new PHPMailer(true);
 
     try {
@@ -25,10 +24,26 @@ function SendMail($email, $subject, $contenu) {
         $mail->isHTML(true);
         $mail->Subject = $subject;
         $mail->Body    = $contenu;
-
         $mail->send();
         echo 'Email envoyé !';
     } catch (Exception $e) {
         echo "Erreur : {$mail->ErrorInfo}";
     }
+}
+
+function verifMail($user_id, $email) {
+    $token = bin2hex(random_bytes(32));
+    $expires = date("Y-m-d H:i:s", time() + 3600);
+    $link = "https://tournamento.ovh/pages/verify.php?token=" . $token;
+
+    $stmt = $pdo->prepare("INSERT INTO email_verification (user_id, token, expires_at) VALUES (?, ?, ?)");
+    $stmt->execute([$user_id, $token, $expires]);
+
+    $subject = "Vérifier votre compte Tournamento";
+    $contenu = "
+        <h1>Bienvenue</h1>
+        <p>Cliquez ci-dessous pour valider votre compte :</p>
+        <a href='$link' style='padding: 12px 20px; background:#007bff; color:white; text-decoration:none; border-radius:6px;'>Valider mon compte</a>
+    ";
+    sendMail($email, "Vérifiez votre compte Tournamento", $contenu);
 }

@@ -39,7 +39,8 @@ users (
     current_balance INT DEFAULT 0,
     creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     profil_picture VARCHAR(255) DEFAULT './assets/profil_picture/default_profile_picture.png',
-    role VARCHAR(10) DEFAULT 'Membre'
+    role VARCHAR(10) DEFAULT 'Membre',
+    is_verified TINYINT(1) NOT NULL DEFAULT 0;
 )
 ");
 
@@ -79,5 +80,15 @@ logs (
 	date DATETIME,
 	page VARCHAR(63) DEFAULT ''
 )
+");
+
+createTable("
+email_verifications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    token VARCHAR(65) NOT NULL,
+    expires_at DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
 ");
 ?>

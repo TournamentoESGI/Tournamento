@@ -61,7 +61,7 @@ verifieRoleAdmin();
 			</div>
 			<div class="bottom-button">
 				<button><a href="">Système de notes</a></button>
-				<button><a href="">Gestion des logs</a></button>
+				<button><a href="getPagePath(logs)">Gestion des logs</a></button>
 				<button class="button-logout-dashboard"><a href="">Déconnexion</a></button>
 			</div>
 		</div>
