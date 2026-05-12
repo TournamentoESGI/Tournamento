@@ -110,6 +110,8 @@ if (isset($_POST['submit'])) {
                 echo "<p style='color:red'>$e</p>";
             }
         }
+    } catch (Exception $e) {
+        echo "<p style='color:red'>Erreur : " . $e->getMessage() . "</p>";
     }
 }
 
