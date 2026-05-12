@@ -79,12 +79,12 @@ include_once("./components/captcha.php");
 if (isset($_POST['submit'])) {
     try {
 
-        $username      = trim($_POST['username']);
-        $first_name    = trim($_POST['first_name']);
-        $last_name     = trim($_POST['last_name']);
-        $email_address = trim($_POST['email_address']);
+        $username      = $_POST['username'];
+        $first_name    = $_POST['first_name'];
+        $last_name     = $_POST['last_name'];
+        $email_address = $_POST['email_address'];
         $date_of_birth = $_POST['date_of_birth'];
-        $num_brute     = trim($_POST['phone']);
+        $num_brute     = $_POST['phone'];
         $password_raw  = $_POST['password'];
 
         $count_error = 0;
@@ -154,29 +154,19 @@ if (isset($_POST['submit'])) {
         if ($count_error === 0) {
             $password_hash = password_hash($password_raw, PASSWORD_DEFAULT);
 
-            $stmt = $pdo->prepare(
-                "INSERT INTO users
-                    (username, first_name, last_name, email_address, password, date_of_birth, phone, is_verified)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, 0)"
-            );
-            $stmt->execute([
-                $username, $first_name, $last_name,
-                $email_address, $password_hash,
-                $date_of_birth, $num_numeric
-            ]);
-
+            $stmt = $pdo->prepare("INSERT INTO users(username, first_name, last_name, email_address, password, date_of_birth, phone, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?, 0)");
+            $stmt->execute([$username, $first_name, $last_name, $email_address, $password_hash, $date_of_birth, $num_numeric]);
             $user_id = (int) $pdo->lastInsertId();
-
+            
             echo "<div class='success'><p>Compte créé avec succès !</p></div>";
 
-            include_once('./components/mail.php');
             verifMail($user_id, $email_address);
-
+            
             echo "<script>setTimeout(() => { window.location.replace('?page=login'); }, 5000);</script>";
         }
 
     } catch (Exception $ex) {
-        echo "<div class='erreurs'><p>Erreur inattendue : " . htmlspecialchars($ex->getMessage()) . "</p></div>";
+        echo "<div class='erreurs'><p>Erreur inattendue : " . $ex->getMessage() . "</p></div>";
     }
 }
 ?>
