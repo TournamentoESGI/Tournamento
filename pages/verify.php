@@ -29,7 +29,7 @@ $del->execute([$token]);
 
 echo "<h1>Votre compte a été vérifié avec succès !</h1>";
 echo "<p>Vous pouvez maintenant vous connecter.</p>";
-echo "<a href='https://tournamento.ovh/pages/login.php'>Se connecter</a>";
+echo "<a href='https://tournamento.ovh/?pages=login'>Se connecter</a>";
 
 
 ?>
