@@ -6,17 +6,18 @@ if (!isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 
-$stmt = $pdo->prepare("SELECT email_address FROM users WHERE username = ?");
+$stmt = $pdo->prepare("SELECT email_address, phone, password FROM users WHERE username = ?");
 $stmt->execute([$username]);
-$old_email = $stmt->fetchColumn();
+$results = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $pdo->prepare("SELECT phone FROM users WHERE username = ?");
-$stmt->execute([$username]);
-$old_phone = $stmt->fetchColumn();
+if (!$results) {
+    echo "Utilisateur introuvable";
+    exit;
+}
 
-$stmt = $pdo->prepare("SELECT password FROM users WHERE username = ?");
-$stmt->execute([$username]);
-$old_password = $stmt->fetchColumn();
+$old_email = $results['email_address'];
+$old_password = $results['password'];
+$old_phone = $results['phone'];
 
 ?>
 
