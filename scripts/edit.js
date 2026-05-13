@@ -51,19 +51,35 @@ function addPool(poolName) {
 	return pool;
 }
 
+function saveTournament() {
+
+}
+
+function updatePool(pool) {
+	var poolPlayersContainer = pool.children[2];
+	var playersTags = poolPlayersContainer.children;
+	for(let x=0; x<playersTags.length; x++) {
+		var tag = playersTags[x];
+		var name = tag.children[0];
+		name.textContent = "Participant " + x;
+	}
+}
+
+function removePlayerFromPool(pool, player) {
+	player.remove();
+	updatePool(pool);
+}
+
 function addPlayerToPool(pool, playerName) {
 	var poolPlayersContainer = pool.children[2];
 	var playerNameContainer = document.createElement("div");
-
-	
 
 	var playerDeleteButton = document.createElement("button");
 	var playerNameTag = document.createElement("p");
 	playerNameTag.textContent = playerName;
 
 	playerDeleteButton.onclick = function() {
-		//setPlayerToTag(playerNameTag, 1);
-		playerNameContainer.remove();
+		removePlayerFromPool(pool, playerNameContainer);
 	};
 
 	playerNameContainer.appendChild(playerNameTag);
