@@ -79,19 +79,18 @@ include_once("./components/captcha.php");
 if (isset($_POST['submit'])) {
     try {
 
-        $username      = $_POST['username'];
-        $first_name    = $_POST['first_name'];
-        $last_name     = $_POST['last_name'];
-        $email_address = $_POST['email_address'];
-        $date_of_birth = $_POST['date_of_birth'];
-        $num_brute     = $_POST['phone'];
-        $password_raw  = $_POST['password'];
+        $username=$_POST['username'];
+        $first_name=$_POST['first_name'];
+        $last_name=$_POST['last_name'];
+        $email_address=$_POST['email_address'];
+        $date_of_birth=$_POST['date_of_birth'];
+        $num_brute=$_POST['phone'];
+        $password_raw=$_POST['password'];
 
-        $count_error = 0;
-
-        $date  = DateTime::createFromFormat('Y-m-d', $date_of_birth);
-        $today = new DateTime();
-        $age   = $today->diff($date)->y;
+        $count_error= 0;
+        $date= DateTime::createFromFormat('Y-m-d', $date_of_birth);
+        $today= new DateTime();
+        $age= $today->diff($date)->y;
 
         echo "<div class='erreurs'>";
 
@@ -166,7 +165,7 @@ if (isset($_POST['submit'])) {
         }
 
     } catch (Exception $ex) {
-        echo "<div class='erreurs'><p>Erreur inattendue : " . $ex->getMessage() . "</p></div>";
+    echo "<p>Erreur: ". $ex->getMessage() ."</p>";
     }
 }
 ?>
