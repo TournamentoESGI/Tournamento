@@ -13,14 +13,14 @@ function setPlayerToTag(tag, playerId) {
 	tag.textContent = playerId;
 }
 
-function addPool(poolName) {
+function createPool(title, x, y) {
 	var pool = document.createElement("div");
 	pool.className = "pool";
 
 	var poolTitle = document.createElement("input");
 	poolTitle.type = "text";
 	poolTitle.className = "title";
-	poolTitle.value = poolName;
+	poolTitle.value = title;
 
 	var poolPlayersContainer = document.createElement("div");
 	poolPlayersContainer.className = "players";
@@ -31,10 +31,9 @@ function addPool(poolName) {
 	poolAdd.textContent = "Add place";
 	poolAdd.className = "add";
 	poolAdd.onclick = function(event) {
-		addPlayerToPool(pool, "Participant   " + poolPlayersContainer.children.length);
+		addPlayerToPool(pool, -1);
 	}
 
-	var anchor = document.getElementById("anchor");
 	pool.appendChild(poolTitle);
 	poolAddContainer.appendChild(poolAdd);
 	pool.appendChild(poolAddContainer);
@@ -44,9 +43,16 @@ function addPool(poolName) {
 		poolTitle.focus();
 	};
 
-	pool.style.left = -(anchor.style.left.split("px")[0]-window.innerWidth/2)+"px";
-	pool.style.top = -(anchor.style.top.split("px")[0]-window.innerHeight/2)+"px";
+	pool.style.left = x+"px";
+	pool.style.top = y+"px";
+	return pool;
+}
 
+function addPool(poolName) {
+	var anchor = document.getElementById("anchor");
+	var x = -(anchor.style.left.split("px")[0]-window.innerWidth/2);
+	var y = -(anchor.style.top.split("px")[0]-window.innerHeight/2);
+	var pool = createPool(poolName, x, y);
 	anchor.appendChild(pool);
 	return pool;
 }
@@ -57,10 +63,25 @@ function saveTournament() {
 	pools.forEach((pool) => {
 		var poolData = document.createElement("input");
 		var poolTitle = pool.children[0].value;
+		var posY = pool.style.top.replace("px", "");
+		var posX = pool.style.left.replace("px", "");
 		poolData.hidden = true;
-		poolData.name = "pool;id:"+id+";x:"+pool.style.left+";y:"+pool.style.top+";title:"+poolTitle;
+		poolData.name = "pool;id:"+id+";x:"+posX+";y:"+posY+";title:"+poolTitle;
 		datasHolder.appendChild(poolData);
 		id++;
+	});
+}
+
+function loadTournament() {
+	var datasHolder = document.getElementById("tournament-data");
+	var pools = Array.from(datasHolder.children);
+	pools.forEach((pool) => {
+		pool = pool.textContent;
+		let title = pool.split("title:")[1].split(";")[0];
+		let posX = pool.split("posX:")[1].split(";")[0];
+		let posY = pool.split("posY:")[1].split(";")[0];
+		var pool = createPool(title, posX, posY);
+		anchor.appendChild(pool);
 	});
 }
 
@@ -97,9 +118,11 @@ function addPlayerToPool(pool, playerId) {
 	playerDeleteButton.textContent = "Delete";
 
 	poolPlayersContainer.appendChild(playerNameContainer);
+	updatePool(pool);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+	loadTournament();
 	var posX = window.innerWidth/2;
 	var posY = window.innerHeight/2;
 	var middleClick = false;
@@ -136,6 +159,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 	});
 
+
+	document.addEventListener("wheel", (event) => {
+		posY += event.wheelDeltaY/2;
+		posX += event.wheelDeltaX/2;
+		navigate(posX, posY);
+		event.stopPropagation();
+	});
+
 	document.addEventListener("mousemove", (event) => {
 		if (middleClick) {
 			posX += event.movementX;
@@ -159,6 +190,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		}
 	});
+
 
 	var buttonAddPool = document.getElementById("button-create");
 	buttonAddPool.onclick = function() {

@@ -24,4 +24,11 @@ function verifieRoleAdmin() {
     }
 }
 
+function hasAdminRole() {
+    $user_role = $_SESSION['role'] ?? "";
+    return $user_role === 'Admin';
+
+}
+    
+
 ?>

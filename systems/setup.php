@@ -57,7 +57,10 @@ tournaments (
 
 createTable("
 pools (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	number INT,
+	tournament INT,
+	UNIQUE KEY pool (number, tournament),
 	title VARCHAR(50),
 	posX INT,
 	posY INT

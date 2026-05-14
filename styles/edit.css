@@ -12,6 +12,21 @@ p {
 	margin: 0;
 }
 
+form > button {
+	border: 2px solid var(--c-primary);
+	width: 100%;
+	border-radius: var(--small);
+	background-color: var(--c-accent);
+}
+
+form > button:hover {
+	border: 2px solid var(--c-accent);
+	width: 100%;
+	border-radius: var(--small);
+	background-color: var(--c-primary);
+	color: var(--c-text-light);
+}
+
 .tool-container {
 	position: absolute;
 	top: 0;
