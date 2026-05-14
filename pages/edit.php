@@ -26,7 +26,6 @@ if (count($results) == 0 && ($results['author']==$_SESSION['id'] || hasAdminRole
 }
 
 if (isset($_POST['submit'])) {
-	sendDebug($_POST);
 	$sql = "DELETE FROM pools WHERE tournament = ".$tournament_id.";";
 	foreach($_POST as $key => $value) {
 		if (str_starts_with($key, "pool")) {
