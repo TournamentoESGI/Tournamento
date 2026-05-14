@@ -1,5 +1,5 @@
 <?php
-require '/var/www/Tournamento/vendor/autoload.php';
+require './vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -25,7 +25,6 @@ function SendMail($email, $subject, $contenu) {
         $mail->Subject = $subject;
         $mail->Body    = $contenu;
         $mail->send();
-        echo 'Email envoyé !';
     } catch (Exception $e) {
         echo "Erreur : {$mail->ErrorInfo}";
     }

@@ -41,7 +41,7 @@ h2 {
     border-radius: var(--medium);
     padding: 6px 12px;
     resize: vertical;
-}
+    }
 }
 
 .newsletter-destinataires {
@@ -64,26 +64,45 @@ h2 {
     }
 }
 
-.btn-valider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    width: 50%;
-    margin-left: 25%;
-    padding: 1%;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: #D9FF22; 
-    color: #04262A; 
-}
-
 .success p {
     color: #00b300;
     border-left: 3px solid #00b300;
     padding: 6px 12px;
     border-radius: 4px;
     margin: 4px 0;
+}
+
+.btn-modifier {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #04262A;
+    color: #ffffff;
+    border: 2px solid #D9FF22;
+}
+
+.btn-modifier:hover {
+    background-color: #D9FF22;
+    color: #04262A;
+}
+
+.btn-envoyer {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #D9FF22;
+    color: #04262A;
+}
+
+.btn-envoyer:disabled {
+    opacity: 0.4;
+}
+
+input:read-only, textarea:read-only {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 @media screen and (max-width: 1024px ) {

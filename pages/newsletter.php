@@ -3,7 +3,6 @@ verifieRoleAdmin();
 ?>
 
 <div class="login-presentation">
-
 <h1>Tableau de bord : Newsletter</h1>
 
 <?php
@@ -15,16 +14,19 @@ $users = $stmt->fetchAll();
 <div class="newsletter-all">
     <div class="newsletter-form-section">
         <h2>Envoyer une newsletter :</h2>
-        <form action="?page=newsletter" method="post">
+        <form action="?page=newsletter" method="post" id="newsletter-form">
             <div class="mb-3">
                 <label for="sujet">Sujet du mail :</label>
-                <input type="text" name="sujet" id="sujet" placeholder="Ex: Nouvelle mise à jour..." required>
+                <input type="text" name="sujet" id="sujet" placeholder="Ex: Nouvelle mise à jour..." required readonly>
             </div>
             <div class="mb-3">
                 <label for="contenu">Message :</label>
-                <textarea name="contenu" id="contenu" rows="8" placeholder="Écrivez votre message ici..." required></textarea>
+                <textarea name="contenu" id="contenu" rows="8" placeholder="Écrivez votre message ici..." required readonly></textarea>
             </div>
-            <button type="submit" name="submit_newsletter" class="btn-valider">Envoyer à tous</button>
+
+            <button type="button" id="btn-edit-save" class="btn-modifier" onclick="toggleEditMode()">Modifier</button>
+            <button type="submit" name="submit_newsletter" id="btn-send" class="btn-envoyer" disabled>Envoyer</button>
+
         </form>
     </div>
 
@@ -48,13 +50,11 @@ if (isset($_POST['submit_newsletter'])) {
         $email = $user['email_address'];
         SendMail($email, $sujet, $contenu);
     }
-    $total = count($users);
-    sendLog("Newsletter - $sujet (à $total utilisateurs)");
-        
+
     echo "<div class='success'>";
     echo "<p>Newsletter envoyée !</p>";
     echo "</div>";
 }
 ?>
-
 </div>
+<script src="./scripts/newsletter.js"></script>
