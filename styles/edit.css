@@ -1,0 +1,178 @@
+main {
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+}
+
+h1 {
+	margin: 0;
+}
+
+p {
+	margin: 0;
+}
+
+form > button {
+	border: 2px solid var(--c-primary);
+	width: 100%;
+	border-radius: var(--small);
+	background-color: var(--c-accent);
+}
+
+form > button:hover {
+	border: 2px solid var(--c-accent);
+	width: 100%;
+	border-radius: var(--small);
+	background-color: var(--c-primary);
+	color: var(--c-text-light);
+}
+
+.tool-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	padding: var(--small);
+
+	overflow: hidden;
+}
+
+.toolbar {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 100%;
+	width: fit-content;
+
+	background-color: var(--c-bg);
+	border-radius: var(--medium);
+	padding: var(--medium);
+	box-shadow: var(--s-medium);
+}
+
+.toolbar > button {
+	border-radius: var(--medium);
+	padding: var(--medium);
+	background-color: var(--c-accent);
+}
+
+.infos-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	padding: var(--small);
+}
+
+.infos {
+	display: flex;
+	flex-direction: column;
+	gap: var(--small);
+	padding: var(--medium);
+	height: 100%;
+	border-radius: var(--medium);
+	background-color: var(--c-bg);
+	box-shadow: var(--s-medium);
+}
+
+#participants-container {
+	display: flex;
+	padding: var(--small);
+	gap: var(--small);
+	flex-direction: column;
+}
+
+.infos .participant {
+	border-radius: var(--small);
+	color: var(--c-text-light);
+	padding: var(--small);
+	width: 100%;
+	background-color: var(--c-primary);
+}
+
+.editor {
+	overflow: visible;
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+#anchor {
+	position: absolute;
+	width: 0;
+	height: 0;
+}
+
+.pool {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: var(--c-accent);
+
+	overflow: hidden;
+	border-radius: var(--small);
+	box-shadow: var(--s-medium);
+	color: var(--c-text-light);
+}
+
+.pool.selected {
+	outline: 4px solid var(--c-primary);
+}
+
+.pool > input.title {
+	border: none;
+	border-bottom: 2px solid var(--c-primary);
+	pointer-events: none;
+	color: var(--c-text-light);
+	white-space: nowrap;
+	text-align: center;
+	padding: var(--small);
+	background-color: var(--c-dark-teal);
+	width: min-content;
+}
+
+.pool > input.title:focus {
+	color: var(--c-accent);
+	outline: none;
+}
+
+.pool > .add-container {
+	padding: var(--small);
+}
+
+.pool > .add-container > button {
+	border-radius: var(--small);
+	border: none;
+	width: 100%;
+	display: block;
+	color: var(--c-text-light);
+	background-color: var(--c-dark-teal);
+}
+
+
+.pool > .players {
+	display: flex;
+	flex-direction: column;
+	gap: var(--small);
+	padding: var(--small);
+}
+
+.pool > .players > div {
+	display: flex;
+	flex-direction: row;
+	border-radius: var(--small);
+	padding: var(--small);
+	background-color: var(--c-dark-teal);
+	justify-content: space-between;
+}
+
+.pool > .players p {
+	pointer-events: none;
+	text-align: center;
+}
+
+.pool > .players button {
+	color: var(--c-text-light);
+	border: none;
+	border-radius: var(--small);
+	background-color: var(--c-primary-light);
+}

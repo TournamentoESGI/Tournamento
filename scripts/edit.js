@@ -1,0 +1,201 @@
+function navigate(x, y) {
+	anchor.style.left = x+"px";
+	anchor.style.top = y+"px";
+}
+
+function selectPool(pool, isSelected) {
+	if (pool) {
+		pool.className = isSelected?"pool selected":"pool"
+	}
+}
+
+function setPlayerToTag(tag, playerId) {
+	tag.textContent = playerId;
+}
+
+function createPool(title, x, y) {
+	var pool = document.createElement("div");
+	pool.className = "pool";
+
+	var poolTitle = document.createElement("input");
+	poolTitle.type = "text";
+	poolTitle.className = "title";
+	poolTitle.value = title;
+
+	var poolPlayersContainer = document.createElement("div");
+	poolPlayersContainer.className = "players";
+
+	var poolAddContainer = document.createElement("div");
+	poolAddContainer.className="add-container";
+	var poolAdd = document.createElement("button");
+	poolAdd.textContent = "Add place";
+	poolAdd.className = "add";
+	poolAdd.onclick = function(event) {
+		addPlayerToPool(pool, -1);
+	}
+
+	pool.appendChild(poolTitle);
+	poolAddContainer.appendChild(poolAdd);
+	pool.appendChild(poolAddContainer);
+	pool.appendChild(poolPlayersContainer);
+
+	pool.ondblclick = function(event) {
+		poolTitle.focus();
+	};
+
+	pool.style.left = x+"px";
+	pool.style.top = y+"px";
+	return pool;
+}
+
+function addPool(poolName) {
+	var anchor = document.getElementById("anchor");
+	var x = -(anchor.style.left.split("px")[0]-window.innerWidth/2);
+	var y = -(anchor.style.top.split("px")[0]-window.innerHeight/2);
+	var pool = createPool(poolName, x, y);
+	anchor.appendChild(pool);
+	return pool;
+}
+function saveTournament() {
+	var datasHolder = document.getElementById("tournament-data");
+	var pools = Array.from(anchor.children);
+	var id = 0;
+	pools.forEach((pool) => {
+		var poolData = document.createElement("input");
+		var poolTitle = pool.children[0].value;
+		var posY = pool.style.top.replace("px", "");
+		var posX = pool.style.left.replace("px", "");
+		poolData.hidden = true;
+		poolData.name = "pool;id:"+id+";x:"+posX+";y:"+posY+";title:"+poolTitle;
+		datasHolder.appendChild(poolData);
+		id++;
+	});
+}
+
+function loadTournament() {
+	var datasHolder = document.getElementById("tournament-data");
+	var pools = Array.from(datasHolder.children);
+	pools.forEach((pool) => {
+		pool = pool.textContent;
+		let title = pool.split("title:")[1].split(";")[0];
+		let posX = pool.split("posX:")[1].split(";")[0];
+		let posY = pool.split("posY:")[1].split(";")[0];
+		var pool = createPool(title, posX, posY);
+		anchor.appendChild(pool);
+	});
+}
+
+function updatePool(pool) {
+	var poolPlayersContainer = pool.children[2];
+	var playersTags = poolPlayersContainer.children;
+	for(let x=0; x<playersTags.length; x++) {
+		var tag = playersTags[x];
+		var name = tag.children[0];
+		name.textContent = "Participant " + x;
+	}
+}
+
+function removePlayerFromPool(pool, player) {
+	player.remove();
+	updatePool(pool);
+}
+
+function addPlayerToPool(pool, playerId) {
+	var poolPlayersContainer = pool.children[2];
+	var playerNameContainer = document.createElement("div");
+	playerNameContainer.className = playerId==-1?"empty":"assigned";
+
+	var playerDeleteButton = document.createElement("button");
+	var playerNameTag = document.createElement("p");
+	playerNameTag.textContent = playerId;
+
+	playerDeleteButton.onclick = function() {
+		removePlayerFromPool(pool, playerNameContainer);
+	};
+
+	playerNameContainer.appendChild(playerNameTag);
+	playerNameContainer.appendChild(playerDeleteButton);
+	playerDeleteButton.textContent = "Delete";
+
+	poolPlayersContainer.appendChild(playerNameContainer);
+	updatePool(pool);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+	loadTournament();
+	var posX = window.innerWidth/2;
+	var posY = window.innerHeight/2;
+	var middleClick = false;
+	var leftClick = false;
+	var hoverX = 0;
+	var hoverY = 0;
+	var selectedPool = null;
+
+	document.addEventListener("mousedown", (event) => {
+		if (event.button == 1) {
+			middleClick = true;
+		}
+		if (event.button == 0) {
+			leftClick = true;
+		}
+		if (event.target.className.includes("pool")) {
+			selectPool(selectedPool, false);
+			selectedPool = event.target;
+			selectPool(event.target, true);
+			hoverX = selectedPool.style.x-event.offsetX;
+			hoverY = selectedPool.style.y-event.offsetY;
+		}
+		else {
+			selectPool(selectedPool, false);
+			selectedPool = null;
+		}
+	});
+	document.addEventListener("mouseup", (event) => {
+		if (event.button == 1) {
+			middleClick = false;
+		}
+		if (event.button == 0) {
+			leftClick = false;
+		}
+	});
+
+
+	document.addEventListener("wheel", (event) => {
+		posY += event.wheelDeltaY/2;
+		posX += event.wheelDeltaX/2;
+		navigate(posX, posY);
+		event.stopPropagation();
+	});
+
+	document.addEventListener("mousemove", (event) => {
+		if (middleClick) {
+			posX += event.movementX;
+			posY += event.movementY;
+			navigate(posX, posY);
+		}
+		if (leftClick) {
+			if (selectedPool) {
+				var anchorRect = anchor.getBoundingClientRect();
+				selectedPool.style.left = event.clientX-anchorRect.left+hoverX+"px";
+				selectedPool.style.top = event.clientY-anchorRect.top+hoverY+"px";
+			}
+		}
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key == "Delete") {
+			if (selectedPool) {
+				selectedPool.remove();
+				selectedPool = null;
+			}
+		}
+	});
+
+
+	var buttonAddPool = document.getElementById("button-create");
+	buttonAddPool.onclick = function() {
+		var newPool = addPool("New pool");
+	};
+
+	navigate(posX,posY);
+});

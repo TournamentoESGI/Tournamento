@@ -43,9 +43,14 @@ function generateCaptcha($pdo) {
 	try {
 		$stmt->execute();
 		$result = $stmt->fetchAll();
-		$rnd = random_int(0, count($result)-1);
-		$captcha = $result[$rnd];
-		createCaptcha($captcha["img_url"], $captcha["splits"], 8, CaptchaMode::Solve);
+		if (count($result) > 0) {
+			$rnd = random_int(0, count($result)-1);
+			$captcha = $result[$rnd];
+			createCaptcha($captcha["img_url"], $captcha["splits"], 8, CaptchaMode::Solve);
+		}
+		else {
+			echo "<p>Aucun captcha disponible</p>";
+		}
 	}
 	catch(PDOException $ex) {
 		echo $ex;

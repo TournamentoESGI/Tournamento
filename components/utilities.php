@@ -25,8 +25,15 @@ function include_js($path) {
 
 function sendDebug($message) {
 	global $debugPageMessage;
-	$debugPageMessage = $debugPageMessage.$message."\n";
-	echo "<script>console.log('$message')</script>";
+	$clean_message = "";
+	if (is_array($message)) {
+		$clean_message = json_encode($message);
+	}
+	else {
+		$clean_message = $message;
+	}
+	$debugPageMessage = $debugPageMessage.$clean_message."\n";
+	echo "<script>console.log('$clean_message')</script>";
 }
 
 function sendLog($message) {

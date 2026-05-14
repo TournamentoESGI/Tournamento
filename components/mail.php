@@ -1,12 +1,11 @@
 <?php
 require './vendor/autoload.php';
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 function SendMail($email, $subject, $contenu) {
 
-    $env = parse_ini_file(__DIR__ . '/../.env');
+    $env = parse_ini_file('.env');
     $mail = new PHPMailer(true);
 
     try {
@@ -26,7 +25,7 @@ function SendMail($email, $subject, $contenu) {
         $mail->Body    = $contenu;
         $mail->send();
     } catch (Exception $e) {
-        echo "Erreur : {$mail->ErrorInfo}";
+        displayPageError($mail->ErrorInfo);
     }
 }
 
@@ -35,6 +34,7 @@ function verifMail($user_id, $email) {
     $expires = date("Y-m-d H:i:s", time() + 60*60);
     $link = "https://tournamento.ovh/?page=verify&token=" . $token;
 
+	sendDebug("ez");
     global $pdo;
     $stmt = $pdo->prepare("INSERT INTO email_verification (user_id, token, expires_at) VALUES (?, ?, ?)");
     $stmt->execute([$user_id, $token, $expires]);

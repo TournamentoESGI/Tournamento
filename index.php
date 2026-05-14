@@ -23,7 +23,7 @@
     		$page = $_GET['page'];
 		}
 		if (!file_exists(DIR_PAGES.$page.".php")) {
-			displayPageError("Error: Page $page not found");
+			displayPageNotFound();
 		}
 
 	?>
@@ -37,8 +37,6 @@
 		<link rel="stylesheet" href="./index.css">
 
 		<?php
-			$user_role = $_SESSION['role'] ?? null;
-			sendDebug($user_role);
 			if (file_exists(DIR_STYLES.$page.".css")) {
 				echo '<link rel="stylesheet" href="'.DIR_STYLES.$page.'.css?'.time().'">';
 			}
@@ -50,7 +48,6 @@
 		<?php
 		include_once("./components/header.php");
 		include_once("./systems/config.php");
-		include_once("./systems/session.php");
 		?>
 		
 		<main id="main">
@@ -59,7 +56,10 @@
 		?>
         </main>
 
-		<?php include_once("./components/footer.php");
+		<?php 
+		if ($page != "edit") {
+			include_once("./components/footer.php");
+		}
 		includeJsFiles();
 		?>
 	</body>
