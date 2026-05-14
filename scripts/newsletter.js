@@ -5,7 +5,7 @@ function toggleEditMode() {
 
     const sujet = document.getElementById('sujet');
     const contenu = document.getElementById('contenu');
-    const buttonEditSave= document.getElementById('btn-edit-save');
+    const btnEditSave= document.getElementById('btn-edit-save');
     sujet.readOnly = !editing;
     contenu.readOnly = !editing;
 
@@ -19,7 +19,7 @@ function toggleEditMode() {
 }
 
 
-function verifChamps() {
+function verifChamp() {
     const sujet = document.getElementById('sujet').value;
     const contenu= document.getElementById('contenu').value;
     const btnSend= document.getElementById('btn-send');
