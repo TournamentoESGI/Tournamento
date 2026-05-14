@@ -22,7 +22,7 @@
 		} else {
     		$page = $_GET['page'];
 		}
-	if (!file_exists(DIR_PAGES.$page.".php")) {
+		if (!file_exists(DIR_PAGES.$page.".php")) {
 			displayPageNotFound();
 		}
 

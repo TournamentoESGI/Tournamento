@@ -3,7 +3,6 @@ $reload = isset($_GET['reload']);
 if ($reload) {
 	deleteDatabase();
 }
-sendDebug("test");
 
 makeDatabase();
 $password = password_hash("ez",PASSWORD_DEFAULT);
