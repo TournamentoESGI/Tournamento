@@ -59,7 +59,7 @@ p {
 	box-shadow: var(--s-medium);
 }
 
-.infos .participants-container {
+#participants-container {
 	display: flex;
 	padding: var(--small);
 	gap: var(--small);

@@ -1,18 +1,31 @@
 <?php
 verifieCompteConnecte();
 
+/*if (isset($_POST['submit'])) {
+	sendDebug($_POST);
+	$sql = "";
+	foreach($_POST as $key => $value) {
+		if (str_starts_with($key, "pool")) {
+			$poolData = explode(";", $key);
+			sendDebug($poolData);
+			$sql = $sql."INSERT INTO pools(id, title, posX, posY) ";
+			$sql = $sql."VALUES(".");";
+			sendDebug($sql);
+		}
+	}
+}*/
+
 
 if (!isset($_GET['id'])) {
 	displayPageNotFound();
 }
 $tournament_id = $_GET['id'];
-if (!isset($_GET['id'])) {
+if (!isset($tournament_id) || !is_numeric($tournament_id)) {
 	displayPageNotFound();
 }
 
 
 $sql = "SELECT title FROM tournaments WHERE author = ".$_SESSION['id']." AND id = ".$_GET['id'].";";
-sendDebug($sql);
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $results = $stmt->fetchAll();
@@ -24,6 +37,7 @@ if (count($results) == 0) {
 $results = current($results);
 $tournament_title = $results['title'];
 ?>
+
 
 <div class="editor">
 	<div id="anchor">
@@ -43,11 +57,15 @@ $tournament_title = $results['title'];
 	<div class="infos">
 		<p>Tournament Editor</p>
 		<input type="text" value=<?php echo '"'.$tournament_title.'"'?> placeholder="project name"/>
+		<form method="POST" action="<?php echo "?page=edit&id=".$tournament_id?>">
+			<div id="tournament-data"></div>
+			<button name="submit" type="submit" onclick="saveTournament()">Save</button>
+		<form>
 		<p>Participants</p>
-		<div class="participants-container">
+		<div id="participants-container">
 			<?php
-				$stmt = $pdo->prepare("SELECT nickname FROM participants");
-				$stmt->execute();
+				$stmt = $pdo->prepare("SELECT nickname FROM participants WHERE tournament=?");
+				$stmt->execute([$tournament_id]);
 				$result = $stmt->fetchAll();
 				foreach($result as $participant) {
 					echo "<div class='participant'>";

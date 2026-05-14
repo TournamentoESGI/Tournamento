@@ -50,9 +50,18 @@ function addPool(poolName) {
 	anchor.appendChild(pool);
 	return pool;
 }
-
 function saveTournament() {
-
+	var datasHolder = document.getElementById("tournament-data");
+	var pools = Array.from(anchor.children);
+	var id = 0;
+	pools.forEach((pool) => {
+		var poolData = document.createElement("input");
+		var poolTitle = pool.children[0].value;
+		poolData.hidden = true;
+		poolData.name = "pool;id:"+id+";x:"+pool.style.left+";y:"+pool.style.top+";title:"+poolTitle;
+		datasHolder.appendChild(poolData);
+		id++;
+	});
 }
 
 function updatePool(pool) {
@@ -70,13 +79,14 @@ function removePlayerFromPool(pool, player) {
 	updatePool(pool);
 }
 
-function addPlayerToPool(pool, playerName) {
+function addPlayerToPool(pool, playerId) {
 	var poolPlayersContainer = pool.children[2];
 	var playerNameContainer = document.createElement("div");
+	playerNameContainer.className = playerId==-1?"empty":"assigned";
 
 	var playerDeleteButton = document.createElement("button");
 	var playerNameTag = document.createElement("p");
-	playerNameTag.textContent = playerName;
+	playerNameTag.textContent = playerId;
 
 	playerDeleteButton.onclick = function() {
 		removePlayerFromPool(pool, playerNameContainer);

@@ -1,7 +1,6 @@
 <?php
 
 function verifieCompteConnecte() {
-	sendDebug($_SESSION);
 	if (!isset($_SESSION['id'])) {
 		displayPageError("Inacessible sans compte");
 	}
