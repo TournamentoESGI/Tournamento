@@ -77,14 +77,14 @@ h2 {
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #04262A;
+    background-color: var(--c-dark-teal);
     color: #ffffff;
-    border: 2px solid #D9FF22;
+    border: 2px solid var(--c-accent);
 }
 
 .btn-modifier:hover {
-    background-color: #D9FF22;
-    color: #04262A;
+    background-color: var(--c-accent);
+    color: var(--c-text-dark);
 }
 
 .btn-envoyer {
@@ -92,8 +92,8 @@ h2 {
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #D9FF22;
-    color: #04262A;
+    background-color: var(--c-accent);
+    color: var(--c-text-dark);
 }
 
 .btn-envoyer:disabled {
