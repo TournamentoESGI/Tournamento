@@ -1,0 +1,37 @@
+h1 {
+	padding: var(--small);
+}
+
+p {
+	margin: 0;
+}
+
+.graph {
+	height: 100vh;
+	padding: var(--medium);
+	gap: var(--medium);
+}
+
+.graph > .graph-column {
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: center;
+	height: 100%;
+	overflow: hidden;
+	background-color: transparent;
+}
+
+.graph-column > .fill {
+	width: 100%;
+	background-color: var(--c-primary);
+	border-top-left-radius: var(--small);
+	border-top-right-radius: var(--small);
+}
+
+.graph-column > .label {
+	text-align: center;
+	color: var(--c-text-light);
+	width: 100%;
+	padding: var(--medium);
+	background-color: var(--c-primary);
+}
