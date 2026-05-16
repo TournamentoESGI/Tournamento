@@ -2,9 +2,14 @@
 verifieRoleAdmin();
 ?>
 
-<div class="login-presentation">
-<h1>Tableau de bord : Newsletter</h1>
 
+
+<div class="login-presentation">
+<div class="newsletter-nav">
+    <a href="?page=newsletter" class="nav-link <?= ($_GET['page'] == 'newsletter') ? 'active' : '' ?>">Envoie</a>
+    <a href="?page=newsletter_historique" class="nav-link <?= ($_GET['page'] == 'newsletter_historique') ? 'active' : '' ?>">Historique</a>
+</div>
+<h1>Tableau de bord : Newsletter</h1>
 <?php
 $stmt = $pdo->prepare("SELECT email_address, username FROM users");
 $stmt->execute();
@@ -45,15 +50,16 @@ $users = $stmt->fetchAll();
 if (isset($_POST['submit_newsletter'])) {
     $sujet = $_POST['sujet'];
     $contenu = $_POST['contenu'];
+    $author = $_SESSION['username'];
 
     foreach ($users as $user) {
-        $email = $user['email_address'];
-        SendMail($email, $sujet, $contenu);
+        SendMail($user['email_address'], $sujet, $contenu);
     }
 
-    echo "<div class='success'>";
-    echo "<p>Newsletter envoyée !</p>";
-    echo "</div>";
+    $stmt = $pdo->prepare("INSERT INTO newsletter (author, sujet, contenu) VALUES (?, ?, ?)");
+    $stmt->execute([$author, $sujet, $contenu]);
+
+    echo "<div class='success'><p>Newsletter envoyée !</p></div>";
 }
 ?>
 </div>
