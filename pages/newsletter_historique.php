@@ -2,6 +2,8 @@
 verifieRoleAdmin();
 ?>
 
+
+
 <div class= presentation>
 <div class="newsletter-nav">
     <a href="?page=newsletter" class="nav-link <?= ($_GET['page'] == 'newsletter') ? 'active' : '' ?>">Envoie</a>
