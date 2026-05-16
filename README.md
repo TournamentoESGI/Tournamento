@@ -7,3 +7,5 @@ ici et chaque victoire aussi.
 Organise, joue et domine
 tes adversaires. 
 ```
+
+Projet Annuel de Hugo, Patrick, Anthony.
