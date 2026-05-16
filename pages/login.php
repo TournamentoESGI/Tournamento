@@ -49,7 +49,7 @@
                     $_SESSION['id'] = $user['id'];
 					$_SESSION['username'] = $username;
 					$_SESSION['role'] = $user['role'];
-                    sendlog("Connexion");
+                    sendLog("Connexion");
                     header("Location: ?page=profile");
                     exit;
 

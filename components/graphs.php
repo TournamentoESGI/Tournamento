@@ -7,7 +7,7 @@ function createGraphColumn($value, $maxValue, $count, $label="") {
 	echo "<div class='fill' style='height:";
 	echo $value/$maxValue*100;
 	echo "%'></div>";
-	echo "<p>$value</p>";
+	echo "<p class='value'>$value</p>";
 	echo "</div>";
 }
 
