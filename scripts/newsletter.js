@@ -14,12 +14,12 @@ function toggleEditMode() {
         sujet.focus();
     } else {
         btnEditSave.textContent = 'Modifier';
-        verifChamp();
+        verifChamps();
     }
 }
 
 
-function verifChamp() {
+function verifChamps() {
     const sujet = document.getElementById('sujet').value;
     const contenu= document.getElementById('contenu').value;
     const btnSend= document.getElementById('btn-send');
@@ -31,6 +31,6 @@ function verifChamp() {
     }
 }
 
-document.getElementById('sujet').addEventListener('input', verifChamp);
-document.getElementById('contenu').addEventListener('input', verifChamp);
+document.getElementById('sujet').addEventListener('input', verifChamps);
+document.getElementById('contenu').addEventListener('input', verifChamps);
 document.getElementById('btn-send').disabled = true;

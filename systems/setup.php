@@ -103,4 +103,13 @@ email_verification (
 )
 ");
 
+createTable("
+newsletter (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    author VARCHAR(255),
+    sujet VARCHAR(255),
+    contenu TEXT,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP
+)
+");
 ?>
