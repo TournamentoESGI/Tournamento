@@ -155,52 +155,6 @@ footer nav ul li a:hover {
     text-decoration: none;
 }
 
-.graph {
-	display: flex;
-	flex-direction: row;
-	align-items: end;
-	width: 100%;
-	height: 100%;
-	position: relative;
-	gap: 8px;
-}
-
-.graph .graph-column {
-	border-radius: var(--small);
-	background-color: red;
-}
-
-.captcha {
-	position: relative;
-	width: 100%;
-	height: auto;
-}
-
-.captcha .image {
-	position: relative;
-	width: 100%;
-	opacity: 0;
-}
-
-.captcha .puzzles {
-	position: relative;
-}
-
-.captcha .puzzles div {
-	position: absolute;
-	overflow: hidden;
-}
-
-.captcha .puzzles img {
-	pointer-events: none;
-	position: relative;
-	user-select: none;
-}
-
-.captcha .puzzles div.selected {
-	outline: 2px solid black;
-}
-
 .denied-container {
     background-color: var(--c-dark-teal);
     height: 200px;

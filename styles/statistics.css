@@ -1,9 +1,13 @@
-main {
+main > div {
 	height: fit-content;
 	display: flex;
 	flex-wrap: wrap;
 	padding: var(--small);
 	gap: var(--small);
+}
+
+main > h1 {
+	padding: var(--medium);
 }
 
 .graph-section {
@@ -13,7 +17,9 @@ main {
 	min-height: 50vh;
 	background-color: var(--c-dark-teal);
 	border-radius: var(--medium);;
+	min-width: fit-content;
 }
+
 
 .graph-section h2 {
 	white-space: nowrap;
@@ -27,43 +33,3 @@ p {
 	margin: 0;
 }
 
-.graph-column p.value {
-	width: fit-content;
-	padding: var(--small);
-	background-color: var(--c-accent);
-	aspect-ratio: 1/1;
-	text-align: center;
-	border-radius: 50%;
-	margin: var(--small);
-}
-
-.graph {
-	height: 100%;
-	padding: var(--medium);
-	gap: var(--medium);
-}
-
-.graph > .graph-column {
-	display: flex;
-	flex-direction: column-reverse;
-	align-items: center;
-	height: 100%;
-	min-width: fit-content;
-	overflow: hidden;
-	background-color: transparent;
-}
-
-.graph-column .fill {
-	width: 100%;
-	background-color: var(--c-primary);
-	border-top-left-radius: var(--small);
-	border-top-right-radius: var(--small);
-}
-
-.graph-column > p.label {
-	text-align: center;
-	color: var(--c-text-light);
-	width: 100%;
-	padding: var(--small);
-	background-color: var(--c-primary);
-}

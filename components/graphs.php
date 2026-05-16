@@ -27,12 +27,15 @@ function createGraph($sql,$pdo) {
 	}
 
 
+	echo '<div class="graph">';
 	if (!$result) {
-		echo "Invalid Syntax or wrong table";
+		echo "<p>Empty results</p>";
+		echo "</div>";
 		return;
 	}
 	if (count($result) == 0) {
 		echo "Empty results";
+		echo "</div>";
 		return;
 	}
 
@@ -64,7 +67,6 @@ function createGraph($sql,$pdo) {
 	sendDebug($valuesList);
 	sendDebug($labelsList);
 
-	echo '<div class="graph">';
 	for ($i = 0; $i<$columnCount; $i++) {
 		createGraphColumn($valuesList[$i], $maxValue, $columnCount, $labelsList[$i]);
 	}
