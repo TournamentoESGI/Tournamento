@@ -27,7 +27,7 @@ if (isset($_POST['submit_image'])) {
 			$sql = "INSERT INTO captchas (img_url, splits) VALUES ('$file_name', '$splits');";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
-			sendLog("Created captcha");
+			sendLog("Created captcha", "captcha_create");
 		}
 		else {
 			echo "No image !";
@@ -52,7 +52,7 @@ if (isset($_POST['submit_delete'])) {
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 
-			sendLog("Deleted captcha");
+			sendLog("Deleted captcha", "captcha_delete");
 		}
 	}
 	catch(PDOException $ex) {

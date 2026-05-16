@@ -11,7 +11,7 @@ $id= isset($_POST['id']) ? $_POST['id'] : '';
 $author = isset($_POST['author']) ? $_POST['author'] : '';
 $message = isset($_POST['message']) ? $_POST['message'] : '';
 
-$sql = "SELECT id, author, message, page, date FROM logs";
+$sql = "SELECT id, author, message, page, date FROM logs WHERE NOT tag = 'user_visit'";
 
 if ($author && $message && $id) {
     $sql .= " WHERE author LIKE '%$author%' AND message LIKE '%$message%' AND id LIKE '%$id%'";

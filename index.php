@@ -52,6 +52,9 @@
 		
 		<main id="main">
 		<?php
+		if ($page !== "home") {
+			sendLog("Visit $page", "user_visit");
+		}
 		include_once(DIR_PAGES.$page.".php");
 		?>
         </main>

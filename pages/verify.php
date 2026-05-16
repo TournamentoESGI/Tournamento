@@ -27,7 +27,7 @@ $update->execute([$verification['user_id']]);
 $del = $pdo->prepare("DELETE FROM email_verification WHERE token = ?");
 $del->execute([$token]);
 
-sendLog("Account ".$verification['user_id']." verified");
+sendLog("Account ".$verification['user_id']." verified", "user_verify");
 
 echo "<h1>Votre compte a été vérifié avec succès !</h1>";
 echo "<p>Vous pouvez maintenant vous connecter.</p>";
