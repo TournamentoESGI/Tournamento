@@ -35,6 +35,7 @@
 		<link rel="shortcut icon" href="./assets/flavicon.svg" type="image/x-icon">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="./index.css">
+		<link rel="stylesheet" href="./components.css">
 
 		<?php
 			if (file_exists(DIR_STYLES.$page.".css")) {
@@ -52,6 +53,9 @@
 		
 		<main id="main">
 		<?php
+		if ($page !== "home") {
+			sendLog("Visit $page", "user_visit");
+		}
 		include_once(DIR_PAGES.$page.".php");
 		?>
         </main>

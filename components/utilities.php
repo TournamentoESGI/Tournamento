@@ -36,20 +36,21 @@ function sendDebug($message) {
 	echo "<script>console.log('$clean_message')</script>";
 }
 
-function sendLog($message) {
+function sendLog($message, $tag="") {
     global $pdo;
     $author = $_SESSION['username'] ?? 'guest';
     $now = date("Y-m-d H:i:s");
     $page = $_GET['page'] ?? '';
 
-    $sql = "INSERT INTO logs (author, message, date, page) VALUES (:author, :message, :date, :page)";
+    $sql = "INSERT INTO logs (author, message, date, page, tag) VALUES (:author, :message, :date, :page, :tag)";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
-        ':author'  => $author,
+        ':author' => $author,
         ':message' => $message,
-        ':date'    => $now,
-        ':page'    => $page
+        ':date' => $now,
+        ':page' => $page,
+        ':tag' => $tag
     ]);
 }
 ?>

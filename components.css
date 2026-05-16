@@ -1,0 +1,84 @@
+.graph {
+	height: 100%;
+	padding: var(--medium);
+	gap: var(--medium);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.graph > p {
+	color: var(--c-text-light);
+}
+
+.graph > .graph-column {
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: center;
+	height: 100%;
+	min-width: fit-content;
+	overflow: hidden;
+	background-color: transparent;
+	border-radius: var(--small);
+}
+
+.graph-column .fill {
+	width: 100%;
+	background-color: var(--c-primary);
+	border-top-left-radius: var(--small);
+	border-top-right-radius: var(--small);
+}
+
+.graph-column > p.label {
+	text-align: center;
+	color: var(--c-text-light);
+	width: 100%;
+	padding: var(--small);
+	background-color: var(--c-primary);
+}
+
+.graph-column p.value {
+	width: fit-content;
+	padding: var(--small);
+	background-color: var(--c-accent);
+	aspect-ratio: 1/1;
+	text-align: center;
+	border-radius: 50%;
+	margin: var(--small);
+}
+
+
+
+
+
+.captcha {
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+
+.captcha .image {
+	position: relative;
+	width: 100%;
+	opacity: 0;
+}
+
+.captcha .puzzles {
+	position: relative;
+}
+
+.captcha .puzzles div {
+	position: absolute;
+	overflow: hidden;
+}
+
+.captcha .puzzles img {
+	pointer-events: none;
+	position: relative;
+	user-select: none;
+}
+
+.captcha .puzzles div.selected {
+	outline: 2px solid black;
+}
+

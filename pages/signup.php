@@ -158,7 +158,8 @@ if (isset($_POST['submit'])) {
             $user_id = (int) $pdo->lastInsertId();
             
             echo "<div class='success'><p>Compte créé avec succès !</p></div>";
-
+			
+			sendLog("Created account ".$username, "user_create");
             verifMail($user_id, $email_address);
             
             echo "<script>setTimeout(() => { window.location.replace('?page=login'); }, 5000);</script>";

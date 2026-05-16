@@ -89,6 +89,7 @@ logs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     message VARCHAR(255),
     author VARCHAR(255),
+    tag VARCHAR(32),
     date DATETIME,
     page VARCHAR(63) DEFAULT ''
 )

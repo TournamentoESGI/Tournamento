@@ -1,10 +1,16 @@
 <?php
-function createGraphColumn($value, $maxValue, $count) {
-	echo "<div class='graph-column' style='height:";
-	echo $value/$maxValue*100;
-	echo "%; width:";
+function createGraphColumn($value, $maxValue, $count, $label="") {
+	echo "<div class='graph-column' style='width:";
 	echo 1/$count*100;
+	echo "%'>";
+	echo "<p class='label'>$label</p>";
+	echo "<div style='height: 100%; width:100%; display: flex; flex-direction: column-reverse; align-items: center'>";
+	echo "<div class='fill' style='height:";
+	echo $value/$maxValue*100;
 	echo "%'></div>";
+	echo "<p class='value'>$value</p>";
+	echo "</div>";
+	echo "</div>";
 }
 
 function createGraph($sql,$pdo) {
@@ -17,49 +23,52 @@ function createGraph($sql,$pdo) {
 		$result = $stmt->fetchAll();
 	}
 	catch (PDOException $ex) {
-		$msg = $ex->getMessage();
-		if (str_contains($msg, "SQLSTATE")) {
-			$clean = substr(explode("SQLSTATE", $ex->getMessage())[1], 9);
-			if (str_contains($clean, "1054")) {
-				$clean = explode(" in",explode("1054 ", $clean)[1])[0];
-			}
-			else if (str_contains($clean, "1064")) {
-				$sep = "; check the manual that corresponds to your MySQL server version for the right syntax to use";
-				$clean = explode("1064", $clean)[1];
-				$clean = explode($sep, $clean)[0].explode($sep, $clean)[1];
-			}
-			echo $clean;
-		}
-		else {
-			echo $ex->getMessage();
-		}
-		return;
+		displayPageException($ex);
 	}
 
-	if (!$result) {
-		echo "Invalid Syntax or wrong table";
-		return;
-	}
-
-	if (count($result) == 0) {
-		echo "Empty results";
-		return;
-	}
-
-	$col_count = count($result);
-	$max_value = (int)current($result[0]);
-
-	for ($i = 0; $i<$col_count; $i++) {
-		$value = (int)current($result[$i]);
-		if ($value > $max_value) {
-			$max_value = $value;
-		}
-	}
 
 	echo '<div class="graph">';
-	for ($i = 0; $i<$col_count; $i++) {
-		$value = (int)current($result[$i]);
-		createGraphColumn($value, $max_value, $col_count);
+	if (!$result) {
+		echo "<p>Empty results</p>";
+		echo "</div>";
+		return;
+	}
+	if (count($result) == 0) {
+		echo "Empty results";
+		echo "</div>";
+		return;
+	}
+
+	sendDebug($result);
+
+	$valueKey = array_keys($result[0])[0];
+	$labelKey = array_keys($result[0])[1];
+
+	$columnCount = count($result);
+	$maxValue = (int)$result[0][$valueKey];
+	$minValue = (int)$result[0][$valueKey];
+
+	$valuesList = [];
+	$labelsList = [];
+
+	for ($i = 0; $i<$columnCount; $i++) {
+		array_push($valuesList, $result[$i][$valueKey]);
+		array_push($labelsList, $result[$i][$labelKey]);
+
+		$value = $valuesList[$i];
+		if ($value > $maxValue) {
+			$maxValue = $value;
+		}
+		if ($value < $minValue) {
+			$minValue = $value;
+		}
+	}
+
+	sendDebug($valuesList);
+	sendDebug($labelsList);
+
+	for ($i = 0; $i<$columnCount; $i++) {
+		createGraphColumn($valuesList[$i], $maxValue, $columnCount, $labelsList[$i]);
 	}
 	echo "</div>";
 }

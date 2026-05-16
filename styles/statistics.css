@@ -1,0 +1,35 @@
+main > div {
+	height: fit-content;
+	display: flex;
+	flex-wrap: wrap;
+	padding: var(--small);
+	gap: var(--small);
+}
+
+main > h1 {
+	padding: var(--medium);
+}
+
+.graph-section {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-height: 50vh;
+	background-color: var(--c-dark-teal);
+	border-radius: var(--medium);;
+	min-width: fit-content;
+}
+
+
+.graph-section h2 {
+	white-space: nowrap;
+	color: var(--c-text-light);
+	height: fit-content;
+	text-align: center;
+	padding: var(--small);
+}
+
+p {
+	margin: 0;
+}
+
