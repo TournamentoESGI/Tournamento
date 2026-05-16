@@ -4,10 +4,12 @@ function createGraphColumn($value, $maxValue, $count, $label="") {
 	echo 1/$count*100;
 	echo "%'>";
 	echo "<p class='label'>$label</p>";
+	echo "<div style='height: 100%; width:100%; display: flex; flex-direction: column-reverse; align-items: center'>";
 	echo "<div class='fill' style='height:";
 	echo $value/$maxValue*100;
 	echo "%'></div>";
 	echo "<p class='value'>$value</p>";
+	echo "</div>";
 	echo "</div>";
 }
 
