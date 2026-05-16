@@ -1,17 +1,23 @@
-
-main > div {
-	min-height: 100%;
+main {
+	height: fit-content;
 	display: flex;
 	flex-wrap: wrap;
+	padding: var(--small);
+	gap: var(--small);
 }
 
 .graph-section {
 	display: flex;
 	flex-direction: column;
 	flex: 1;
+	min-height: 50vh;
+	background-color: var(--c-dark-teal);
+	border-radius: var(--medium);;
 }
 
 .graph-section h2 {
+	white-space: nowrap;
+	color: var(--c-text-light);
 	height: fit-content;
 	text-align: center;
 	padding: var(--small);
@@ -42,6 +48,7 @@ p {
 	flex-direction: column-reverse;
 	align-items: center;
 	height: 100%;
+	min-width: fit-content;
 	overflow: hidden;
 	background-color: transparent;
 }
