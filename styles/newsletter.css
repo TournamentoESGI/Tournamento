@@ -1,9 +1,9 @@
 .login-presentation {
     background-image: url("../assets/background.png");
     background-size: cover;
-    min-height: 78vh;
+    min-height: 100%;
     align-items: center;
-	padding: 2rem;
+	padding: var(--medium);
 }
 
 h1 {
@@ -112,8 +112,8 @@ input:read-only, textarea:read-only {
 }
 
 .newsletter-nav .nav-link {
-    margin-left: 8px;
-    padding: 7px 20px;
+    margin-left: var(--medium);
+    padding: var(--small) var(--small);
     border-radius: 8px;
     color: rgb(123, 123, 123);
     font-weight: bold;
@@ -124,7 +124,6 @@ input:read-only, textarea:read-only {
     background-color: var(--c-accent);
     color: var(--c-dark-teal);
 }
-
 
 @media screen and (max-width: 1024px ) {
     .newsletter-all {

@@ -1,12 +1,12 @@
 .presentation {
     background-image: url("../assets/background.png");
     background-size: cover;
-    min-height: 78vh;
+    min-height: 100%;
     align-items: center;
-    padding: 2rem;
+    padding: var(--medium);
 }
 
-.newsletter_historique-container {
+.newsletter-historique-container {
     border: 3px solid var(--c-accent);
     background-color: var(--c-dark-teal);
     color: var(--c-text-light);
@@ -17,26 +17,26 @@
     opacity: 0.75;
 }
 
-.newsletter_historique-head {
+.newsletter-historique-head {
     padding-bottom: var(--medium);
 }
 
-.newsletter_historique-head > * {
+.newsletter-historique-head > * {
     padding-left: var(--medium);
     padding-right: var(--medium);
 }
 
-.newsletter_historique-row {
+.newsletter-historique-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-.newsletter_historique-item {
+.newsletter-historique-item {
     padding-top: 0;
     padding-bottom: 0;
 }
 
-.newsletter_historique-item > * {
+.newsletter-historique-item > * {
     padding-top: var(--medium);
     padding-bottom: var(--medium);
     padding-left: 20px;
@@ -60,8 +60,8 @@ p { width: fit-content;
 }
 
 .newsletter-nav .nav-link {
-    margin-left: 8px;
-    padding: 7px 20px;
+    margin-left: var(--medium);
+    padding: var(--small) var(--small);
     border-radius: 8px;
     color: rgb(123, 123, 123);
     font-weight: bold;
