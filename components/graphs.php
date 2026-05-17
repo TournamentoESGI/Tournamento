@@ -1,7 +1,5 @@
 <?php
 function createGraphColumn($value, $maxValue, $minValue, $count, $label="") {
-	sendDebug($value-$minValue);
-	sendDebug($maxValue-$minValue);
 	echo "<div class='graph-column' style='width:";
 	echo 1/$count*100;
 	echo "%'>";
