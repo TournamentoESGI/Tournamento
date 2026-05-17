@@ -1,17 +1,26 @@
 .graph {
 	height: 100%;
-	padding: var(--medium);
-	gap: var(--medium);
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	overflow: hidden;
+	padding: var(--medium);
+}
+
+.offset {
+	gap: var(--small);
+	display: flex;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow-x: auto;
 }
 
 .graph > p {
 	color: var(--c-text-light);
 }
 
-.graph > .graph-column {
+.graph .graph-column {
 	display: flex;
 	flex-direction: column-reverse;
 	align-items: center;
@@ -47,7 +56,10 @@
 	margin: var(--small);
 }
 
-
+@keyframes graph-scroll {
+	from {transform: translateX(0);}
+	to {transform: translateX(-100%);}
+}
 
 
 
