@@ -1,13 +1,13 @@
 <?php
-function createGraphColumn($value, $maxValue, $count, $label="") {
+function createGraphColumn($value, $maxValue, $minValue, $count, $label="") {
 	echo "<div class='graph-column' style='width:";
 	echo 1/$count*100;
 	echo "%'>";
 	echo "<p class='label'>$label</p>";
-	echo "<div style='height: 100%; width:100%; display: flex; flex-direction: column-reverse; align-items: center'>";
-	echo "<div class='fill' style='height:";
-	echo $value/$maxValue*100;
-	echo "%'></div>";
+	echo "<div style='height:";
+	echo $maxValue-$minValue==0?100:($value-$minValue)/($maxValue-$minValue)*100;
+	echo "%;width:100%; display: flex; flex-direction: column-reverse; align-items: center'>";
+	echo "<div class='fill' style='height:100%'></div>";
 	echo "<p class='value'>$value</p>";
 	echo "</div>";
 	echo "</div>";
@@ -39,8 +39,6 @@ function createGraph($sql,$pdo) {
 		return;
 	}
 
-	sendDebug($result);
-
 	$valueKey = array_keys($result[0])[0];
 	$labelKey = array_keys($result[0])[1];
 
@@ -64,12 +62,11 @@ function createGraph($sql,$pdo) {
 		}
 	}
 
-	sendDebug($valuesList);
-	sendDebug($labelsList);
-
+	echo '<div class="offset">';
 	for ($i = 0; $i<$columnCount; $i++) {
-		createGraphColumn($valuesList[$i], $maxValue, $columnCount, $labelsList[$i]);
+		createGraphColumn($valuesList[$i], $maxValue, $minValue, $columnCount, $labelsList[$i]);
 	}
+	echo "</div>";
 	echo "</div>";
 }
 ?>
