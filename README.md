@@ -9,3 +9,4 @@ tes adversaires.
 ```
 
 Projet Annuel de Hugo, Patrick, Anthony.
+2026.
