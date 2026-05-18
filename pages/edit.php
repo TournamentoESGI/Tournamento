@@ -68,7 +68,7 @@ $tournament_title = $results['title'];
 		<form method="POST" action="<?php echo "?page=edit&id=".$tournament_id?>">
 			<div id="tournament-data">
 				<?php
-				$sql = "SELECT id, title, posX, posY FROM POOLS";
+				$sql = "SELECT id, title, posX, posY FROM pools";
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute();
 				$results = $stmt->fetchAll();
