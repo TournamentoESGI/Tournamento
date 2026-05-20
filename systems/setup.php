@@ -1,29 +1,5 @@
 <?php
 
-$tables = [];
-
-function createTable($new_table) {
-    global $tables;
-    $table_name = trim(explode("(", $new_table)[0]);
-    $query = "CREATE TABLE IF NOT EXISTS " . $new_table . ";";
-    $tables[] = ["name" => $table_name, "query" => $query];
-}
-
-function deleteDatabase() {
-    global $tables, $pdo;
-    foreach (array_reverse($tables) as $table) {
-        $pdo->exec("DROP TABLE IF EXISTS " . $table["name"] . ";");
-    }
-}
-
-function makeDatabase() {
-    global $tables, $pdo;
-
-    foreach ($tables as $table) {
-        $pdo->exec($table["query"]);
-    }
-}
-
 createTable("
 users (
     id INT AUTO_INCREMENT PRIMARY KEY,

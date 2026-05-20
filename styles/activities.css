@@ -1,0 +1,33 @@
+.activities-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	height: fit-content;
+}
+
+.planning {
+	background-color: var(--c-primary);
+	height: 100%;
+}
+
+.activities-container p {
+	margin: 0;
+	padding: var(--small);
+	text-align: center;
+}
+
+.hours {
+	width: 100%;
+}
+
+.page {
+	background-color: var(--c-accent);
+	border-radius: var(--small);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.page p {
+	width: fit-content;
+}
