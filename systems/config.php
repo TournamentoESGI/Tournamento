@@ -20,8 +20,11 @@ try {
     
 	$pdo = new PDO($dsn, $env['DB_USER'], $env['DB_PASSWORD'], $options);
     
+	include_once('./components/data.php');
 	include_once('./systems/setup.php');
-	include_once('./systems/tests.php');
+	if (isset($_GET['reload'])) {
+		include_once('./systems/tests_runner.php');
+	}
 	makeDatabase();
 
 } catch (Exception $ex) {

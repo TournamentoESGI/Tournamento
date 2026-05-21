@@ -18,6 +18,9 @@ function createLink($path, $text) {
 
 function include_js($path) {
 	global $include_js_list;
+	if (!$include_js_list) {
+		$include_js_list = [];
+	}
 	if (!in_array($path, $include_js_list)) {
 		array_push($include_js_list, $path);
 	}
@@ -38,7 +41,7 @@ function sendDebug($message) {
 
 function sendLog($message, $tag="") {
     global $pdo;
-    $author = $_SESSION['username'] ?? 'guest';
+    $author = $_SESSION['id'] ?? '-1';
     $now = date("Y-m-d H:i:s");
     $page = $_GET['page'] ?? '';
 

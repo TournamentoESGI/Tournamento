@@ -33,7 +33,7 @@ if ($debugPageMessage) {
 	echo "<div class='debug'>";
 	if (str_contains($debugPageMessage,"\n")) {
 		foreach(explode("\n",$debugPageMessage) as $debug) {
-			echo "<p>$debug</p>";
+			echo "<p>".$debug."</p>";
 		}
 	}
 	echo "</div>";
