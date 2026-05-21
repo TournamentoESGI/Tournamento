@@ -1,0 +1,71 @@
+.profil-presentation {
+    background-image: url("../assets/background.png");
+    background-size: cover;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    padding: var(--medium);
+}
+
+
+.container-profil {
+    width: 250px;
+    height: 325px;
+    background: linear-gradient(to top, var(--c-primary), var(--c-primary-light));
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px var(--c-dark-teal);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-profil .profil {
+    width: 150px;
+    height: 150px;
+    border: 5px solid var(--c-dark-teal);
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+.container-profil .profil img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.container-profil .profil-text {
+    color: var(--c-text-light);
+    text-align: center;
+}
+
+.container-profil .profil-text h1 {
+    font-size: 30px;
+}
+
+.container-profil .profil-text p {
+    font-size: 15px;
+}
+
+.container-profil .container-profil-button {
+    height: 35px;
+    width: 100px;
+    border-radius: 12px;
+    background-color: var(--c-primary);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.container-profil .container-profil-button img {
+    width: 15px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.container-profil .container-profil-button h1 {
+    color: var(--c-accent);
+    font-size: 12px;
+    margin-bottom: 0;
+}
