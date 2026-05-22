@@ -6,7 +6,7 @@ $user = $stmt->fetch();
 <div class="profil-presentation">
 
     <aside>
-    <div class="container-profil">
+        <div class="container-profil">
             <div class="profil">
                 <img src="<?php echo $user['profil_picture']; ?>" alt="profil-picture">
             </div>
@@ -19,9 +19,54 @@ $user = $stmt->fetch();
                 <h1><?php echo $user['role']; ?></h1>
             </div>
         </div>
+
+        <div class="profil-infos">
+            <h2>Mes informations</h2>
+
+            <div class="profil-info-ligne">
+                <p class="profil-label">Prénom :</p>
+                <p><?php echo $user['first_name']; ?></p>
+            </div>
+            <div class="profil-info-ligne">
+                <p class="profil-label">Nom :</p>
+                <p><?php echo $user['last_name']; ?></p>
+            </div>
+            <div class="profil-info-ligne">
+                <p class="profil-label">Email :</p>
+                <p><?php echo $user['email_address']; ?></p>
+            </div>
+            <div class="profil-info-ligne">
+                <p class="profil-label">Téléphone :</p>
+                <p><?php echo $user['phone']; ?></p>
+            </div>
+            <div class="profil-info-ligne">
+                <p class="profil-label">Membre depuis :</p>
+                <p><?php echo date('d/m/Y', strtotime($user['creation_date'])); ?></p>
+            </div>
+        </div>
+
     </aside>
 
-    <div class="solde-container">
+
+    <div class="container-stats">
+        
+        <div class="tournoi-gagner-box">
+            <p><?php echo $user ['tournoi_gagner']; ?> Tournois gagnés </p>
+        </div>
+        <div class="tournoi-organiser-box">
+            <p><?php echo $user ['tournoi_organiser']; ?> Tournois organisés </p>
+        </div>
+        <div class="tournoi-participer-box">
+            <p><?php echo $user ['tournoi_participer']; ?> Tournois participés </p>
+        </div>
+        <div class="paris-gagner-box">
+            <p><?php echo $user ['paris_gagner']; ?> Paris gagnés </p>
+        </div>
+
+    </div>
+    
+
+    <div class="container-solde">
         <div class="solde-header">
             <h2>Solde disponible :</h2>
             <div class="solde-boutons">
@@ -37,31 +82,6 @@ $user = $stmt->fetch();
         </div>
     </div>
 
-    <div class="profil-infos">
-        <h2>Mes informations</h2>
-
-        <div class="profil-info-ligne">
-            <span class="profil-label">Prénom :</span>
-            <span><?php echo $user['first_name']; ?></span>
-        </div>
-        <div class="profil-info-ligne">
-            <span class="profil-label">Nom :</span>
-            <span><?php echo $user['last_name']; ?></span>
-        </div>
-        <div class="profil-info-ligne">
-            <span class="profil-label">Email :</span>
-            <span><?php echo $user['email_address']; ?></span>
-        </div>
-        <div class="profil-info-ligne">
-            <span class="profil-label">Téléphone :</span>
-            <span><?php echo $user['phone']; ?></span>
-        </div>
-        <div class="profil-info-ligne">
-            <span class="profil-label">Membre depuis :</span>
-            <span><?php echo date('d/m/Y', strtotime($user['creation_date'])); ?></span>
-        </div>
-        
-    </div>
 </div>
 
 //rendre le fond plus gris et se fier au figma

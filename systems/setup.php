@@ -11,10 +11,17 @@ users (
     email_address VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     
+    tournoi_organiser INT DEFAULT 0,
+    tournoi_gagner INT DEFAULT 0,
+    tournoi_participer INT DEFAULT 0,
+
     current_balance INT DEFAULT 0,
     balance_en_jeu INT DEFAULT 0,
     balance_gains INT DEFAULT 0,
     balance_pertes INT DEFAULT 0,
+    
+    paris_gagner INT DEFAULT 0,
+    paris_perdu INT DEFAULT 0,
 
     creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     profil_picture VARCHAR(255) DEFAULT './assets/profil_picture/default_profile_picture.png',
@@ -58,6 +65,17 @@ participants (
 ");
 
 createTable("
+paris (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_participant INT NOT NULL,
+    id_parieur INT NOT NULL,
+    somme INT NOT NULL,
+    status ENUM('fermer', 'en cours'),
+    date DATETIME DEFAULT CURRENT_TIMESTAMP
+)
+");
+
+createTable("
 captchas(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	img_url VARCHAR(50),
@@ -94,4 +112,5 @@ newsletter (
     date DATETIME DEFAULT CURRENT_TIMESTAMP
 )
 ");
+
 ?>
