@@ -10,7 +10,12 @@ users (
     phone VARCHAR(15) NOT NULL UNIQUE,
     email_address VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    
     current_balance INT DEFAULT 0,
+    balance_en_jeu INT DEFAULT 0,
+    balance_gains INT DEFAULT 0,
+    balance_pertes INT DEFAULT 0,
+
     creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     profil_picture VARCHAR(255) DEFAULT './assets/profil_picture/default_profile_picture.png',
     role VARCHAR(10) DEFAULT 'Membre',
