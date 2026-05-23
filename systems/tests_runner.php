@@ -1,12 +1,18 @@
 <?php
-include_once("./components/utilities.php");
-include_once("./components/error.php");
-include_once("./systems/config.php");
-include_once("./components/data.php");
+
+$runner = php_sapi_name();
+$prefix = $runner!="cli"?"./":__DIR__."/../";
+
+include_once($prefix."components/utilities.php");
+include_once($prefix."components/error.php");
+include_once($prefix."systems/config.php");
+include_once($prefix."components/data.php");
 
 deleteDatabase();
 makeDatabase();
 
-include_once("./systems/tests.php");
+if ($runner != "cli") {
+	include_once("./systems/tests.php");
+}
 
 ?>

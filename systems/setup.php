@@ -37,7 +37,7 @@ pools (
 	number INT,
 	tournament INT,
 	UNIQUE KEY pool (number, tournament),
-	title VARCHAR(50),
+	title VARCHAR(50) DEFAULT 'New pool',
 	posX INT,
 	posY INT
 )
