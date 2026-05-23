@@ -96,5 +96,4 @@ $tournament_title = $results['title'];
 </div>
 <?php
 include_js("./scripts/edit.js");
-
 ?>

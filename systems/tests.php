@@ -25,6 +25,13 @@ VALUES('Ignacio', 'Nacho', 'Varga', '2004-01-01', '32 56 78 90 12', 'ign@gmail.c
 
 INSERT INTO tournaments(author, title, status)
 VALUES(1, 'My tournament','ouvert');
+
+INSERT INTO pools(title, number, tournament, posX, posY)
+VALUES('Test pool', 1, 1, 0, 0);
+
+INSERT INTO pools(title, number, tournament, posX, posY)
+VALUES('Test pool', 2, 1, 50, 0);
+
 INSERT INTO participants(user, tournament, nickname)
 VALUES(1, 1, 'Mergez');
 INSERT INTO participants(user, tournament, nickname)

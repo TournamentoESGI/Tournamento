@@ -1,5 +1,17 @@
 <?php
 
+function displayPage() {
+	$runner = php_sapi_name();
+	$prefix = $runner!="cli"?"./":__DIR__."/../";
+	if ($runner != "cli") {
+		include_once($prefix."components/header.php");
+	}
+	include_once($prefix."pages/error.php");
+	if ($runner != "cli") {
+		include_once($prefix."components/footer.php");
+	}
+}
+
 function autoErrorHandler($errno, $errstr, $errfile, $errline) {
 	echo "</main>";
 	global $errorPageMessage;
@@ -8,9 +20,7 @@ function autoErrorHandler($errno, $errstr, $errfile, $errline) {
 	$errorPageMessage = $errorPageMessage.";".$errstr;
 	$errorPageMessage = $errorPageMessage.";".$errfile;
 	$errorPageMessage = $errorPageMessage.";".$errline;
-	include_once("./components/header.php");
-	include_once("./pages/error.php");
-	include_once("./components/footer.php");
+	displayPage();
 	die();
 }
 set_error_handler("autoErrorHandler");
@@ -22,10 +32,8 @@ function displayPageNotFound() {
 function displayPageError($error_message, $mode="Manuel") {
 	echo "</main>";
 	global $errorPageMessage;
-	include_once("./components/header.php");
 	$errorPageMessage = $mode.";".$error_message;
-	include_once("./pages/error.php");
-	include_once("./components/footer.php");
+	displayPage();
 	die();
 }
 function displayPageException(Exception $ex) {
@@ -36,9 +44,7 @@ function displayPageException(Exception $ex) {
 	$errorPageMessage = $errorPageMessage.";".$ex->getMessage();
 	$errorPageMessage = $errorPageMessage.";".$ex->getFile();
 	$errorPageMessage = $errorPageMessage.";".$ex->getLine();
-	include_once("./components/header.php");
-	include_once("./pages/error.php");
-	include_once("./components/footer.php");
+	displayPage();
 	die();
 }
 ?>
