@@ -1,14 +1,16 @@
 <?php
 global $runner;
+global $errorPageMessage;
+
+$error_parts = explode(";",$errorPageMessage);
+$type = $error_parts[0];
+
 if ($runner != "cli") {
 	echo '<script src="./scripts/error.js"> </script>';
 	echo '<script> cleanPage(); </script>';
 
 	echo '<link rel="stylesheet" href="./index.css">';
 	echo '<link rel="stylesheet" href="./styles/error.css">';
-
-	$error_parts = explode(";",$errorPageMessage);
-	$type = $error_parts[0];
 	echo "<main>";
 	echo "<div class='container'>";
 	echo "<div class='error'>";
@@ -30,7 +32,15 @@ if ($runner != "cli") {
 	}
 }
 else {
-	echo $errorPageMessage;
+	echo "\n";
+	echo $error_parts[1];
+	echo "\n";
+	echo $error_parts[2];
+	echo "\n";
+	echo $error_parts[3];
+	echo "\n";
+	echo $error_parts[4];
+	echo "\n";
 }
 
 global $debugPageMessage;
