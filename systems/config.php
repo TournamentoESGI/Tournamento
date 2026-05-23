@@ -4,7 +4,9 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 date_default_timezone_set("Europe/Paris");
 
-$env = parse_ini_file('.env');
+$runner = php_sapi_name();
+$prefix = $runner!="cli"?"":__DIR__."/../";
+$env = parse_ini_file($prefix.'.env');
 
 include_once('./components/security.php');
 
