@@ -1,26 +1,37 @@
 .profil-presentation {
-    background-image: url("../assets/background.png");
-    background-size: cover;
-    min-height: 100%;
+    background-color: #e3e3e3;
     display: flex;
     gap: var(--medium);
     padding: var(--medium);
 }
 
-.container-profil {
+aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--medium);
     width: 250px;
-    height: 325px;
+    margin-right: 36px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    flex: 1;
+}
+
+.container-profil {
+    width: 100%;
+    padding-bottom: 100px;
     background: linear-gradient(to top, var(--c-primary), var(--c-primary-light));
-    border-radius: 10px;
-    box-shadow: 0px 10px 20px var(--c-dark-teal);
+    border-radius: var(--small);
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
 .container-profil .profil {
-    width: 100px;
-    height: 100px;
+    width: 30%;
     border-radius: 50%;
     border: 5px solid var(--c-dark-teal);
     margin-top: var(--medium);
@@ -38,7 +49,7 @@
     text-align: center;
 }
 
-.container-profil .container-profil-button {
+.container-profil-button {
     height: 35px;
     width: 100px;
     border-radius: var(--small);
@@ -48,36 +59,258 @@
     gap: var(--medium);
     padding-left: var(--small);
     margin-bottom: var(--medium);
+}
 
-    img {
-        width: 15px;
-    }
+.container-profil-button img {
+    width: 15px;
+}
 
-    h1 {
-        color: var(--c-accent);
-        font-size: 12px;
-        margin: 0;
-    }
+.container-profil-button h1 {
+    color: var(--c-accent);
+    font-size: 12px;
+    margin: 0;
+}
+
+.tournois-boutons, .options-boutons {
+    display: flex;
+    gap: var(--small);
+}
+
+.btn-creation-tournoi, .btn-gestion-tournoi, .btn-settings {
+    background-color: var(--c-primary-light);
+    color: var(--c-text-light);
+    border-radius: var(--small);
+    padding: var(--small) var(--medium);
+    text-align: center;
+}
+
+.btn-deconnexion {
+    background-color: #e74c3c;
+    color: var(--c-text-light);
+    border-radius: var(--small);
+    padding: var(--small) var(--medium);
+    font-weight: 600;
+    text-align: center;
+}
+
+button:hover, a:hover {
+    filter: brightness(0.85);
 }
 
 .profil-infos {
-    flex: 1;
-    color: var(--c-text-light);
-
-    h2 {
-        font-weight: bold;
-        margin-bottom: var(--medium);
-    }
+    color: var(--c-text-dark);
 }
 
-.profil-info-ligne {
+.profil-infos .profil-info-ligne {
     display: flex;
     gap: var(--small);
     padding: var(--small) 0;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.profil-label {
-    font-weight: bold;
-    min-width: 140px;
+.container-stats {
+    display: flex;
+    gap: var(--medium);
+}
+
+.tournoi-gagner-box, .tournoi-organiser-box, .tournoi-participer-box, .paris-gagner-box {
+    background: linear-gradient(to top, var(--c-text-light), var(--c-primary));
+    border-radius: var(--small);
+    padding: 30px 40px;
+    color: var(--c-text-light);
+    font-weight: 600;
+    flex: 1;
+}
+
+.container-solde {
+    background-color: var(--c-dark-teal);
+    border-radius: var(--small);
+    padding: var(--medium);
+    color: var(--c-text-light);
+}
+
+.solde-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--medium);
+}
+
+.solde-montant {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--c-accent);
+}
+
+.btn-deposer {
+    border: none;
+    border-radius: var(--small);
+    padding: var(--small) var(--medium);
+    background-color: var(--c-accent);
+    color: var(--c-text-dark);
+}
+
+.btn-retirer {
+    border: none;
+    border-radius: var(--small);
+    padding: var(--small) var(--medium);
+    background-color: rgba(255,255,255,0.15);
+    color: var(--c-text-light);
+}
+
+.solde-stats {
+    display: flex;
+    gap: var(--medium);
+}
+
+.tournoi-box {
+    background: #f3f0ff;
+    border-radius: var(--small);
+    padding: var(--medium);
+}
+
+.tournoi-box-title {
+    display: flex;
+    gap: var(--small);
+    margin-bottom: var(--medium);
+}
+
+.tournoi-box-title h2 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.icone-yeux {
+    width: 22px;
+}
+
+.tournoi-card {
+    background: var(--c-bg);
+    border-radius: var(--small);
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+}
+
+.tournoi-card .img-placeholder {
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(135deg, #c8e6c9, #ffccbc);
+}
+
+.tournoi-card .card-meta {
+    padding: var(--small) var(--medium);
+}
+
+.icone-spect {
+    width: 13px;
+}
+
+.container-paris {
+    display: flex;
+    flex-direction: column;
+    gap: var(--medium);
+}
+
+.section-paris {
+    background: #f3f0ff;
+    border-radius: var(--small);
+    padding: var(--medium) var(--large);
+    display: flex;
+    flex-direction: column;
+    gap: var(--small);
+}
+
+.paris-ligne {
+    background: var(--c-bg);
+    border-radius: var(--small);
+    padding: var(--small) var(--medium);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.paris-info .paris-titre {
+    font-weight: 600;
+    margin: 0;
+}
+
+.paris-info .paris-date {
+    color: #888;
+    margin: 2px 0 0;
+}
+
+.paris-droite {
+    display: flex;
+    align-items: center;
+    gap: var(--small);
+}
+
+.paris-montant {
+    font-weight: 700;
+    margin: 0;
+}
+
+.badge-status {
+    font-weight: 600;
+    border-radius: var(--small);
+    padding: 3px var(--small);
+}
+
+.badge-en-cours {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.badge-fermer {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.section-tournois {
+    background: #f3f0ff;
+    border-radius: var(--small);
+    padding: var(--medium) var(--large);
+}
+
+.tournois-grille {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--small);
+    margin-top: var(--small);
+}
+
+.tournoi-ligne {
+    background: var(--c-bg);
+    border-radius: var(--small);
+    padding: var(--small) var(--medium);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tournoi-ligne .tournoi-nom {
+    font-weight: 600;
+    margin: 0;
+}
+
+.tournoi-ligne .tournoi-date {
+    color: #888;
+    margin: 2px 0 0;
+}
+
+.badge-role {
+    font-weight: 700;
+    border-radius: var(--small);
+    padding: 3px var(--small);
+    white-space: nowrap;
+}
+
+.badge-organisateur {
+    background-color: var(--c-primary);
+    color: var(--c-text-light);
+}
+
+.badge-participant {
+    background-color: var(--c-accent);
+    color: var(--c-text-dark);
 }
