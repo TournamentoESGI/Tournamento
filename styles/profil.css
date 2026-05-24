@@ -270,3 +270,23 @@ button:hover, a:hover {
     font-weight: 600;
     }
 }
+
+@media (max-width: 768px) {
+    .profil-presentation {
+        flex-direction: column;
+    }
+    aside {
+        width: 50%;
+        align-self: center;
+    }
+    .container-profil {
+        align-self: center;
+    }
+    .container-stats {
+        flex-direction: column;
+    }
+    .container-solde {
+        width: 100%;
+    }
+
+}
