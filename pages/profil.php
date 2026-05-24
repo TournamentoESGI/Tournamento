@@ -1,40 +1,20 @@
 <?php
 $id = $_SESSION['id'];
 
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+$stmt= $pdo->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->execute([$id]);
-$user = $stmt->fetch();
+$user= $stmt->fetch();
 
-
-$stmtParis = $pdo->prepare("SELECT p.*, u.username AS nom_participant 
-FROM paris p JOIN participants part ON p.id_participant = part.id 
-JOIN users u ON part.user = u.id WHERE p.id_parieur = ? ORDER BY p.date DESC LIMIT 4");
-$stmtParis->execute([$id]);
-$parisList = $stmtParis->fetchAll();
-
-
-$stmtTournois = $pdo->prepare("SELECT t.*, CASE WHEN t.author = ?
-THEN 'Organisateur' ELSE 'Participant' END AS mon_role FROM tournaments t 
-LEFT JOIN participants part ON part.tournament = t.id AND part.user = ? 
-WHERE t.author = ? OR part.user = ? ORDER BY t.created_at DESC LIMIT 4");
-$stmtTournois->execute([$id, $id, $id, $id]);
+$stmtTournois = $pdo->prepare("SELECT t.*, 'Organisateur' AS mon_role 
+FROM tournaments t WHERE t.author = ? ORDER BY t.created_at DESC LIMIT 4");
+$stmtTournois->execute([$id]);
 $tournoiList = $stmtTournois->fetchAll();
 
-
-foreach ($parisList as &$pari) {
-    $pari['date'] = date('d/m/Y', strtotime($pari['date']));
-    $pari['badge'] = str_replace(' ', '-', $pari['status']);
-}
-
-foreach ($tournoiList as &$tournoi) {
-    if($tournoi['start_date'] != null) {
-        $tournoi['start_date'] = date('d/m/Y', strtotime($tournoi['start_date']));
-    } else {
-        $tournoi['start_date'] = 'Date à définir';
-    }
-    $tournoi['badge_role'] = strtolower($tournoi['mon_role']);
-}
-
+$stmtParis = $pdo->prepare("SELECT p.*, u.username AS nom_participant 
+FROM paris p JOIN participants part ON part.id = p.id_participant 
+JOIN users u ON u.id = part.user WHERE p.id_parieur = ? ORDER BY p.date DESC LIMIT 4");
+$stmtParis->execute([$id]);
+$parisList = $stmtParis->fetchAll();
 ?>
 
 <div class="profil-presentation">
@@ -195,7 +175,6 @@ foreach ($tournoiList as &$tournoi) {
                         </div>
                         <div class='paris-droite'>
                             <p class='paris-montant'>$pari[somme] €</p>
-                            <span class='badge-status badge-$pari[badge]'>$pari[status]</span>
                         </div>
                     </div>";
                 }
@@ -219,7 +198,6 @@ foreach ($tournoiList as &$tournoi) {
                                 <p class='tournoi-nom'>$tournoi[title]</p>
                                 <p class='tournoi-date'>$tournoi[start_date]</p>
                             </div>
-                            <span class='badge-role badge-$tournoi[badge_role]'>$tournoi[mon_role]</span>
                         </div>";
                     }
                 }

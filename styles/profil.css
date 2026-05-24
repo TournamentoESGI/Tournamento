@@ -21,32 +21,41 @@ main {
 }
 
 .container-profil {
-    width: 100%;
-    padding-bottom: 100px;
+    width: 250px;
+    height: 325px;
     background: linear-gradient(to top, var(--c-primary), var(--c-primary-light));
-    border-radius: var(--small);
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px var(--c-dark-teal);
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
 .container-profil .profil {
-    width: 30%;
-    border-radius: 50%;
+    width: 150px;
+    height: auto;
     border: 5px solid var(--c-dark-teal);
-    margin-top: var(--medium);
-    overflow: hidden;
+    border-radius: 50%;
+    margin-top: 20px;
 }
 
 .container-profil .profil img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    border-radius: 50%;
 }
 
 .container-profil .profil-text {
     color: var(--c-text-light);
     text-align: center;
+}
+
+.container-profil .profil-text h1 {
+    font-size: 30px;
+}
+
+.container-profil .profil-text p {
+    font-size: 15px;
 }
 
 .container-profil-button {
@@ -214,7 +223,7 @@ button:hover, a:hover {
 .section-paris {
     background: #f3f0ff;
     border-radius: var(--small);
-    padding: var(--medium) var(--large);
+    padding: var(--medium) 30px;
     display: flex;
     flex-direction: column;
     gap: var(--small);
@@ -223,7 +232,7 @@ button:hover, a:hover {
 .paris-ligne {
     background: var(--c-bg);
     border-radius: var(--small);
-    padding: var(--small) var(--medium);
+    padding: var(--medium);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -239,37 +248,10 @@ button:hover, a:hover {
     margin: 2px 0 0;
 }
 
-.paris-droite {
-    display: flex;
-    align-items: center;
-    gap: var(--small);
-}
-
-.paris-montant {
-    font-weight: 700;
-    margin: 0;
-}
-
-.badge-status {
-    font-weight: 600;
-    border-radius: var(--small);
-    padding: 3px var(--small);
-}
-
-.badge-en-cours {
-    background-color: #fff3cd;
-    color: #856404;
-}
-
-.badge-fermer {
-    background-color: #d1e7dd;
-    color: #0f5132;
-}
-
 .section-tournois {
     background: #f3f0ff;
     border-radius: var(--small);
-    padding: var(--medium) var(--large);
+    padding: var(--medium) 30px;
 }
 
 .tournois-grille {
@@ -282,35 +264,9 @@ button:hover, a:hover {
 .tournoi-ligne {
     background: var(--c-bg);
     border-radius: var(--small);
-    padding: var(--small) var(--medium);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    padding: var(--medium);
 
-.tournoi-ligne .tournoi-nom {
+    .tournoi-nom {
     font-weight: 600;
-    margin: 0;
-}
-
-.tournoi-ligne .tournoi-date {
-    color: #888;
-    margin: 2px 0 0;
-}
-
-.badge-role {
-    font-weight: 700;
-    border-radius: var(--small);
-    padding: 3px var(--small);
-    white-space: nowrap;
-}
-
-.badge-organisateur {
-    background-color: var(--c-primary);
-    color: var(--c-text-light);
-}
-
-.badge-participant {
-    background-color: var(--c-accent);
-    color: var(--c-text-dark);
+    }
 }
