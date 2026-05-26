@@ -16,7 +16,7 @@
     <div class="btn-header">
         <?php
         if(isset($_SESSION['id'])) {
-            print "<a href=".getPagePath("profil").">Mon Profil</a>";
+            print "<a href=".getPagePath("profile").">Mon Profil</a>";
         } else {
             print "<a href=".getPagePath("login").">Se Connecter</a>";
         }

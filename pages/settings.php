@@ -37,7 +37,7 @@ $old_phone = $results['phone'];
 
                 <div class="mb-3">
                     <label for="phone" class="form-label">Téléphone</label>
-                    <input type="tel" id="phone" name="phone" minlength="10" maxlength="10" class="form-control" value="<?php echo $old_phone; ?>">
+                    <input type="tel" id="phone" name="phone" class="form-control" value="<?php echo $old_phone; ?>">
                 </div>
 
                 <div class="mb-3">
@@ -65,8 +65,11 @@ if (isset($_POST['submit'])) {
         $password = $_POST['password'];
         $conf_password = $_POST['conf_password'];
 
+        $new_phone_clean = preg_replace('/\D/', '', $new_phone);
+        $old_phone_clean = preg_replace('/\D/', '', $old_phone);
+
         $errors = [];
-        
+
         if (!empty($password)) {
             if (strlen($password) < 8) {
                 $errors[] = "Le mot de passe doit faire au moins 8 caractères";
@@ -79,7 +82,7 @@ if (isset($_POST['submit'])) {
             }
         }
 
-        if (strlen($new_phone) !== 10) {
+        if (strlen($new_phone_clean) !== 10) {
             $errors[] = "Numéro de téléphone invalide";
         }
 
@@ -88,9 +91,10 @@ if (isset($_POST['submit'])) {
         }
 
         if (empty($errors)) {
-            if ($new_phone !== $old_phone) {
+
+            if ($new_phone_clean !== $old_phone_clean) {
                 $stmt = $pdo->prepare("UPDATE users SET phone = ? WHERE username = ?");
-                $stmt->execute([$new_phone, $username]);
+                $stmt->execute([$new_phone_clean, $username]);
             }
 
             if ($new_email !== $old_email) {
@@ -98,7 +102,7 @@ if (isset($_POST['submit'])) {
                 $stmt->execute([$new_email, $username]);
             }
 
-             if (!empty($password)) {
+            if (!empty($password)) {
                 $password_hash = password_hash($password, PASSWORD_DEFAULT);
                 $stmt = $pdo->prepare("UPDATE users SET password = ? WHERE username = ?");
                 $stmt->execute([$password_hash, $username]);
@@ -110,6 +114,7 @@ if (isset($_POST['submit'])) {
                 echo "<p style='color:red'>$e</p>";
             }
         }
+
     } catch (Exception $e) {
         echo "<p style='color:red'>Erreur : " . $e->getMessage() . "</p>";
     }

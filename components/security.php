@@ -29,6 +29,5 @@ function hasAdminRole() {
     return $user_role === 'Admin';
 
 }
-    
 
 ?>

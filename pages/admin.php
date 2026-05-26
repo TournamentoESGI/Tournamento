@@ -47,22 +47,22 @@ verifieRoleAdmin();
 		<div class="mid-container-dashboard">
 			<h1>Option de navigation :</h1>
 			<div class="container-button-nav">
-				<button><a href="">Tournoi</a></button>
-				<button><a href="">Profil utilisateur</a></button>
-				<button><a href="">Statistiques</a></button>
+				<button><a href="<?php echo getPagePath("statistics");?>">Tournoi</a></button>
+				<button><a href="<?php echo getPagePath("statistics");?>">Profil utilisateur</a></button>
+				<button><a href="<?php echo getPagePath("statistics");?>">Statistiques</a></button>
 			</div>
 		</div>
 		<div class="container-separasion"></div>
 		<div class="bottom-container-dashboard">
 			<div class="top-button">
-				<button><a href="">Bannis</a></button>
-				<button><a href="">Signalement</a></button>
-				<button><a href="">Messages</a></button>
+				<button><a href="<?php echo getPagePath("");?>">Bannis</a></button>
+				<button><a href="<?php echo getPagePath("");?>">Signalement</a></button>
+				<button><a href="<?php echo getPagePath("");?>">Messages</a></button>
 			</div>
 			<div class="bottom-button">
-				<button><a href="">Système de notes</a></button>
-				<button><a href="getPagePath(logs)">Gestion des logs</a></button>
-				<button class="button-logout-dashboard"><a href="">Déconnexion</a></button>
+				<button><a href="<?php echo getPagePath("");?>">Système de notes</a></button>
+				<button><a href="<?php echo getPagePath("logs");?>">Gestion des logs</a></button>
+				<button class="button-logout-dashboard"><a href="<?php echo getPagePath("logout");?>">Déconnexion</a></button>
 			</div>
 		</div>
 	</div>
