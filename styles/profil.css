@@ -91,6 +91,7 @@ main {
     border-radius: var(--small);
     padding: var(--small) var(--medium);
     text-align: center;
+    text-decoration: none;
 }
 
 .btn-deconnexion {
@@ -100,6 +101,7 @@ main {
     padding: var(--small) var(--medium);
     font-weight: 600;
     text-align: center;
+    text-decoration: none;
 }
 
 button:hover, a:hover {
