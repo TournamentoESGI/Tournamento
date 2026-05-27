@@ -50,7 +50,7 @@
 					$_SESSION['username'] = $username;
 					$_SESSION['role'] = $user['role'];
                     sendLog("Connexion", "user_connect");
-                    header("Location: ?page=profile");
+                    header("Location: ?page=profil");
                     exit;
 
                 } else {

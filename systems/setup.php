@@ -10,7 +10,6 @@ users (
     phone VARCHAR(15) NOT NULL UNIQUE,
     email_address VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    current_balance INT DEFAULT 0,
     creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     profil_picture VARCHAR(255) DEFAULT './assets/profil_picture/default_profile_picture.png',
     role VARCHAR(10) DEFAULT 'Membre',
@@ -53,6 +52,17 @@ participants (
 ");
 
 createTable("
+paris (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_participant INT NOT NULL,
+    id_parieur INT NOT NULL,
+    somme INT NOT NULL,
+    status ENUM('en cours', 'gagner', 'perdu', 'fermer'),
+    date DATETIME DEFAULT CURRENT_TIMESTAMP
+)
+");
+
+createTable("
 captchas(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	img_url VARCHAR(50),
@@ -89,4 +99,5 @@ newsletter (
     date DATETIME DEFAULT CURRENT_TIMESTAMP
 )
 ");
+
 ?>
