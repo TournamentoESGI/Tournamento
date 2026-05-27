@@ -1,5 +1,5 @@
 <?php
-$password = password_hash("ez",PASSWORD_DEFAULT);
+$password = password_hash("ez", PASSWORD_DEFAULT);
 $sql = "
 INSERT INTO users(username, first_name, last_name, date_of_birth, phone, email_address, password, role)
 VALUES('ez', 'Ghost', 'Rex', '2000-11-06', '12 34 56 78 90', 'pat_rick@gmail.com', '".$password."', 'Admin');
@@ -22,9 +22,15 @@ VALUES('SaulGoodman', 'Jimmy', 'McGuill', '2004-01-01', '33 56 78 90 12', 'bcs@g
 INSERT INTO users(username, first_name, last_name, date_of_birth, phone, email_address, password, role)
 VALUES('Ignacio', 'Nacho', 'Varga', '2004-01-01', '32 56 78 90 12', 'ign@gmail.com', '".$password."', 'Membre');
 
+INSERT INTO tournaments(author, title)
+VALUES(1, 'My tournament');
 
-INSERT INTO tournaments(author, title, status)
-VALUES(1, 'My tournament','ouvert');
+INSERT INTO tournaments(author, title)
+VALUES(1, 'A');
+
+INSERT INTO tournaments(author, title)
+VALUES(1, 'B');
+
 
 INSERT INTO pools(title, number, tournament, posX, posY)
 VALUES('Test pool', 1, 1, 0, 0);
@@ -38,6 +44,11 @@ INSERT INTO participants(user, tournament, nickname)
 VALUES(2, 1, 'Tacosinus');
 INSERT INTO participants(user, tournament, nickname)
 VALUES(3, 1, 'Pimento');
+
+INSERT INTO paris(id_participant, id_parieur, somme)
+VALUES(1, 1, 50);
+INSERT INTO paris(id_participant, id_parieur, somme)
+VALUES(3, 1, 70);
 ";
 
 testSQL($sql);

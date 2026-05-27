@@ -21,7 +21,7 @@ main {
 }
 
 .container-profil {
-    width: 250px;
+    width: 100%;
     height: 325px;
     background: linear-gradient(to top, var(--c-primary), var(--c-primary-light));
     border-radius: 10px;
@@ -59,7 +59,7 @@ main {
 }
 
 .container-profil-button {
-    height: 35px;
+    height: fit-content;
     width: 100px;
     border-radius: var(--small);
     background-color: var(--c-primary);
@@ -124,7 +124,7 @@ button:hover, a:hover {
     gap: var(--medium);
 }
 
-.tournoi-gagner-box, .tournoi-organiser-box, .tournoi-participer-box, .paris-gagner-box {
+.tournoi-organiser-box, .paris-gagner-box {
     background: linear-gradient(to top, var(--c-text-light), var(--c-primary));
     border-radius: var(--small);
     padding: 30px 40px;
@@ -174,7 +174,7 @@ button:hover, a:hover {
 }
 
 .tournoi-box {
-    background: #f3f0ff;
+    background-color: #f3f0ff;
     border-radius: var(--small);
     padding: var(--medium);
 }
@@ -223,7 +223,7 @@ button:hover, a:hover {
 }
 
 .section-paris {
-    background: #f3f0ff;
+    background-color: #f3f0ff;
     border-radius: var(--small);
     padding: var(--medium) 30px;
     display: flex;
@@ -251,7 +251,7 @@ button:hover, a:hover {
 }
 
 .section-tournois {
-    background: #f3f0ff;
+    background-color: #f3f0ff;
     border-radius: var(--small);
     padding: var(--medium) 30px;
 }
