@@ -1,124 +1,114 @@
 <?php
-if (!isset($_SESSION['username'])) {
-    echo "Utilisateur non connecté";
-    exit;
-}
+$id = $_SESSION['id'];
 
-$username = $_SESSION['username'];
-
-$stmt = $pdo->prepare("SELECT email_address, phone, password FROM users WHERE username = ?");
-$stmt->execute([$username]);
-$results = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$results) {
-    echo "Utilisateur introuvable";
-    exit;
-}
+$stmt = $pdo->prepare("SELECT username, email_address, phone, password FROM users WHERE id = ?");
+$stmt->execute([$id]);
+$results = $stmt->fetch();
 
 $old_email = $results['email_address'];
 $old_password = $results['password'];
 $old_phone = $results['phone'];
-
 ?>
 
-<div class="container mt-4">
-    <div class="row justify-content-center">
+<div class="settings-presentation">
 
-        <h1>Modifier les informations personnelles</h1>
-        <p>Hey <?php echo $username;?></p>
+    <div class="settings-container">
 
-        <div class="col-md-6">
-            <form action="" method="post" class="p-4 border rounded bg-light">
-
-                <div class="mb-3">
-                    <label for="email" class="form-label">Adresse E-mail</label>
-                    <input type="email" id="email" name="email_address" class="form-control" value="<?php echo $old_email; ?>">
-                </div>
-
-                <div class="mb-3">
-                    <label for="phone" class="form-label">Téléphone</label>
-                    <input type="tel" id="phone" name="phone" class="form-control" value="<?php echo $old_phone; ?>">
-                </div>
-
-                <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
-                    <input type="password" id="password" name="password" minlength="8" class="form-control" placeholder="Ex. 1éez349!d:z39">
-                </div>
-
-                <div class="mb-3">
-                    <label for="conf_password" class="form-label">Confirmer Mot de passe</label>
-                    <input type="password" id="conf_password" name="conf_password" minlength="8" class="form-control" placeholder="Ex. 1éez349!d:z39">
-                </div>
-
-                <button type="submit" name="submit" class="btn btn-primary w-100">Sauvegarder</button>
-
-            </form>
+        <div class="settings-header">
+            <h1>Modifier les informations personnelles</h1>
+            <a href="?page=profil" class="btn-retour"> Retour au profil</a>
         </div>
-    </div>
-</div>
+
+        <p><?php echo "Bonjour " . $_SESSION['username'] . " ! Ici tu modifies des informations
+         importantes qui nécessitent une confirmation via mot de passe, alors fais bien attention."; ?></p>
+
+        <form action="" method="post">
+
+            <div class="settings-ligne">
+                <label for="email">Adresse E-mail</label>
+                <input type="email" id="email" name="email_address" value="<?php echo $old_email; ?>">
+            </div>
+
+            <div class="settings-ligne">
+                <label for="phone">Téléphone</label>
+                <input type="tel" id="phone" name="phone" value="<?php echo $old_phone; ?>">
+            </div>
+
+            <div class="settings-ligne">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" minlength="8" placeholder="Ex. 1éez349!d:z39">
+            </div>
+
+            <div class="settings-ligne">
+                <label for="conf_password">Confirmer Mot de passe</label>
+                <input type="password" id="conf_password" name="conf_password" minlength="8" placeholder="Ex. 1éez349!d:z39">
+            </div>
+
+            <button type="submit" name="submit">Sauvegarder</button>
+
+        </form>
 
 <?php
-if (isset($_POST['submit'])) {
-    try {
-        $new_email = $_POST['email_address'];
-        $new_phone = $_POST['phone'];
-        $password = $_POST['password'];
-        $conf_password = $_POST['conf_password'];
+if(isset($_POST['submit'])) {
 
-        $new_phone_clean = preg_replace('/\D/', '', $new_phone);
-        $old_phone_clean = preg_replace('/\D/', '', $old_phone);
+    $new_email = $_POST['email_address'];
+    $new_phone = $_POST['phone'];
+    $password = $_POST['password'];
+    $conf_password = $_POST['conf_password'];
 
-        $errors = [];
+    $new_phone_clean = str_replace(' ', '', $new_phone);
+    $old_phone_clean = str_replace(' ', '', $old_phone);
 
-        if (!empty($password)) {
-            if (strlen($password) < 8) {
-                $errors[] = "Le mot de passe doit faire au moins 8 caractères";
-            }
-            if ($password !== $conf_password) {
-                $errors[] = "Les mots de passe ne correspondent pas";
-            }
-            if (password_verify($password, $old_password)) {
-                $errors[] = "Le nouveau mot de passe ne doit pas être identique à l'ancien";
-            }
+    $count_error = 0;
+
+    echo "<div class='erreurs'>";
+    if(!empty($password)) {
+        if(strlen($password) < 8) {
+            echo "<p>Le mot de passe doit faire au moins 8 caractères.</p>";
+            $count_error++;
+        }
+        if($password !== $conf_password) {
+            echo "<p>Les mots de passe ne correspondent pas..</p>";
+            $count_error++;
+        }
+        if(password_verify($password, $old_password)) {
+            echo "<p>Le nouveau mot de passe ne doit pas être identique à l'ancien.</p>";
+            $count_error++;
+        }
+    }
+
+    if(strlen($new_phone_clean) !== 10) {
+        echo "<p>Numéro de téléphone invalide.</p>";
+        $count_error++;
+    }
+
+    if(!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
+        echo "<p>Email invalide.</p>";
+        $count_error++;
+    }
+    echo "</div>";
+
+    if($count_error === 0) {
+
+        if($new_phone_clean !== $old_phone_clean) {
+            $stmt = $pdo->prepare("UPDATE users SET phone = ? WHERE id = ?");
+            $stmt->execute([$new_phone_clean, $id]);
         }
 
-        if (strlen($new_phone_clean) !== 10) {
-            $errors[] = "Numéro de téléphone invalide";
+        if($new_email !== $old_email) {
+            $stmt = $pdo->prepare("UPDATE users SET email_address = ? WHERE id = ?");
+            $stmt->execute([$new_email, $id]);
+        }
+        if(!empty($password)) {
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $pdo->prepare("UPDATE users SET password = ? WHERE id = ?");
+            $stmt->execute([$password_hash, $id]);
         }
 
-        if (!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = "Email invalide";
-        }
-
-        if (empty($errors)) {
-
-            if ($new_phone_clean !== $old_phone_clean) {
-                $stmt = $pdo->prepare("UPDATE users SET phone = ? WHERE username = ?");
-                $stmt->execute([$new_phone_clean, $username]);
-            }
-
-            if ($new_email !== $old_email) {
-                $stmt = $pdo->prepare("UPDATE users SET email_address = ? WHERE username = ?");
-                $stmt->execute([$new_email, $username]);
-            }
-
-            if (!empty($password)) {
-                $password_hash = password_hash($password, PASSWORD_DEFAULT);
-                $stmt = $pdo->prepare("UPDATE users SET password = ? WHERE username = ?");
-                $stmt->execute([$password_hash, $username]);
-            }
-
-            echo "Modifications enregistrées";
-        } else {
-            foreach ($errors as $e) {
-                echo "<p style='color:red'>$e</p>";
-            }
-        }
-
-    } catch (Exception $e) {
-        echo "<p style='color:red'>Erreur : " . $e->getMessage() . "</p>";
+        echo "<div class='success'><p>Modifications enregistrées !</p></div>";
     }
 }
 
-
 ?>
+    </div>
+</div>

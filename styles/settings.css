@@ -1,0 +1,79 @@
+.settings-presentation {
+    background-image: url("../assets/background.png");
+    background-size: cover;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    padding: var(--medium);
+}
+
+.settings-container {
+    width: 60%;
+    margin: var(--medium) auto;
+    background: #f3f0ff;
+    border-radius: var(--small);
+    padding: 20px;
+
+    button {
+    width: 100%;
+    background-color: var(--c-primary);
+    color: var(--c-text-light);
+    border: none;
+    border-radius: var(--small);
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    }
+    .btn-retour {
+    width: fit-content;
+    background-color: var(--c-primary);
+    color: var(--c-text-light);
+    border-radius: var(--small);
+    padding: 10px 15px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    }
+
+}
+
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    gap: var(--medium);
+    justify-content: space-between;
+}
+
+.settings-ligne {
+    display: flex;
+    flex-direction: column;
+    gap: var(--small);
+    margin-bottom: var(--medium);
+    input {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: var(--small);
+    padding: 10px 15px;
+    font-size: 14px;
+    }
+}
+
+.erreurs p {
+    color: #ff4d4d;
+    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid #ff4d4d;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-top: var(--medium);
+}
+
+.success p {
+    color: #00b300;
+    background-color: rgba(0, 87, 0, 0.1);
+    border-left: 3px solid #00b300;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-top: var(--medium);
+}
