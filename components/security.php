@@ -30,4 +30,14 @@ function hasAdminRole() {
 
 }
 
+function isPhoneValid($phone) {
+    $phone_clean = str_replace(' ', '', $phone);
+    if(strlen($phone_clean) !== 10) {
+        return false;
+    }
+    if(!is_numeric($phone_clean)) {
+        return false;
+    }
+    return true;
+}
 ?>
