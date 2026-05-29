@@ -36,12 +36,12 @@ $old_phone = $results['phone'];
             </div>
 
             <div class="settings-ligne">
-                <label for="password">Mot de passe</label>
+                <label for="password">Changement Mot de passe</label>
                 <input type="password" id="password" name="password" minlength="8" placeholder="Ex. 1éez349!d:z39" required>
             </div>
 
             <div class="settings-ligne">
-                <label for="conf_password">Confirmer Mot de passe</label>
+                <label for="conf_password">Confirmer Ancien Mot de passe</label>
                 <input type="password" id="conf_password" name="conf_password" minlength="8" placeholder="Ex. 1éez349!d:z39" required>
             </div>
 
@@ -63,9 +63,20 @@ if(isset($_POST['submit'])) {
     $count_error = 0;
     
     echo "<div class='erreurs'>";
-        if($password !== $conf_password) {
-            echo "<p>Les mots de passe ne correspondent pas.</p>";
-            $count_error++;
+
+        if (!empty($password)) {
+            if (strlen($password) < 8) {
+                echo "<p>Le mot de passe doit faire au moins 8 caractères</p>";
+                $count_error++;
+            }
+            if ($password !== $conf_password) {
+                echo "<p>Les mots de passe ne correspondent pas</p>";
+                $count_error++;
+            }
+            if (password_verify($password, $old_password)) {
+                echo "<p>Le nouveau mot de passe ne doit pas être identique à l'ancien</p>";
+                $count_error++;
+            }
         }
 
         if(!isPhoneValid($new_phone_clean)) {
@@ -77,10 +88,6 @@ if(isset($_POST['submit'])) {
             $count_error++;
         }
 
-        if(!password_verify($password, $old_password)) {
-            echo "<p>Mot de passe incorrect.</p>";
-            $count_error++;
-        }
 
     echo "</div>";
     if($count_error === 0) {
@@ -93,6 +100,13 @@ if(isset($_POST['submit'])) {
             $stmt = $pdo->prepare("UPDATE users SET email_address = ? WHERE id = ?");
             $stmt->execute([$new_email, $id]);
         }
+
+        if (!empty($password)) {
+                $password_hash = password_hash($password, PASSWORD_DEFAULT);
+                $stmt = $pdo->prepare("UPDATE users SET password = ? WHERE username = ?");
+                $stmt->execute([$password_hash, $username]);
+        }
+
         echo "<div class='success'><p>Modifications enregistrées !</p></div>";
     }
 }
