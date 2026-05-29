@@ -14,14 +14,12 @@ $old_phone = $results['phone'];
 <div class="settings-presentation">
 
     <div class="settings-container">
-
         <div class="settings-header">
             <h1>Modifier les informations personnelles</h1>
             <a href="?page=profil" class="btn-retour"> Retour au profil</a>
         </div>
-
         <p><?php echo "Bonjour " . $_SESSION['username'] . " ! Ici tu modifies des informations
-         importantes qui nécessitent une confirmation via mot de passe, alors fais bien attention."; ?></p>
+        importantes qui nécessitent une confirmation via mot de passe, alors fais bien attention."; ?></p>
 
         <form action="" method="post">
 
@@ -37,7 +35,7 @@ $old_phone = $results['phone'];
 
             <div class="settings-ligne">
                 <label for="password">Changement Mot de passe</label>
-                <input type="password" id="password" name="password" minlength="8" placeholder="Ex. 1éez349!d:z39" required>
+                <input type="password" id="password" name="password" minlength="8" placeholder="Ex. 1éez349!d:z39" >
             </div>
 
             <div class="settings-ligne">
@@ -61,24 +59,27 @@ if(isset($_POST['submit'])) {
     $old_phone_clean = str_replace(' ', '', $old_phone);
 
     $count_error = 0;
-    
+        
     echo "<div class='erreurs'>";
 
-        if (!empty($password)) {
+       if (!empty($password) && !empty($conf_password)) {
+
             if (strlen($password) < 8) {
-                echo "<p>Le mot de passe doit faire au moins 8 caractères</p>";
+                echo "<p>8 caractères minimum</p>";
                 $count_error++;
             }
-            if ($password !== $conf_password) {
-                echo "<p>Les mots de passe ne correspondent pas</p>";
+
+            if (!password_verify($conf_password, $old_password)) {
+                echo "<p>Ancien mot de passe incorrect</p>";
                 $count_error++;
             }
+
             if (password_verify($password, $old_password)) {
-                echo "<p>Le nouveau mot de passe ne doit pas être identique à l'ancien</p>";
+                echo "<p>Nouveau mot de passe identique à l'ancien</p>";
                 $count_error++;
             }
         }
-
+            
         if(!isPhoneValid($new_phone_clean)) {
             echo "<p>Numéro de téléphone invalide.</p>";
             $count_error++;
@@ -102,9 +103,10 @@ if(isset($_POST['submit'])) {
         }
 
         if (!empty($password)) {
-                $password_hash = password_hash($password, PASSWORD_DEFAULT);
-                $stmt = $pdo->prepare("UPDATE users SET password = ? WHERE username = ?");
-                $stmt->execute([$password_hash, $username]);
+
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $pdo->prepare("UPDATE users SET password = ? WHERE id = ?");
+            $stmt->execute([$password_hash, $id]);
         }
 
         echo "<div class='success'><p>Modifications enregistrées !</p></div>";
