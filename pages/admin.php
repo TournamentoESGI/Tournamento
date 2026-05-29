@@ -1,6 +1,6 @@
 <?php
 verifieRoleAdmin();
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+$stmt = $pdo->prepare("SELECT username, email_address, profil_picture, role FROM users WHERE id = ?");
 $stmt->execute([$_SESSION['id']]);
 $admin = $stmt->fetch();
 ?>
