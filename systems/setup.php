@@ -13,14 +13,15 @@ users (
     creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     profil_picture VARCHAR(255) DEFAULT './assets/profil_picture/default_profile_picture.png',
     role VARCHAR(10) DEFAULT 'Membre',
+    current_balance INT DEFAULT 0,
     is_verified TINYINT(1) NOT NULL DEFAULT 0
 )
 ");
 
 createTable("
 tournaments (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	author INT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    author INT,
     title VARCHAR(50),
     description VARCHAR(255) DEFAULT '',
     status ENUM('ouvert','fermer'),
@@ -32,22 +33,22 @@ tournaments (
 
 createTable("
 pools (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	number INT,
-	tournament INT,
-	UNIQUE KEY pool (number, tournament),
-	title VARCHAR(50) DEFAULT 'New pool',
-	posX INT,
-	posY INT
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    number INT,
+    tournament INT,
+    title VARCHAR(50) DEFAULT 'New pool',
+    posX INT,
+    posY INT,
+    UNIQUE KEY pool (number, tournament)
 )
 ");
 
 createTable("
 participants (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	user INT,
-	tournament INT,
-	nickname VARCHAR(20)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user INT,
+    tournament INT,
+    nickname VARCHAR(20)
 )
 ");
 
@@ -63,10 +64,10 @@ paris (
 ");
 
 createTable("
-captchas(
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	img_url VARCHAR(50),
-	splits INT
+captchas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    img_url VARCHAR(50),
+    splits INT
 )
 ");
 

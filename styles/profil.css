@@ -240,6 +240,20 @@ button:hover, a:hover {
     align-items: center;
 }
 
+.paris-droite {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.paris-droite .paris-status {
+    background-color: #e74c3c;
+    border-radius: var(--medium);
+    border: none;
+    padding: var(--small) var(--medium);
+    color: white;
+}
+
 .paris-info .paris-titre {
     font-weight: 600;
     margin: 0;

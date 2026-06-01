@@ -2,13 +2,11 @@
 $id = $_SESSION['id'];
 
 $stmtUser = $pdo->prepare("SELECT id, username, first_name, last_name,
- email_address, phone, role, profil_picture, creation_date FROM users WHERE id = ?");
+ email_address, phone, role, profil_picture, creation_date, current_balance FROM users WHERE id = ?");
 $stmtUser->execute([$id]);
 $user = $stmtUser->fetch();
 
-
-$stmtTournois = $pdo->prepare("SELECT id, title, start_date, 'Organisateur' 
-AS mon_role FROM tournaments WHERE author = ? ORDER BY created_at DESC LIMIT 4");
+$stmtTournois = $pdo->prepare("SELECT id, title, start_date, 'Organisateur' FROM tournaments WHERE author = ? ORDER BY created_at DESC LIMIT 4");
 $stmtTournois->execute([$id]);
 $tournoiList = $stmtTournois->fetchAll();
 
@@ -17,7 +15,12 @@ users.username AS nom_participant FROM paris JOIN participants ON participants.i
 JOIN users ON users.id = participants.user WHERE paris.id_parieur = ? ORDER BY paris.date DESC LIMIT 4");
 $stmtParis->execute([$id]);
 $parisList = $stmtParis->fetchAll();
+
+$stmt = $pdo->prepare("SELECT COALESCE(SUM(somme), 0) FROM paris WHERE id_parieur = ? AND status = 'en cours'");
+$stmt->execute([$id]);
+$totalParis = $stmt->fetchColumn();
 ?>
+
 <div class="profil-presentation">
 
     <aside>
@@ -86,14 +89,14 @@ $parisList = $stmtParis->fetchAll();
         <div class="container-solde">
             <div class="solde-header">
                 <h2>Solde disponible :</h2>
-                <p class="solde-montant">0 €</p>
+                <p class="solde-montant"><?php echo $user['current_balance'];?> €</p>
                 <div class="solde-boutons">
                     <button class="btn-deposer">+ Déposer</button>
                     <button class="btn-retirer">- Retirer</button>
                 </div>
             </div>
             <div class="solde-stats">
-                <p>0 € en jeu</p>
+                <p><?php echo $totalParis; ?> € en jeu</p>
             </div>
         </div>
 
@@ -147,15 +150,15 @@ $parisList = $stmtParis->fetchAll();
                 } else {
                     foreach($parisList as $pari) {
                         echo "<div class='paris-ligne'>
-                            <div class='paris-info'>
-                                <p class='paris-titre'>Pari sur $pari[nom_participant]</p>
-                                <p class='paris-date'>$pari[date]</p>
-                            </div>
-                            <div class='paris-droite'>
-                                <p class='paris-montant'>$pari[somme] €</p>
-
-                            </div>
-                        </div>";
+                                <div class='paris-info'>
+                                    <p class='paris-titre'>Pari sur " . $pari['nom_participant'] . "</p>
+                                    <p class='paris-date'>" . $pari['date'] . "</p>
+                                </div>
+                                <div class='paris-droite'>
+                                    <p class='paris-status'>" . $pari['status'] . "</p>
+                                    <p class='paris-montant'>" . $pari['somme'] . " €</p>
+                                </div>
+                            </div>";
                     }
                 }
                 ?>
@@ -171,11 +174,11 @@ $parisList = $stmtParis->fetchAll();
                 } else {
                     foreach($tournoiList as $tournoi) {
                         echo "<div class='tournoi-ligne'>
-                            <div class='tournoi-info'>
-                                <p class='tournoi-nom'>$tournoi[title]</p>
-                                <p class='tournoi-date'>$tournoi[start_date]</p>
-                            </div>
-                        </div>";
+                                <div class='tournoi-info'>
+                                    <p class='tournoi-nom'>" . $tournoi['title'] . "</p>
+                                    <p class='tournoi-date'>" . $tournoi['start_date'] . "</p>
+                                </div>
+                            </div>";
                     }
                 }
                 ?>

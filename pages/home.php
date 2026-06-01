@@ -1,5 +1,9 @@
 <?php
 include_once("./components/captcha.php");
+
+//$avis = file("reviews.txt");
+
+
 ?>
 
 <section class="hero-section">
