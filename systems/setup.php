@@ -15,6 +15,7 @@ users (
     role VARCHAR(10) DEFAULT 'Membre',
     current_balance INT DEFAULT 0,
     is_verified TINYINT(1) NOT NULL DEFAULT 0
+    
 )
 ");
 
@@ -33,22 +34,26 @@ tournaments (
 
 createTable("
 pools (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    number INT,
-    tournament INT,
-    title VARCHAR(50) DEFAULT 'New pool',
-    posX INT,
-    posY INT,
-    UNIQUE KEY pool (number, tournament)
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	number INT,
+	tournament INT,
+	UNIQUE KEY pool (number, tournament),
+	title VARCHAR(50) DEFAULT 'New pool',
+	posX INT,
+	posY INT,
+    id_vainqueur INT DEFAULT NULL
+
 )
 ");
 
 createTable("
 participants (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user INT,
-    tournament INT,
-    nickname VARCHAR(20)
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	user INT,
+	tournament INT,
+	nickname VARCHAR(20),
+    position INT DEFAULT NULL
+
 )
 ");
 

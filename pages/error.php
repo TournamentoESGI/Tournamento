@@ -28,7 +28,9 @@ if ($runner != "cli") {
 	else {
 		$error_parts = explode(";",$errorPageMessage);
 		$err_message = $error_parts[1];
+		echo "<div class=$type>";
 		echo "<h1>".$err_message."</h1>";
+		echo "</div>";
 	}
 }
 else {
