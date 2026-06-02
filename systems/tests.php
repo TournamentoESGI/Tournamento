@@ -2,13 +2,13 @@
 $password = password_hash("ez", PASSWORD_DEFAULT);
 $sql = "
 INSERT INTO users (username, first_name, last_name, date_of_birth, phone, email_address, password, role, current_balance, is_verified)
-VALUES ('ez', 'Ghost', 'Rex', '2000-11-06', '12 34 56 78 90', 'pat_rick@gmail.com', '".$password."', 'Admin', 100, 1);
+VALUES ('ez', 'Ghost', 'Rex', '2000-11-06', '12 34 56 78 90', 'p.nikiel@myskolae.fr', '".$password."', 'Admin', 100, 1);
 
 INSERT INTO users (username, first_name, last_name, date_of_birth, phone, email_address, password, role, current_balance, is_verified)
-VALUES ('tacos', 'Caporal', 'Zzz', '2004-01-01', '34 56 78 90 12', 'anthony@gmail.com', '".$password."', 'Membre', 0, 1);
+VALUES ('tacos', 'Caporal', 'Zzz', '2004-01-01', '34 56 78 90 12', 'a.zhao@myskolae.fr', '".$password."', 'Membre', 0, 1);
 
 INSERT INTO users (username, first_name, last_name, date_of_birth, phone, email_address, password, role, creation_date, current_balance, is_verified)
-VALUES ('Hugy', 'Hug', 'Maire', '2006-01-01', '33 44 55 66 77', 'hugy@gmail.com', '".$password."', 'Membre', '2025-10-11', 0, 1);
+VALUES ('Hugy', 'Hug', 'Maire', '2006-01-01', '33 44 55 66 77', 'h.lemaire@myskolae.fr', '".$password."', 'Membre', '2025-10-11', 0, 1);
 
 INSERT INTO users (username, first_name, last_name, date_of_birth, phone, email_address, password, role, creation_date, current_balance, is_verified)
 VALUES ('Lalo', 'Edwardo', 'Salamanca', '1969-11-06', '44 55 66 77 88', 'sal@gmail.com', '".$password."', 'Membre', '2025-11-11', 0, 1);

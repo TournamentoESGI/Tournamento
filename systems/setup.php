@@ -106,4 +106,14 @@ newsletter (
 )
 ");
 
+createTable("
+auto_mails (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    subject VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    frequency ENUM('daily','weekly','monthly') NOT NULL,
+    last_sent DATETIME DEFAULT NULL
+)
+");
+
 ?>
