@@ -28,8 +28,12 @@ if ($runner != "cli") {
 	else {
 		$error_parts = explode(";",$errorPageMessage);
 		$err_message = $error_parts[1];
-		echo "<div class=$type>";
+		echo "<div class=";
+		echo $type=="404"?"notfound":$type;
+		echo ">";
 		echo "<h1>".$err_message."</h1>";
+		echo "<p>Page non trouvé, vous allez être rediriger..</p>";
+		echo "<script>setTimeout(() => { window.location.replace('?page=home'); }, 5000);</script>";
 		echo "</div>";
 	}
 }
