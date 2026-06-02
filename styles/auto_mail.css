@@ -1,0 +1,144 @@
+.auto-mail-presentation {
+    background-image: url("../assets/background.png");
+    background-size: cover;
+    min-height: 100%;
+    align-items: center;
+    padding: var(--medium);
+}
+
+h1 {
+    padding-left: var(--medium);
+    color: var(--c-text-light);
+    font-weight: bold;
+}
+
+h2 {
+    color: var(--c-text-light);
+    font-size: var(--large);
+    font-weight: bold;
+    padding-bottom: var(--small);
+}
+
+.Auto-mail-container {
+    background-color: var(--c-dark-teal);
+    border: 3px solid var(--c-accent);
+    border-radius: var(--medium);
+    padding: var(--medium);
+    color: var(--c-text-light);
+    display: flex;
+    flex-direction: column;
+    gap: var(--small);
+    box-shadow: var(--shadow-teal);
+    max-width: 1000px;
+    margin: var(--medium) auto;
+
+    label {
+        font-weight: bold;
+        color: var(--c-text-light);
+    }
+
+    input, textarea, select {
+        width: 100%;
+        background-color: transparent;
+        color: var(--c-text-light);
+        border: 1px solid var(--c-accent);
+        border-radius: var(--small);
+        padding: var(--small) var(--medium);
+        resize: vertical;
+        box-sizing: border-box;
+    }
+
+    input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--c-text-light);
+    }
+
+    select option {
+        background-color: var(--c-dark-teal);
+        color: var(--c-text-light);
+    }
+}
+
+.Titre-container {
+    padding-left: 0;
+    margin-bottom: var(--small);
+}
+
+.message-info {
+    color: var(--c-text-light);
+    opacity: 0.6;
+    padding: var(--small) 0;
+}
+
+.mail-list-container {
+    background-color: var(--c-dark-teal);
+    border: 3px solid var(--c-accent);
+    border-radius: var(--medium);
+    padding: var(--medium);
+    color: var(--c-text-light);
+    box-shadow: var(--shadow-teal);
+    max-width: 1000px;
+    margin: var(--medium) auto;
+}
+
+.mail-list-title {
+    padding-left: 0;
+    margin-bottom: var(--medium);
+    border-bottom: 2px solid var(--c-accent);
+    padding-bottom: var(--small);
+}
+
+.mail-card {
+    border-top: 2px solid var(--c-accent);
+    padding-top: var(--small);
+    padding-bottom: var(--small);
+    font-size: var(--medium);
+}
+
+.mail-card:first-child {
+    border-top: none;
+}
+
+.mail-card-title {
+    color: var(--c-text-light);
+    font-weight: bold;
+    font-size: var(--medium);
+    margin-bottom: var(--tiny);
+}
+
+.mail-card-text {
+    color: var(--c-text-light);
+    opacity: 0.85;
+    margin-bottom: var(--tiny);
+}
+
+.mail-card-delete-form {
+    margin-top: var(--small);
+}
+
+.btn-submit {
+    padding: var(--small) var(--large);
+    border-radius: var(--small);
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--c-accent);
+    color: var(--c-text-dark);
+    border: none;
+    margin-top: var(--small);
+    align-self: center;
+}
+
+.btn-delete {
+    padding: var(--small) var(--large);
+    border-radius: var(--small);
+    font-weight: bold;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--c-red);
+    border: 2px solid var(--c-red);
+}
+
+.btn-delete:hover {
+    background-color: var(--c-red);
+    color: var(--c-text-dark);
+}
