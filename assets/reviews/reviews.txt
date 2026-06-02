@@ -1,0 +1,6 @@
+{"date":"2026-03-01 12:45","nom":"Hugo","message":"Super site, j'adore !"}
+{"date":"2026-06-04 15:35","nom":"Patrick","message":"Je suis fou d'argent !"}
+{"date":"2026-04-03 14:45","nom":"Anthony","message":"Moi aimer sushi !"}
+{"date":"2026-05-01 12:25","nom":"Bob","message":"Super site, j'adore !"}
+{"date":"2026-06-02 13:15","nom":"Sanane","message":"Super site, j'adore !"}
+{"date":"2026-01-01 12:45","nom":"David","message":"Super site, j'adore !"}

@@ -27,7 +27,7 @@ $admin = $stmt->fetch();
                 <h1>Tableau de bord : Admin / Menu</h1>
                 <div class="duo-box-top">
                     <button class="button-back"><a href="<?= getPagePath("home") ?>">Retour au site</a></button>
-                    <button class="button-settings"><a href="">Paramètres</a></button>
+                    <button class="button-settings"><a href="<?= getPagePath("settings") ?>">Paramètres</a></button>
                 </div>
             </div>
 
