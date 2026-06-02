@@ -40,8 +40,6 @@ $admin = $stmt->fetch();
                 </div>
             </div>
 
-            <div class="container-separation"></div>
-
             <div class="bottom-container-dashboard">
                 <div class="top-button">
                     <button><a href="<?= getPagePath("") ?>">Bannis</a></button>
