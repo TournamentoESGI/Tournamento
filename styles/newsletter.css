@@ -8,22 +8,22 @@
 
 h1 {
     padding-left: 10px;
-    color: #ffffff;
+    color: var(--c-text-light);
     font-weight: bold;
 }
 
 h2 {
-    color: #ffffff;
+    color: var(--c-text-light);
     font-size: 1.7rem;
     font-weight: bold;
-    padding-bottom: 5px;
+    padding-bottom: var(--small);
 }
 
 .newsletter-all {
     display: flex;
     flex-direction: row;
-    gap: 32px;
-    padding: 16px;
+    gap: var(--large);
+    padding: var(--medium);
 }
 
 .newsletter-form-section {
@@ -67,18 +67,18 @@ h2 {
 .success p {
     color: #00b300;
     border-left: 3px solid #00b300;
-    padding: 6px 12px;
-    border-radius: 4px;
-    margin: 4px 0;
+    padding: var(--small);
+    border-radius: var(--small);
+    margin: var(--small) 0;
 }
 
 .btn-modifier {
-    padding: 8px 20px;
-    border-radius: 8px;
+    padding: var(--small);
+    border-radius: var(--small);
     font-weight: bold;
     cursor: pointer;
     background-color: var(--c-dark-teal);
-    color: #ffffff;
+    color: var(--c-text-light);
     border: 2px solid var(--c-accent);
 }
 
@@ -88,8 +88,8 @@ h2 {
 }
 
 .btn-envoyer {
-    padding: 8px 20px;
-    border-radius: 8px;
+    padding: var(--small);
+    border-radius: var(--small);
     font-weight: bold;
     cursor: pointer;
     background-color: var(--c-accent);
@@ -107,17 +107,17 @@ input:read-only, textarea:read-only {
 
 .newsletter-nav {
     display: flex;
-    gap: 4px;
-    margin-bottom: 1rem;
+    gap: var(--small);
+    margin-bottom: var(--large);
 }
 
 .newsletter-nav .nav-link {
     margin-left: var(--medium);
     padding: var(--small) var(--small);
-    border-radius: 8px;
-    color: rgb(123, 123, 123);
+    border-radius: var(--small);
+    color: var(--c-text-light);
     font-weight: bold;
-    background-color: rgba(11, 46, 13, 0.359)
+    background-color: var(--c-dark-teal);
 }
 
 .newsletter-nav .nav-link.active {

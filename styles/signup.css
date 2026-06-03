@@ -1,10 +1,10 @@
 .signup-presentation {
     background-image: url("../assets/background.png");
     background-size: cover;
-    min-height: 74vh;
+    min-height: 100%;
     display: flex;
     align-items: center;
-    padding: 2rem 4%;
+    padding: var(--medium) 4%;
 }
 
 .signup-texte { 
@@ -14,12 +14,12 @@
     h1 {
     font-size: 130%;
     font-weight: bold;
-    color: white;
+    color: var(--c-text-light);
     }
     p {
     font-size: 110%;
     opacity: 0.85;
-    color: white;
+    color: var(--c-text-light);
     }
 }
 
@@ -31,24 +31,24 @@
 .signup-carte {
     width: 46%;
     label {
-    color: white;
+    color: var(--c-text-light);
     }
 }
 
 .signup-carte-titre {
     background-color: #0c2415;
     border-radius: 8px;
-    padding: 12px 16px;
+    padding: var(--small) var(--medium);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin: 0 auto 1.5rem;
+    gap: var(--small);
+    margin: 0 auto var(--medium);
     width: 25%;
     
     h2 {
-    color: #D9FF22;
-    font-size: 1rem;
+    color: var(--c-accent);
+    font-size: var(--medium);
     margin: 0;
     }
 }
@@ -63,11 +63,11 @@
     vertical-align: top;
     }
     input {
-    background: white;
+    background: var(--c-bg);
     border: none;
-    border-radius: 9px;
+    border-radius: var(--small);
     width: 100%;
-    padding: 3%;
+    padding: var(--small) var(--medium);
     }
 }
 
@@ -75,13 +75,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 0.1rem;
+    margin-top: var(--small);
     label {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--small);
     white-space: nowrap;
-    color: white;
+    color: var(--c-text-light);
     }
 }
 
@@ -90,32 +90,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: var(--small);
     width: 70%;
     margin-left: 15%;
-    padding: 1%;
+    padding: var(--small);
     font-weight: bold;
     cursor: pointer;
-    background-color: #D9FF22; 
-    color: #04262A; 
-    margin-top: 0.5rem; 
+    background-color: var(--c-accent);
+    color: var(--c-text-dark);
+    margin-top: var(--small);
 }
 
 .erreurs p {
-    color: #ff4d4d;
+    color: var(--c-red);
     background-color: rgba(255, 0, 0, 0.1);
-    border-left: 3px solid #ff4d4d;
-    padding: 6px 12px;
-    border-radius: 4px;
-    margin: 4px 0;
+    border-left: 3px solid var(--c-red);
+    padding: var(--small) var(--medium);
+    border-radius: var(--small);
+    margin: var(--small) 0;
 }
 
 .success p {
-    color: #00b300;
-    border-left: 3px solid #00b300;
-    padding: 6px 12px;
-    border-radius: 4px;
-    margin: 4px 0;
+    color: var(--c-green);
+    border-left: 3px solid var(--c-green);
+    padding: var(--small) var(--medium);
+    border-radius: var(--tiny);
+    margin: var(--small) 0;
 }
 
 .captcha-section {
@@ -124,7 +124,7 @@
     margin-left : 15%;
     align-items: center;
     p {
-        color: white;
+        color: var(--c-text-light);
         margin-right: 20%;
         font-size:small;
         justify-content: row;
@@ -137,7 +137,7 @@
     max-height: 29%;
 }
 
-@media screen and (max-width: 1024px ) {
+@media screen and (max-width: 1000px ) {
     .signup-presentation {
         flex-direction: column;
     }

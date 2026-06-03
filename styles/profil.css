@@ -1,5 +1,5 @@
 .profil-presentation {
-    background-color: #e3e3e3;
+    background-color: var(--c-bg);
     display: flex;
     gap: var(--medium);
     padding: var(--medium);
@@ -10,13 +10,13 @@ aside {
     flex-direction: column;
     gap: var(--medium);
     width: 250px;
-    margin-right: 36px;
+    margin-right: var(--large);
 }
 
 main {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: var(--extra-large);
     flex: 1;
 }
 
@@ -25,7 +25,7 @@ main {
     height: 325px;
     background: linear-gradient(to top, var(--c-primary), var(--c-primary-light));
     border-radius: 10px;
-    box-shadow: 0px 10px 20px var(--c-dark-teal);
+    box-shadow: var(--shadow-teal);
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -36,7 +36,7 @@ main {
     height: auto;
     border: 5px solid var(--c-dark-teal);
     border-radius: 50%;
-    margin-top: 20px;
+    margin-top: var(--medium);
 }
 
 .container-profil .profil img {
@@ -71,12 +71,12 @@ main {
 }
 
 .container-profil-button img {
-    width: 15px;
+    width: var(--medium);
 }
 
 .container-profil-button h1 {
     color: var(--c-accent);
-    font-size: 12px;
+    font-size: var(--medium);
     margin: 0;
 }
 
@@ -95,7 +95,7 @@ main {
 }
 
 .btn-deconnexion {
-    background-color: #e74c3c;
+    background-color: var(--c-red);
     color: var(--c-text-light);
     border-radius: var(--small);
     padding: var(--small) var(--medium);
@@ -116,7 +116,6 @@ button:hover, a:hover {
     display: flex;
     gap: var(--small);
     padding: var(--small) 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .container-stats {
@@ -127,9 +126,9 @@ button:hover, a:hover {
 .tournoi-organiser-box, .paris-gagner-box {
     background: linear-gradient(to top, var(--c-text-light), var(--c-primary));
     border-radius: var(--small);
-    padding: 30px 40px;
+    padding: var(--large) var(--large);
     color: var(--c-text-light);
-    font-weight: 600;
+    font-weight: bold;
     flex: 1;
 }
 
@@ -147,7 +146,7 @@ button:hover, a:hover {
 }
 
 .solde-montant {
-    font-size: 1.5rem;
+    font-size: var(--large);
     font-weight: 800;
     color: var(--c-accent);
 }
@@ -174,7 +173,7 @@ button:hover, a:hover {
 }
 
 .tournoi-box {
-    background-color: #f3f0ff;
+    background-color: var(--c-soft-blue);
     border-radius: var(--small);
     padding: var(--medium);
 }
@@ -213,7 +212,7 @@ button:hover, a:hover {
 }
 
 .icone-spect {
-    width: 13px;
+    width: var(--small);
 }
 
 .container-paris {
@@ -223,9 +222,9 @@ button:hover, a:hover {
 }
 
 .section-paris {
-    background-color: #f3f0ff;
+    background-color: var(--c-soft-blue);
     border-radius: var(--small);
-    padding: var(--medium) 30px;
+    padding: var(--medium) var(--large);
     display: flex;
     flex-direction: column;
     gap: var(--small);
@@ -247,7 +246,7 @@ button:hover, a:hover {
 }
 
 .paris-droite .paris-status {
-    background-color: #e74c3c;
+    background-color: var(--c-red);
     border-radius: var(--medium);
     border: none;
     padding: var(--small) var(--medium);
@@ -255,19 +254,14 @@ button:hover, a:hover {
 }
 
 .paris-info .paris-titre {
-    font-weight: 600;
+    font-weight: bold;
     margin: 0;
 }
 
-.paris-info .paris-date {
-    color: #888;
-    margin: 2px 0 0;
-}
-
 .section-tournois {
-    background-color: #f3f0ff;
+    background-color: var(--c-soft-blue);
     border-radius: var(--small);
-    padding: var(--medium) 30px;
+    padding: var(--medium) var(--large);
 }
 
 .tournois-grille {
@@ -283,7 +277,7 @@ button:hover, a:hover {
     padding: var(--medium);
 
     .tournoi-nom {
-    font-weight: 600;
+    font-weight: bold;
     }
 }
 
