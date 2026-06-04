@@ -1,11 +1,30 @@
-
 <?php
 include_once("./components/graphs.php");
 
 verifieRoleAdmin();
+
+if(isset($_POST['export_pdf'])) {
+    $lignes = [];
+
+    $stmt = $pdo->prepare("SELECT COUNT(id) AS total, DATE_FORMAT(creation_date, '%M') AS mois FROM users WHERE YEAR(creation_date) = YEAR(CURRENT_TIME) GROUP BY DATE_FORMAT(creation_date, '%M')");
+    $stmt->execute();
+    foreach($stmt->fetchAll() as $row) {
+        $lignes[] = "Inscrits en " . $row['mois'] . " : " . $row['total'];
+    }
+
+    $stmt = $pdo->prepare("SELECT COUNT(id) AS total, page FROM logs WHERE tag = 'user_visit' GROUP BY page");
+    $stmt->execute();
+    foreach($stmt->fetchAll() as $row) {
+        $lignes[] = "Visites sur " . $row['page'] . " : " . $row['total'];
+    }
+
+    exportPDF('Statistiques', $lignes);
+}
+
 ?>
 
 <h1>Utilisateurs</h1>
+
 <div>
 	<div class="graph-section">
 		<h2>Utilisateurs inscrits cette année</h2>
@@ -62,3 +81,7 @@ verifieRoleAdmin();
 		?>
 	</div>
 </div>
+
+<form method="post">
+	<button type="submit" class= "export-btn" name="export_pdf">Exporter en PDF</button>
+</form>
