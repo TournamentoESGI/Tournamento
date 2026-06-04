@@ -81,4 +81,6 @@
 
     </div>
 
+<button class="export-btn" onclick="window.print()">Exporter en PDF</button>
+
 </div>

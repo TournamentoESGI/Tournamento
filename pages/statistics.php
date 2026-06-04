@@ -1,4 +1,3 @@
-
 <?php
 include_once("./components/graphs.php");
 
@@ -6,6 +5,7 @@ verifieRoleAdmin();
 ?>
 
 <h1>Utilisateurs</h1>
+
 <div>
 	<div class="graph-section">
 		<h2>Utilisateurs inscrits cette année</h2>
@@ -62,3 +62,5 @@ verifieRoleAdmin();
 		?>
 	</div>
 </div>
+
+<button class="export-btn" onclick="window.print()">Exporter en PDF</button>

@@ -1,20 +1,18 @@
 <?php
 verifieRoleAdmin();
-?>
 
+$sql = "SELECT id, author, sujet, contenu, date FROM newsletter ORDER BY date DESC";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$results = $stmt->fetchAll();
+
+?>
 <div class="presentation">
 <div class="newsletter-nav">
     <a href="?page=newsletter" class="nav-link <?= ($_GET['page'] == 'newsletter') ? 'active' : '' ?>">Envoie</a>
     <a href="?page=newsletter_historique" class="nav-link <?= ($_GET['page'] == 'newsletter_historique') ? 'active' : '' ?>">Historique</a>
 </div>
 <h1>Tableau de bord : Historique Newsletter</h1>
-
-<?php
-$sql = "SELECT id, author, sujet, contenu, date FROM newsletter ORDER BY date DESC";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$results = $stmt->fetchAll();
-?>
 
     <div class="newsletter-historique-container">
         <div class="newsletter-historique-head newsletter-historique-row">
@@ -40,4 +38,7 @@ foreach ($results as $newsletter_historique ) {
 ?>
 
     </div>
+
+<button class="export-btn" onclick="window.print()">Exporter en PDF</button>
+
 </div>

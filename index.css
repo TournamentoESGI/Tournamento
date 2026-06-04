@@ -221,6 +221,21 @@ footer nav ul li a:hover {
     transition: 0.3s;
 }
 
+.export-btn {
+    background-color: var(--c-primary);
+    color: var(--c-text-light);
+    border: none;
+    border-radius: var(--small);
+    padding: var(--small) var(--medium);
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: var(--medium);
+}
+
+.export-btn:hover {
+    filter: brightness(0.85);
+}
+
 @media screen and (max-width: 1024px) {
     .burger {
         display: flex;
