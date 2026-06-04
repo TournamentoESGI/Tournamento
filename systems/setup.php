@@ -49,7 +49,8 @@ pools (
 createTable("
 participants (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	user INT,
+	user INT NOT NULL,
+	pool INT NOT NULL,
 	tournament INT,
 	nickname VARCHAR(20),
     position INT DEFAULT NULL

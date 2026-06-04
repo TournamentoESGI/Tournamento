@@ -16,6 +16,10 @@ function createLink($path, $text) {
 	echo "<a href=".getPagePath($path)."></a>";
 }
 
+function createNoCacheSource($path) {
+	return $path.'?'.time();
+}
+
 function include_js($path) {
 	global $include_js_list;
 	if (!$include_js_list) {
