@@ -46,7 +46,7 @@ form > button:hover {
 	background-color: var(--c-bg);
 	border-radius: var(--medium);
 	padding: var(--medium);
-	box-shadow: var(--s-medium);
+	box-shadow: var(--shadow-soft);
 }
 
 .toolbar > button {
@@ -71,7 +71,7 @@ form > button:hover {
 	height: 100%;
 	border-radius: var(--medium);
 	background-color: var(--c-bg);
-	box-shadow: var(--s-medium);
+	box-shadow: var(--shadow-soft);
 }
 
 #participants-container {
@@ -110,7 +110,7 @@ form > button:hover {
 
 	overflow: hidden;
 	border-radius: var(--small);
-	box-shadow: var(--s-medium);
+	box-shadow: var(--shadow-soft);
 	color: var(--c-text-light);
 }
 

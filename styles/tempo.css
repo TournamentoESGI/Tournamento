@@ -21,22 +21,22 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: var(--medium);
     z-index: 1;
     background-color: var(--c-accent);
     width: fit-content;
     height: fit-content;
     margin: 0;
-    margin-top: 12px;
-    padding: 4px;
-    padding-left: 12px;
-    padding-right: 12px;
-    border-radius: 8px;
+    margin-top: var(--small);
+    padding: var(--small);
+    padding-left: var(--medium);
+    padding-right: var(--medium);
+    border-radius: var(--small);
 }
 
 .above-the-fold > .home-container > .text-img > .circle {
-    width: 2px;
-    height: 2px;
+    width: var(--tiny);
+    height: var(--tiny);
     border-radius: 50%;
     background-color: black;
 }
@@ -63,7 +63,7 @@ a {
     position: relative;
     display: flex;
     justify-content: space-between;
-    padding-right: px;
+    padding-right: var(--medium);
 }
 
 .above-the-fold > .home-container > .align-buttons > p {
@@ -83,10 +83,10 @@ a {
     width: fit-content;
     height: fit-content;
     margin: 0;
-    padding: 4px;
-    padding-left: 12px;
-    padding-right: 12px;
-    border-radius: 8px;
+    padding: var(--small);
+    padding-left: var(--medium);
+    padding-right: var(--medium);
+    border-radius: var(--small);
 }
 
 .above-the-fold > .home-container > .align-buttons > .top-buttons > .organize-btn > a:visited{
@@ -98,10 +98,10 @@ a {
     width: fit-content;
     height: fit-content;
     margin: 0;
-    padding: 4px;
-    padding-left: 12px;
-    padding-right: 12px;
-    border-radius: 8px;
+    padding: var(--small);
+    padding-left: var(--medium);
+    padding-right: var(--medium);
+    border-radius: var(--small);
 }
 
 .above-the-fold > .home-container > .align-buttons > .top-buttons > .discover-btn > a:visited{
@@ -131,8 +131,8 @@ a {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 35px;
-    margin-bottom: 35px;
+    margin-top: var(--large);
+    margin-bottom: var(--large);
 }
 
 .above-the-fold > .home-stats > ul > li > h2 {
@@ -145,6 +145,6 @@ a {
 
 .above-the-fold > .home-stats > ul > li > .border-line {
     height: 100%;
-    width: 2px;
+    width: var(--tiny);
     background-color: black;
 }

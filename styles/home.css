@@ -1,81 +1,55 @@
-:root {
-    --c-primary: #552c84;
-    --c-primary-light: #6D51D6;
-    --c-accent: #D9FF22;
-    --c-dark-teal: #04262A;
-    --c-text-dark: #000000;
-    --c-text-light: #FFFFFF;
-    --c-bg: #FFFFFF;
-    --s-medium: 0 2px 10px rgba(0,0,0,0.05);
-    --small: 8px;
-    --medium: 16px;
-}
-
 a {
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 body {
-    background-color: #fff;
-    color: #000;
+    background-color: var(--c-bg);
+    color: var(--c-text-dark);
 }
 
 .navbar-tournamento {
-    background-color: #fff;
-}
-
-.navbar-tournamento .nav-link {
-    color: #000 !important;
+    background-color: var(--c-bg);
+    .nav-link {
+    color: var(--c-text-dark);
+    }
 }
 
 .navbar-tournamento .nav-link:hover {
-    color: var(--c-primary) !important;
+    color: var(--c-primary);
 }
 
-.btn-connect {
+.btn-connect, .btn-organize {
     background-color: var(--c-primary-light);
-    color: #fff !important;
+    color: var(--c-text-light);
     border: none;
-    border-radius: 8px;
-    padding: 6px 18px;
+    border-radius: var(--small);
+    padding: var(--small) var(--large);
+    font-weight: bold;
+}
+
+.btn-discover {
+    background-color: var(--c-accent);
+    color: var(--c-text-dark);
+    border: none;
+    border-radius: var(--small);
+    padding: var(--small) var(--medium);
+    font-weight: bold;
 }
 
 .hero-section {
     background-image: url("../assets/background.png");
     background-color: var(--c-primary);
     background-size: cover;
-    min-height: 72vh;
-    padding: 48px 0 0;
-}
-
-.badge-platform {
-    background-color: var(--c-accent);
-    color: #000;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border-radius: 6px;
-    padding: 3px 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 18px;
-}
-
-.badge-platform::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #000;
-    display: inline-block;
+    min-height: var(--extra-large);
+    padding: var(--extra-large) 0 0;
 }
 
 .hero-title {
-    color: #fff;
-    font-size: 48px;
+    color: var(--c-text-light);
+    font-size: var(--extra-large);
     font-weight: 800;
     line-height: 1.15;
-    margin-bottom: 16px;
+    margin-bottom: var(--medium);
 }
 
 .hero-title .text-yellow {
@@ -83,261 +57,166 @@ body {
 }
 
 .hero-subtitle {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.92rem;
+    color: var(--c-white);
     line-height: 1.6;
 }
 
-.btn-organize {
-    background-color: var(--c-primary-light);
-    color: #fff !important;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 28px;
-    font-size: 1rem;
+.badge-platform, .badge-explication, .badge-moment {
+    font-weight: 600;
+    border-radius: var(--small);
+    padding: var(--tiny) var(--medium);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--small);
+    margin-bottom: var(--medium);
 }
 
-.btn-discover {
+.badge-platform {
     background-color: var(--c-accent);
-    color: #000 !important;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 28px;
-    font-size: 1rem;
-    font-weight: 700;
+    color: var(--c-text-dark);
+}
+
+.badge-explication, .badge-moment {
+    background-color: var(--c-primary-light);
+    color: var(--c-text-light);
 }
 
 .stats-bar {
     background-color: var(--c-accent);
-    padding: 28px 0;
+    padding: var(--large) 0;
 }
 
 .stats-bar h2 {
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin: 0;
-}
-
-.stats-bar p {
-    font-size: 0.82rem;
+    font-weight: bold;
     margin: 0;
 }
 
 .stat-divider {
     width: 2px;
-    height: 48px;
-    background-color: rgba(0, 0, 0, 0.25);
+    height: var(--extra-large);
+    background-color: var(--c-black);
     align-self: center;
 }
 
 .info-section {
-    padding: 56px 0;
-}
-
-.badge-explication {
-    background-color: var(--c-primary-light);
-    color: #fff;
-    font-size: 0.78rem;
-    font-weight: 600;
-    border-radius: 6px;
-    padding: 4px 14px;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.info-section h4 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 28px;
+    padding: var(--huge) 0;
+    h4 {
+    font-weight: bold;
+    margin-bottom: var(--large);
+    }
 }
 
 .info-card {
     background-color: var(--c-primary);
-    border-radius: 12px;
-    padding: 24px;
+    border-radius: var(--medium);
+    padding: var(--large);
     height: 100%;
-}
-
-.info-card h5 {
+    h5 {
     color: var(--c-accent);
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.info-card p {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.83rem;
-    line-height: 1.7;
-    margin: 0;
+    }
+    p {
+    color: var(--c-white);
+    }
 }
 
 .tournoi-section {
-    padding: 48px 0 56px;
-}
-
-.badge-moment {
-    background-color: var(--c-primary-light);
-    color: #fff;
-    font-size: 0.78rem;
-    font-weight: 600;
-    border-radius: 6px;
-    padding: 4px 14px;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.tournoi-section h4 {
-    font-size: 1.5rem;
-    font-weight: 800;
-    margin-bottom: 4px;
+    padding: var(--extra-large) 0 var(--huge);
+    h4 {
+    font-weight: bold;
+    }
 }
 
 .tournoi-section .lead-sub {
-    color: #555;
-    font-size: 0.88rem;
+    color: var(--c-grey-dark);
 }
 
 .tournoi-box {
-    background: #f3f0ff;
-    border-radius: 14px;
-    padding: 20px;
+    background: var(--c-bg-violet);
+    border-radius: var(--medium);
+    padding: var(--medium);
+    h3 {
+        font-size:var(--medium);
+    }
 }
 
 .tournoi-box-title {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
+    gap: var(--small);
 }
 
-.tournoi-box-title h2 {
-    font-size: 1rem;
-    font-weight: 700;
-    margin: 0;
+.icone-yeux { 
+    width: var(--large); 
 }
 
-.icone-yeux { width: 22px; }
+.icone-spect { 
+    width: var(--medium); 
+}
 
 .tournoi-card {
-    background: #fff;
-    border-radius: 10px;
+    background: var(--c-bg);
+    border-radius: var(--medium);
     overflow: hidden;
     flex: 1;
-    min-width: 0;
-}
-
-.tournoi-card .img-placeholder {
+    .img-placeholder {
     width: 100%;
-    height: 90px;
-    background: linear-gradient(135deg, #c8e6c9, #ffccbc);
-}
-
-.tournoi-card .card-meta {
-    padding: 8px 10px;
-}
-
-.tournoi-card .card-meta h3 {
-    font-size: 0.72rem;
-    font-weight: 700;
-    margin: 0;
-    line-height: 1.3;
-}
-
-.tournoi-card .spect {
+    height: var(--extra-large);
+    background: var(--c-gradient-placeholder);
+    }
+    .spect {
     display: flex;
     align-items: center;
-    gap: 4px;
-    font-size: 0.7rem;
-    color: #666;
-    margin-bottom: 4px;
+    gap: var(--tiny);
+    color: var(--c-grey-light);
+    margin-bottom: var(--tiny);
+    }
 }
-
-.icone-spect { width: 13px; }
 
 .testimonials-section {
     background-color: var(--c-primary);
-    padding: 56px 0;
-}
-
-.testimonials-section h2 {
-    color: #fff;
-    font-size: 1.35rem;
-    font-weight: 800;
-    margin-bottom: 4px;
-}
-
-.testimonials-section .testi-sub {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.83rem;
+    padding: var(--huge) 0;
+    h2 {
+    color: var(--c-text-light);
+    font-weight: bold;
+    margin-bottom: var(--tiny);
+    }
+    .testi-sub {
+    color: var(--c-white);
+    }
 }
 
 .rating-badge {
     background-color: var(--c-primary-light);
     color: var(--c-accent);
-    border-radius: 8px;
-    padding: 8px 16px;
-    font-weight: 700;
+    border-radius: var(--small);
+    padding: var(--small) var(--medium);
+    font-weight: bold;
 }
 
 .testi-card {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    padding: 18px;
+    background-color: var(--c-black);
+    border-radius: var(--medium);
+    padding: var(--large);
     height: 100%;
-}
-
-.testi-card .stars {
+    .stars {
     color: var(--c-accent);
-    margin-bottom: 12px;
+    margin-bottom: var(--medium);
+    }
+    h5 {
+    color: var(--c-text-light);
+    font-weight: bold;
+    margin: 0;
+    }
+    h6, .testi-card p {
+    color: var(--c-white);
+    margin: 0;
+    }
 }
 
 .avatar {
-    width: 36px;
-    height: 36px;
+    width: var(--large);
+    height: var(--large);
     border-radius: 50%;
     background: var(--c-accent);
     flex-shrink: 0;
-}
-
-.testi-card h5 {
-    color: #fff;
-    font-size: 0.85rem;
-    font-weight: 700;
-    margin: 0;
-}
-
-.testi-card h6 {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.72rem;
-    margin: 0;
-}
-
-.testi-card p {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.8rem;
-    line-height: 1.5;
-    margin: 0;
-}
-
-.site-footer {
-    background-color: #04262A;
-    padding: 28px 0;
-}
-
-.site-footer a {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.88rem;
-}
-
-.site-footer a:hover {
-    color: var(--c-accent);
-}
-
-.site-footer .copyright {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.8rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 16px;
-    margin-top: 12px;
-    text-align: center;
 }

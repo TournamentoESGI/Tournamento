@@ -1,9 +1,9 @@
 .login-presentation {
     background-image: url("../assets/background.png");
     background-size: cover;
-    min-height: 78vh;
+    min-height: 100%;
     align-items: center;
-	padding: 2rem;
+	padding: var(--medium);
 }
 
 .logs {
@@ -40,39 +40,31 @@
 
 	padding-top: var(--medium);
 	padding-bottom: var(--medium);
-	padding-left: 20px;
+	padding-left: var(--large);
 	width: 100%;
 	border-top: 3px solid var(--c-accent);
 }
 
 h1 {
-	color: #ffffff;
+	color: var(--c-text-light);
 	font-weight: bold;
-}
-
-p {
-	width: fit-content;
-	margin: 0;
 }
 
 .logs-filtres {
 	display: flex;
 	flex-direction: row;
 	gap: var(--small);
-	padding-bottom: 44px;
-
+	padding-bottom: var(--large);
 	input {
     background-color: var(--c-dark-teal);
     color: var(--c-text-light);
-    border-radius: 8px;
-    padding: 6px 12px;
+    border-radius: var(--small);
 	}
-	
 	button {
     background-color: var(--c-accent);
     color: var(--c-dark-teal);
     border-radius: var(--medium);
-    padding: 6px 16px;
+    padding: var(--small);
     cursor: pointer;
     font-weight: bold;
 	}

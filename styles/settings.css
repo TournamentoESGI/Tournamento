@@ -10,9 +10,9 @@
 .settings-container {
     width: 60%;
     margin: var(--medium) auto;
-    background: #f3f0ff;
+    background: var(--c-soft-blue);
     border-radius: var(--small);
-    padding: 20px;
+    padding: var(--medium);
 
     button {
     width: 100%;
@@ -20,9 +20,9 @@
     color: var(--c-text-light);
     border: none;
     border-radius: var(--small);
-    padding: 10px 15px;
+    padding: var(--small) var(--medium);
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: var(--small);
     text-align: center;
     }
     .btn-retour {
@@ -30,7 +30,7 @@
     background-color: var(--c-primary);
     color: var(--c-text-light);
     border-radius: var(--small);
-    padding: 10px 15px;
+    padding: var(--small) var(--medium);
     cursor: pointer;
     text-decoration: none;
     text-align: center;
@@ -55,8 +55,8 @@
     width: 100%;
     border: 1px solid rgba(0,0,0,0.15);
     border-radius: var(--small);
-    padding: 10px 15px;
-    font-size: 14px;
+    padding: var(--small) var(--medium);
+    font-size: var(--medium);
     }
 }
 
@@ -64,7 +64,7 @@
     color: #ff4d4d;
     background-color: rgba(255, 0, 0, 0.1);
     border-left: 3px solid #ff4d4d;
-    padding: 6px 12px;
+    padding: var(--small) var(--medium);
     border-radius: 4px;
     margin-top: var(--medium);
 }
@@ -73,7 +73,7 @@
     color: #00b300;
     background-color: rgba(0, 87, 0, 0.1);
     border-left: 3px solid #00b300;
-    padding: 6px 12px;
+    padding: var(--small) var(--medium);
     border-radius: 4px;
     margin-top: var(--medium);
 }
