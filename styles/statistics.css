@@ -34,3 +34,18 @@ p {
 	margin: 0;
 }
 
+.export-btn {
+    background-color: var(--c-primary);
+    color: var(--c-text-light);
+    border: none;
+    border-radius: var(--small);
+    padding: var(--small) var(--medium);
+    cursor: pointer;
+    font-weight: bold;
+    margin: var(--medium);
+	box-shadow: var(--shadow-soft);
+}
+
+.export-btn:hover {
+    filter: brightness(0.85);
+}

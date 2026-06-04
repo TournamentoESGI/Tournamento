@@ -49,14 +49,14 @@ INSERT INTO paris(id_participant, id_parieur, somme, status)
 VALUES(3, 1, 70, 2);
 ";
 
-for ($i = 1; $i <= 300; $i++) {
+for ($i = 1; $i <= 20; $i++) {
     $sql .= "
     INSERT INTO users(username, first_name, last_name, date_of_birth, phone, email_address, password, role)
     VALUES('TestUser$i', 'Prenom$i', 'Nom$i', '2000-01-01', '00 00 00 00 $i', 'test$i@gmail.com', '".$password."', 'Membre');
     ";
 }
 
-for ($u = 1; $u <= 500; $u++) {
+for ($u = 1; $u <= 20; $u++) {
     $position = rand(1, 5);
     $sql .= "
     INSERT INTO participants(user, tournament, nickname, position)

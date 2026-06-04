@@ -47,7 +47,7 @@ $admin = $stmt->fetch();
                     <button><a href="<?= getPagePath("newsletter") ?>">Newsletter</a></button>
                 </div>
                 <div class="bottom-button">
-                    <button><a href="<?= getPagePath("") ?>">Système de notes</a></button>
+                    <button><a href="<?= getPagePath("captchas") ?>">Captchas</a></button>
                     <button><a href="<?= getPagePath("logs") ?>">Gestion des logs</a></button>
                     <button class="button-logout-dashboard"><a href="<?= getPagePath("logout") ?>">Déconnexion</a></button>
                 </div>
