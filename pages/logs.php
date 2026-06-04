@@ -34,14 +34,6 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $results = $stmt->fetchAll();
 
-if(isset($_POST['export_pdf'])) {
-    $lignes = [];
-    foreach($results as $log) {
-        $lignes[] = $log['id'] . " | " . $log['author'] . " | " . $log['page'] . " | " . $log['message'] . " | " . $log['date'];
-    }
-    exportPDF('Logs', $lignes);
-}
-
 ?>
 
 <form action="?page=logs" method="post" class="logs-filtres">
