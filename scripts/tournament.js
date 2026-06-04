@@ -62,9 +62,9 @@ tournamentsList.forEach(tournament => {
 	anchor.style.left = -centerX+"px";
 	
 	tournament.addEventListener('mousedown', function(e) {
-		var rect = tournament.getClientRects()[0]
-		selection.style.left = e.clientX-rect.left+"px";
-		selection.style.top = e.clientY-rect.top+"px";
+		var pos = getTournamentMouse(tournament,e);
+		selection.style.left = pos.x+"px";
+		selection.style.top = pos.y+"px";
 		selection.style.transformOrigin = "0 0";
 		selecting = true;
 		selection.style.transform = "scaleX(0) scaleY(0)";
@@ -72,21 +72,32 @@ tournamentsList.forEach(tournament => {
 
 	tournament.addEventListener('mousemove', function(e) {
 		if (selecting) {
+			var pos = getTournamentMouse(tournament,e);
 			var selectWidth = parseInt(selection.style.left.split("px")[0])
 			var selectHeight = parseInt(selection.style.top.split("px")[0])
-			selectWidth = selectWidth-e.clientX;
-			selectHeight = selectHeight-e.clientY;
+			selectWidth = selectWidth-pos.x;
+			selectHeight = selectHeight-pos.y;
 			selection.style.transform = "scaleX("+(-selectWidth)+") scaleY("+(-selectHeight)+")";
 		}
 	})
 
 	tournament.addEventListener('mouseup', function(e) {
 		selecting = false;
+		//selection.style.transform = "scaleX(0) scaleY(0)";
 	})
 
 
 });
 
+function getTournamentMouse(tournament, event) {
+	var rect = tournament.getClientRects()[0]
+	console.log(rect);
+	console.log(event);
+	return {
+		"x": event.clientX+rect.left,
+		"y": event.clientY+rect.top 
+	}
+}
 
 function movePool(pool, deltaX, deltaY) {
 	pool.style.left = parseInt(pool.style.left.split("px")[0])+deltaX;
