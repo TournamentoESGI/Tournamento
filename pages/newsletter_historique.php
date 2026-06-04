@@ -6,14 +6,6 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $results = $stmt->fetchAll();
 
-if(isset($_POST['export_pdf'])) {
-    $lignes = [];
-    foreach($results as $n) {
-        $lignes[] = $n['id'] . " | " . $n['author'] . " | " . $n['sujet'] . " | " . $n['date'];
-    }
-    exportPDF('Newsletter historique', $lignes);
-}
-
 ?>
 <div class="presentation">
 <div class="newsletter-nav">
@@ -47,8 +39,6 @@ foreach ($results as $newsletter_historique ) {
 
     </div>
 
-    <form method="post">
-        <button type="submit" class="export-btn"    name="export_pdf">Exporter en PDF</button>
-    </form>
+<button class="export-btn" onclick="window.print()">Exporter en PDF</button>
 
 </div>

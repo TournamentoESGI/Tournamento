@@ -82,7 +82,6 @@ if (count($results) == 0) {
 
 	</div>
     
-    <form method="post">
-        <button type="submit" class="export-btn" name="export_pdf">Exporter en PDF</button>
-    </form>
+<button class="export-btn" onclick="window.print()">Exporter en PDF</button>
+
 </div>

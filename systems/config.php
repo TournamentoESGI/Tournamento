@@ -7,7 +7,7 @@ date_default_timezone_set("Europe/Paris");
 $env = parse_ini_file('.env');
 
 include_once('./components/security.php');
-include_once('./components/pdf.php');
+
 include_once('./components/mail.php');
 
 try {

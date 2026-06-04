@@ -1,16 +1,3 @@
-<?php
-if(isset($_POST['export_pdf'])) {
-    $stmt = $pdo->query("SELECT id, subject, content, frequency, last_sent FROM auto_mails");
-    $tasks = $stmt->fetchAll();
-    
-    $lignes = [];
-    foreach($tasks as $task) {
-        $lignes[] = $task['subject'] . " | " . $task['frequency'] . " | Dernier envoi : " . ($task['last_sent'] ?: "Jamais");
-    }
-    exportPDF('Mails recurrents', $lignes);
-}
-?>
-
 <div class="auto-mail-presentation">
 
     <form class="Auto-mail-container" method="POST">
@@ -94,8 +81,6 @@ if(isset($_POST['export_pdf'])) {
 
     </div>
 
-<form method="post">
-    <button type="submit" class="export-btn" name="export_pdf">Exporter en PDF</button>
-</form>
+<button class="export-btn" onclick="window.print()">Exporter en PDF</button>
 
 </div>
