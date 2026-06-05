@@ -108,7 +108,7 @@
 }
 
 .tournament-display .selection {
-	position: absolute;
+	position: relative;
 	left: 0;
 	top: 0;
 	width: 1px;
@@ -142,4 +142,8 @@
 	width: fit-content;
 	background-color: var(--c-accent);
 	outline: solid 2px var(--c-primary);
+}
+
+.pool.selected {
+	outline: var(--c-primary) 4px solid;
 }

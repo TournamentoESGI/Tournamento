@@ -26,7 +26,6 @@ tournamentsList.forEach(tournament => {
 		if (e.deltaY > 0) {
 			zoom = Math.max(zoom-0.1, 0.2);
 		}
-		console.log(zoom)
 	})
 
 	poolsList.forEach(pool => {
@@ -78,12 +77,29 @@ tournamentsList.forEach(tournament => {
 			selectWidth = selectWidth-pos.x;
 			selectHeight = selectHeight-pos.y;
 			selection.style.transform = "scaleX("+(-selectWidth)+") scaleY("+(-selectHeight)+")";
+			
 		}
 	})
 
 	tournament.addEventListener('mouseup', function(e) {
 		selecting = false;
-		//selection.style.transform = "scaleX(0) scaleY(0)";
+		var pos = getTournamentMouse(tournament,e);
+		var sY = parseInt(selection.style.top.split("px")[0])
+		var sX = parseInt(selection.style.left.split("px")[0])
+
+		poolsList.forEach((pool) => {
+			var rect = pool.getClientRects()[0]
+			var top = pos.y>sY?pos.y:sY
+			var bottom = pos.y<sY?pos.y:sY
+			if (rect.top < top && rect.bottom > bottom) {
+				pool.className = "pool selected"
+			}
+			else {
+				pool.className = "pool"
+			}
+		})
+
+		selection.style.transform = "scaleX(0) scaleY(0)";
 	})
 
 
@@ -91,11 +107,9 @@ tournamentsList.forEach(tournament => {
 
 function getTournamentMouse(tournament, event) {
 	var rect = tournament.getClientRects()[0]
-	console.log(rect);
-	console.log(event);
 	return {
-		"x": event.clientX+rect.left,
-		"y": event.clientY+rect.top 
+		"x": event.clientX-rect.left,
+		"y": event.clientY-rect.top
 	}
 }
 
