@@ -99,12 +99,17 @@
 
 
 .tournament-display {
+	opacity: 0.75;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 	padding: var(--small);
 	box-sizing: border-box;
 	overflow: hidden;
+}
+
+.tournament-display:focus-within {
+	opacity: 1.0;
 }
 
 .tournament-display .selection {

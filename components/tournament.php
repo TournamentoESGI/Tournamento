@@ -29,7 +29,7 @@ function generatePools($pools, $participants) {
 }
 
 function displayTournament($tournamentId) {
-	echo "<div class='tournament-display'>";
+	echo "<div class='tournament-display' tabindex='0'>";
 
 	global $pdo;
 	$sql = "SELECT id, title, posX, posY FROM pools";

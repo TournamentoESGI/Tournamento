@@ -2,29 +2,66 @@ document.addEventListener('DOMContentLoaded', function(_event) {
 
 var tournamentsList = Array.from(document.getElementsByClassName("tournament-display"));
 
+var selectedTournament = null
+
 tournamentsList.forEach(tournament => {
 	var participantsList = Array.from(tournament.getElementsByClassName("participants")[0].children);
 	var poolsList = Array.from(tournament.getElementsByClassName("pools")[0].children);
 	var anchor = tournament.getElementsByClassName("anchor")[0];
 	var selection = tournament.getElementsByClassName("selection")[0];
 	var scaler = tournament.getElementsByClassName("scaler")[0];
-	var selecting = false
+	var moving = false
 
-
-	var minY = poolsList[0].dataset.y;
-	var maxY = poolsList[0].dataset.y;
-	var minX = poolsList[0].dataset.x;
-	var maxX = poolsList[0].dataset.x;
 	var zoom = 1.0
 
+	anchor.style.left = "0px";
+	anchor.style.top = "0px";
+
 	tournament.addEventListener('wheel', function(e) {
-		
-		e.preventDefault()
-		if (e.deltaY < 0) {
-			zoom = Math.min(zoom+0.1, 3);
+		if (selectedTournament == tournament) {
+			e.preventDefault()
+			if (e.deltaY < 0) {
+				zoom = Math.min(zoom+0.1, 3);
+			}
+			if (e.deltaY > 0) {
+				zoom = Math.max(zoom-0.1, 0.2);
+			}
+			scaler.style.scale = zoom
 		}
-		if (e.deltaY > 0) {
-			zoom = Math.max(zoom-0.1, 0.2);
+	})
+
+	document.addEventListener('keydown', function(e) {
+		if (selectedTournament) {
+			document.activeElement?.blur()
+			selectedTournament = null
+		}
+	})
+
+	tournament.addEventListener('mousedown', function(e) {
+		if (e.button == 0) {
+			selectedTournament = tournament
+			tournament.focus()
+		}
+		if (selectedTournament == tournament) {
+			if (e.button == 1) {
+				moving = true
+			}
+		}
+		e.preventDefault()
+	})
+
+	tournament.addEventListener('mousemove', function(e) {
+		if (moving) {
+			let left = parseInt(anchor.style.left.split("px")[0])
+			let top = parseInt(anchor.style.top.split("px")[0])
+			anchor.style.left = left+e.movementX+"px";
+			anchor.style.top = top+e.movementY+"px";
+		}
+	})
+
+	tournament.addEventListener('mouseup', function(e) {
+		if (e.button == 1) {
+			moving = false
 		}
 	})
 
@@ -32,86 +69,8 @@ tournamentsList.forEach(tournament => {
 		pool.style.left = pool.dataset.x+"px";
 		pool.style.top = pool.dataset.y+"px";
 		anchor.appendChild(pool);
-
-		let maxHeight = parseInt(pool.dataset.y)+parseInt(pool.clientHeight);
-		let maxWidth = parseInt(pool.dataset.x)+parseInt(pool.clientWidth);
-
-		if (parseInt(pool.dataset.y) < minY) {
-			minY = pool.dataset.y;
-		}
-		if (maxHeight > maxY) {
-			maxY = maxHeight;
-		}
-		if (parseInt(pool.dataset.x) < minX) {
-			minX = pool.dataset.x;
-		}
-		if (maxWidth > maxX) {
-			maxX = maxWidth;
-		}
 	})
-
-	minY = parseInt(minY);
-	maxY = parseInt(maxY);
-	minX = parseInt(minX);
-	maxX = parseInt(maxX);
-
-	var centerY = (minY+maxY)/2;
-	var centerX = (minX+maxX)/2;
-	anchor.style.top = -centerY+"px";
-	anchor.style.left = -centerX+"px";
-	
-	tournament.addEventListener('mousedown', function(e) {
-		var pos = getTournamentMouse(tournament,e);
-		selection.style.left = pos.x+"px";
-		selection.style.top = pos.y+"px";
-		selection.style.transformOrigin = "0 0";
-		selecting = true;
-		selection.style.transform = "scaleX(0) scaleY(0)";
-	})
-
-	tournament.addEventListener('mousemove', function(e) {
-		if (selecting) {
-			var pos = getTournamentMouse(tournament,e);
-			var selectWidth = parseInt(selection.style.left.split("px")[0])
-			var selectHeight = parseInt(selection.style.top.split("px")[0])
-			selectWidth = selectWidth-pos.x;
-			selectHeight = selectHeight-pos.y;
-			selection.style.transform = "scaleX("+(-selectWidth)+") scaleY("+(-selectHeight)+")";
-			
-		}
-	})
-
-	tournament.addEventListener('mouseup', function(e) {
-		selecting = false;
-		var pos = getTournamentMouse(tournament,e);
-		var sY = parseInt(selection.style.top.split("px")[0])
-		var sX = parseInt(selection.style.left.split("px")[0])
-
-		poolsList.forEach((pool) => {
-			var rect = pool.getClientRects()[0]
-			var top = pos.y>sY?pos.y:sY
-			var bottom = pos.y<sY?pos.y:sY
-			if (rect.top < top && rect.bottom > bottom) {
-				pool.className = "pool selected"
-			}
-			else {
-				pool.className = "pool"
-			}
-		})
-
-		selection.style.transform = "scaleX(0) scaleY(0)";
-	})
-
-
 });
-
-function getTournamentMouse(tournament, event) {
-	var rect = tournament.getClientRects()[0]
-	return {
-		"x": event.clientX-rect.left,
-		"y": event.clientY-rect.top
-	}
-}
 
 function movePool(pool, deltaX, deltaY) {
 	pool.style.left = parseInt(pool.style.left.split("px")[0])+deltaX;
