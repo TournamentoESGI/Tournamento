@@ -94,10 +94,6 @@
 	outline: 2px solid black;
 }
 
-
-
-
-
 .tournament-display {
 	opacity: 0.75;
 	width: 100%;
@@ -108,7 +104,7 @@
 	overflow: hidden;
 }
 
-.tournament-display:focus-within {
+.tournament-display.focus {
 	opacity: 1.0;
 }
 
@@ -142,11 +138,55 @@
 }
 
 .pool {
-	padding: var(--small);
+	overflow: hidden;
+	border-radius: var(--small);
 	position: absolute;
 	width: fit-content;
 	background-color: var(--c-accent);
 	outline: solid 2px var(--c-primary);
+}
+
+.pool > .pool-title {	
+	pointer-events: none;
+	padding: var(--small);
+	background-color: var(--c-primary);
+	min-width: fit-content;
+	text-wrap: nowrap;
+	color: var(--c-text-light);
+	border: 0;
+}
+
+.pool > .participants {
+	display: flex;
+	flex-direction: column;
+	gap: var(--small);
+	padding: var(--small);
+}
+
+.pool > .participants > * {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--small);
+	border-radius: var(--small);
+	background-color: var(--c-primary-light);
+	padding: var(--small);
+}
+
+.pool > .participants > div > p {
+	pointer-events: none;
+	color: var(--c-text-light);
+	margin: 0;
+	user-select: none;
+}
+
+.pool > div > div > button {
+	border-radius: var(--small);
+	border: none;
+	aspect-ratio: 1;
+	padding: var(--tiny);
+	background-color: var(--c-accent);
 }
 
 .pool.selected {

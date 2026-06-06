@@ -55,6 +55,8 @@ INSERT INTO paris(id_participant, id_parieur, somme, status)
 VALUES(1, 1, 50, 1);
 INSERT INTO paris(id_participant, id_parieur, somme, status)
 VALUES(3, 1, 70, 2);
+INSERT INTO participants(user, pool, tournament, nickname)
+VALUES(2, 2, 1, 'Pizzama');
 ";
 
 for ($i = 1; $i <= 20; $i++) {

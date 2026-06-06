@@ -63,7 +63,7 @@ form > button:hover {
 	padding: var(--small);
 }
 
-.infos {
+#infos {
 	display: flex;
 	flex-direction: column;
 	gap: var(--small);
@@ -81,7 +81,7 @@ form > button:hover {
 	flex-direction: column;
 }
 
-.infos .participant {
+#infos .participant {
 	border-radius: var(--small);
 	color: var(--c-text-light);
 	padding: var(--small);
@@ -96,83 +96,8 @@ form > button:hover {
 	width: 100%;
 }
 
-#anchor {
-	position: absolute;
-	width: 0;
-	height: 0;
-}
-
-.pool {
-	position: absolute;
-	top: 0;
-	left: 0;
-	background-color: var(--c-accent);
-
-	overflow: hidden;
-	border-radius: var(--small);
-	box-shadow: var(--shadow-soft);
-	color: var(--c-text-light);
-}
-
-.pool.selected {
-	outline: 4px solid var(--c-primary);
-}
-
-.pool > input.title {
-	border: none;
-	border-bottom: 2px solid var(--c-primary);
-	pointer-events: none;
-	color: var(--c-text-light);
-	white-space: nowrap;
-	text-align: center;
-	padding: var(--small);
-	background-color: var(--c-dark-teal);
-	width: min-content;
-}
-
-.pool > input.title:focus {
-	color: var(--c-accent);
-	outline: none;
-}
-
-.pool > .add-container {
-	padding: var(--small);
-}
-
-.pool > .add-container > button {
-	border-radius: var(--small);
-	border: none;
-	width: 100%;
-	display: block;
-	color: var(--c-text-light);
-	background-color: var(--c-dark-teal);
+.tournament-display {
+	opacity: 1.0;
 }
 
 
-.pool > .players {
-	display: flex;
-	flex-direction: column;
-	gap: var(--small);
-	padding: var(--small);
-}
-
-.pool > .players > div {
-	display: flex;
-	flex-direction: row;
-	border-radius: var(--small);
-	padding: var(--small);
-	background-color: var(--c-dark-teal);
-	justify-content: space-between;
-}
-
-.pool > .players p {
-	pointer-events: none;
-	text-align: center;
-}
-
-.pool > .players button {
-	color: var(--c-text-light);
-	border: none;
-	border-radius: var(--small);
-	background-color: var(--c-primary-light);
-}
