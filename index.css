@@ -30,10 +30,12 @@
     --large: 24px;
     --extra-large: 48px;
     --huge: 64px;
-    --extra-huge: 90px;    
+    --extra-huge: 80px;    
 
     --shadow-teal: 0px 10px 20px var(--c-dark-teal);
     --shadow-soft: 0px 10px 20px var(--c-black);
+	--s-medium: 0 2px 10px rgba(0,0,0,0.1);
+	--s-small: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 * {
@@ -45,13 +47,18 @@ html {
 }
 
 @media screen and (max-width: 768px) {
-    html {
-        font-size: 12px;
-    }
-    :root {
-        --s-small: var(--tiny);
-        --s-medium: var(--small);
-    }
+	html {
+		font-size: 12px;
+	}
+	:root {
+		--tiny: 2px;
+		--small: 4px;
+		--medium: 8px;
+		--large: 12px;
+		--extra-large: 24px;
+		--huge: 32px;
+		--extra-huge: 40px;
+	}
 }
 
 html, body {

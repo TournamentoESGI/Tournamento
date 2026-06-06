@@ -21,35 +21,39 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $results = $stmt->fetchAll();
 
+
 if (count($results) == 0 && ($results['author']==$_SESSION['id'] || hasAdminRole())) {
 	displayPageNotFound();
 }
 
-if (isset($_POST['submit'])) {
-	$sql = "DELETE FROM pools WHERE tournament = ".$tournament_id.";";
-	foreach($_POST as $key => $value) {
-		if (str_starts_with($key, "pool")) {
-			$poolData = explode(";", $key);
-			$id = explode(";", explode("id:",$key)[1])[0];
-			$posX = explode(";", explode("x:",$key)[1])[0];
-			$posY = explode(";", explode("y:",$key)[1])[0];
-			$title = explode(";", explode("title:",$key)[1])[0];
-			$sql = $sql.getPoolUpsertSQL($id, $posX, $posY, $title);
-		}
-	}
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-}
-
-
 $results = current($results);
 $tournament_title = $results['title'];
+if (isset($_POST['submit'])) {
+	sendDebug($_POST);
+	$sql = "DELETE FROM pools WHERE tournament = ".$tournament_id.'; UPDATE tournaments SET title = "'.$_POST['title'].'" WHERE id = '.$tournament_id.';';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
+	sendDebug($sql);
+	$tournament_title = $_POST['title'];
+	
+	foreach($_POST['pools'] as $pool) {
+		sendDebug($pool);
+		$sql = "INSERT INTO pools(tournament, id, title, posX, posY) VALUES(".$tournament_id.",".$pool['id'].",'".$pool['name']."',".$pool['x'].",".$pool['y'].");";
+		sendDebug($pool);
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute();
+	}
+}
 ?>
 
-
 <div class="editor">
-	<div id="anchor">
-	</div>
+
+<?php
+
+include_once('./components/tournament.php');
+displayTournament($tournament_id, true)
+
+?>
 </div>
 <div class="tool-container">
 	<div class="toolbar">
@@ -62,20 +66,11 @@ $tournament_title = $results['title'];
 	</div>
 </div>
 <div class="infos-container">
-	<div class="infos">
+	<div id="infos">
 		<p>Tournament Editor</p>
-		<input type="text" value=<?php echo '"'.$tournament_title.'"'?> placeholder="project name"/>
 		<form method="POST" action="<?php echo "?page=edit&id=".$tournament_id?>">
+			<input type="text" name='title' value=<?php echo '"'.$tournament_title.'"'?> placeholder="project name"/>
 			<div id="tournament-data">
-				<?php
-				$sql = "SELECT id, title, posX, posY FROM pools";
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute();
-				$results = $stmt->fetchAll();
-				foreach($results as $pool) {
-					echo "<p hidden>pool;id:".$pool['id'].";title:".$pool['title'].";posX:".$pool['posX'].";posY:".$pool['posY']."</p>";
-				}
-				?>
 			</div>
 			<button name="submit" type="submit" onclick="saveTournament()">Save</button>
 		<form>
