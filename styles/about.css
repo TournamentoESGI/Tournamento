@@ -1,0 +1,24 @@
+.about-container {
+    max-width: 800px;
+    margin: var(--extra-large) auto;
+    padding: var(--large);
+    background: var(--c-bg-violet);
+    border-radius: var(--large);
+    box-shadow: var(--shadow-soft);
+}
+
+.about-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: var(--large);
+    border-left: 6px solid var(--c-primary);
+    padding-left: var(--medium);
+    color: var(--c-primary-light);
+    font-weight: 800;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: var(--medium);
+    color: var(--c-text-dark);
+}
