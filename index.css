@@ -181,34 +181,6 @@ footer nav ul li a:hover {
     text-decoration: none;
 }
 
-.denied-container {
-    background-color: var(--c-dark-teal);
-    height: 80%;
-    width: 80%;
-    border-radius: var(--large);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: var(--extra-large) auto;
-}
-
-.denied-container h1 {
-    color: var(--c-red);
-}
-
-.denied-container .denied-button {
-    background-color: var(--c-red);
-    width: 150px;
-    height: var(--large);
-    border-radius: var(--small);
-}
-
-.denied-container .denied-button a {
-    text-decoration: none;
-    color: var(--c-text-light);
-}
-
 .burger {
     display: none;
     flex-direction: column;
