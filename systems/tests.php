@@ -32,6 +32,7 @@ INSERT INTO tournaments(author, title)
 VALUES(1, 'B');
 
 
+
 INSERT INTO pools(title, number, tournament, posX, posY)
 VALUES('Test pool', 1, 1, 0, 200);
 
@@ -46,10 +47,10 @@ VALUES(1, 1, 1, 'Mergez');
 INSERT INTO participants(user, pool, tournament, nickname)
 VALUES(2, 2, 1, 'Tacosinus');
 
-INSERT INTO participants(user, tournament, nickname)
-VALUES(2, 1, 'Tacosinus');
-INSERT INTO participants(user, tournament, nickname)
-VALUES(3, 1, 'Pimento');
+INSERT INTO participants(user, pool, tournament, nickname)
+VALUES(2, 2, 1, 'Tacosinus');
+INSERT INTO participants(user, pool, tournament, nickname)
+VALUES(3, 3, 1, 'Pimento');
 
 INSERT INTO paris(id_participant, id_parieur, somme, status)
 VALUES(1, 1, 50, 1);
@@ -66,13 +67,13 @@ for ($i = 1; $i <= 20; $i++) {
     ";
 }
 
-for ($u = 1; $u <= 20; $u++) {
+/*for ($u = 1; $u <= 20; $u++) {
     $position = rand(1, 5);
     $sql .= "
     INSERT INTO participants(user, tournament, nickname, position)
     VALUES($u, 1, 'Player$u', $position);
     ";
-}
+}*/
 
 testSQL($sql);
 ?>

@@ -30,18 +30,29 @@ $results = current($results);
 $tournament_title = $results['title'];
 if (isset($_POST['submit'])) {
 	sendDebug($_POST);
-	$sql = "DELETE FROM pools WHERE tournament = ".$tournament_id.'; UPDATE tournaments SET title = "'.$_POST['title'].'" WHERE id = '.$tournament_id.';';
+	$sql = "DELETE FROM pools WHERE tournament = ".$tournament_id."; UPDATE tournaments SET title = '".$_POST['title']."' WHERE id = ".$tournament_id.";";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
-	sendDebug($sql);
+
+	$sql = "DELETE FROM participants WHERE tournament = ".$tournament_id.";";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
 	$tournament_title = $_POST['title'];
 	
 	foreach($_POST['pools'] as $pool) {
-		sendDebug($pool);
-		$sql = "INSERT INTO pools(tournament, id, title, posX, posY) VALUES(".$tournament_id.",".$pool['id'].",'".$pool['name']."',".$pool['x'].",".$pool['y'].");";
-		sendDebug($pool);
+		$sql = "INSERT INTO pools(tournament, id, title, posX, posY) VALUES(".$tournament_id.",".$pool['id'].",'".$pool['name']."',".round($pool['x']).",".round($pool['y']).");";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute();
+		$participants = $pool['participants'];
+		foreach(array_keys($participants) as $participantId) {
+			sendDebug($participants[$participantId]);
+			$participantNickname = $participants[$participantId]["nickname"];
+			$participantUserId = $participants[$participantId]["user"];
+			$sql = "INSERT INTO participants(id, nickname, user, pool, tournament) VALUES(".$participantId.",'".$participantNickname."',".$participantUserId.",".$pool['id'].",".$tournament_id.");";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			sendDebug($sql);
+		}
 	}
 }
 ?>

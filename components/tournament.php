@@ -23,7 +23,7 @@ function generatePools($pools, $participants, $editable=false) {
 		foreach($participants as $player) {
 			if ($player['pool'] == $pool['id']) {
 				echo "<div>";
-				echo "<p data-id='".$player['id']."'>".$player['nickname']."</p>";
+				echo "<p data-id='".$player['id']."' data-user='".$player['user']."'>".$player['nickname']."</p>";
 				if ($editable) {
 						echo "<button class='delete'>X</button>";
 				}
@@ -53,7 +53,7 @@ function displayTournament($tournamentId, $editable=false) {
 	$poolsList = $stmt->fetchAll();
 
 
-	$sql = "SELECT id, nickname, pool FROM participants WHERE tournament = ?";
+	$sql = "SELECT id, user, nickname, pool FROM participants WHERE tournament = ?";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute([$tournamentId]);
 	$participantsList = $stmt->fetchAll();

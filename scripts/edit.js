@@ -23,6 +23,7 @@ function saveTournament() {
 	var tournamentPools = Array.from(document.getElementsByClassName("anchor")[0].children)
 	var dataHolder = document.getElementById("tournament-data")
 	dataHolder.innerHTML = ""
+	dataHolder.hidden = true;
 
 	tournamentPools.forEach(pool => {
 		const id = pool.dataset.id;
@@ -30,9 +31,21 @@ function saveTournament() {
 			var poolData = document.createElement("input");
 			poolData.name = "pools["+id+"]["+data+"]";
 			poolData.value = pool.dataset[data]
-			poolData.hidden = true
 			dataHolder.appendChild(poolData)
 		})
+
+		let poolParticipantsList = Array.from(pool.getElementsByClassName("participants")[0].children)
+		poolParticipantsList = poolParticipantsList.map(element => element.children[0])
+
+		poolParticipantsList.forEach(element => {
+			var poolParticipant = document.createElement("input");
+			poolParticipant.name = "pools["+id+"][participants][" + element.dataset.id + "][nickname]"; 
+			poolParticipant.value = element.textContent	
+			dataHolder.appendChild(poolParticipant)
+			var poolParticipant = document.createElement("input");
+			poolParticipant.name = "pools["+id+"][participants][" + element.dataset.id + "][user]"; 
+			poolParticipant.value = element.dataset.user
+			dataHolder.appendChild(poolParticipant)
+		})
 	})
-	
 }
