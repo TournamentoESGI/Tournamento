@@ -1,18 +1,30 @@
 <?php
 $id = $_SESSION['id'];
 
-$stmtUser = $pdo->prepare("SELECT id, username, first_name, last_name,
- email_address, phone, role, profil_picture, creation_date, current_balance FROM users WHERE id = ?");
+$stmtUser = $pdo->prepare("
+SELECT id, username, first_name, last_name, email_address, phone, role, profil_picture, creation_date, current_balance
+FROM users WHERE id = ?
+");
 $stmtUser->execute([$id]);
 $user = $stmtUser->fetch();
 
-$stmtTournois = $pdo->prepare("SELECT id, title, start_date, 'Organisateur' FROM tournaments WHERE author = ? ORDER BY created_at DESC LIMIT 4");
+$stmtTournois = $pdo->prepare("
+SELECT id, title, start_date, 'Organisateur'
+FROM tournaments 
+WHERE author = ?
+ORDER BY created_at DESC LIMIT 4
+");
 $stmtTournois->execute([$id]);
-$tournoiList = $stmtTournois->fetchAll();
+$tournoisList = $stmtTournois->fetchAll();
 
-$stmtParis = $pdo->prepare("SELECT paris.id, paris.somme, paris.status, paris.date,
-users.username AS nom_participant FROM paris JOIN participants ON participants.id = paris.id_participant 
-JOIN users ON users.id = participants.user WHERE paris.id_parieur = ? ORDER BY paris.date DESC LIMIT 4");
+$stmtParis = $pdo->prepare("
+SELECT paris.id, paris.somme, paris.status, paris.date, users.username AS nom_participant
+FROM paris
+JOIN participants ON participants.id = paris.id_participant 
+JOIN users ON users.id = participants.user
+WHERE paris.id_parieur = ?
+ORDER BY paris.date DESC LIMIT 4
+");
 $stmtParis->execute([$id]);
 $parisList = $stmtParis->fetchAll();
 
@@ -79,7 +91,7 @@ $totalParis = $stmt->fetchColumn();
 
         <div class="container-stats">
             <div class="tournoi-organiser-box">
-                <p><?php echo count($tournoiList); ?> Tournois organisés</p>
+                <p><?php echo count($tournoisList); ?> Tournois organisés</p>
             </div>
             <div class="paris-gagner-box">
                 <p><?php echo count($parisList); ?> Paris récents</p>
@@ -169,16 +181,16 @@ $totalParis = $stmt->fetchColumn();
             <p class="section-titre">● Mes Tournois</p>
             <div class="tournois-grille">
                 <?php
-                if(empty($tournoiList)) {
+                if(empty($tournoisList)) {
                     echo "<p>Aucun tournoi pour l'instant.</p>";
                 } else {
-                    foreach($tournoiList as $tournoi) {
-                        echo "<div class='tournoi-ligne'>
+                    foreach($tournoisList as $tournoi) {
+						echo "<a class='tournoi-ligne' href='?page=edit&id=".$tournoi['id']."'>
                                 <div class='tournoi-info'>
                                     <p class='tournoi-nom'>" . $tournoi['title'] . "</p>
                                     <p class='tournoi-date'>" . $tournoi['start_date'] . "</p>
                                 </div>
-                            </div>";
+                            </a>";
                     }
                 }
                 ?>
