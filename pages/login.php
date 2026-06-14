@@ -39,23 +39,28 @@
 
             <?php
             echo "<div class='erreurs'>";
-			if (isset($_POST['login'])) {
+            if (isset($_POST['login'])) {
                 $username = trim($_POST['username']);
                 $password = $_POST['password'];
-                $stmt = $pdo->prepare("SELECT id, password, role FROM users WHERE username = ?");
+                $stmt = $pdo->prepare("SELECT id, password, role, is_banned FROM users WHERE username = ?");
                 $stmt->execute([$username]);
                 $user = $stmt->fetch();
-                if ($user && password_verify($password, $user['password'])) {
-                    $_SESSION['id'] = $user['id'];
-					$_SESSION['username'] = $username;
-					$_SESSION['role'] = $user['role'];
-                    sendLog("Connexion", "user_connect");
-                    header("Location: ?page=profil");
-                    exit;
-
+                if ($user) {
+                    if ($user['is_banned'] == 1) {
+                        echo "<p>Votre compte a été banni. Contactez le support.</p>";
+                    } elseif (password_verify($password, $user['password'])) {
+                        $_SESSION['id'] = $user['id'];
+                        $_SESSION['username'] = $username;
+                        $_SESSION['role'] = $user['role'];
+                        $_SESSION['is_banned'] = $user['is_banned'];
+                        sendLog('Connexion', 'user_connect');
+                        header("Location: ?page=profil");
+                        exit;
+                    } else {
+                        echo "<p>Identifiants ou Mot de passe incorrects</p>";
+                    }
                 } else {
                     echo "<p>Identifiants ou Mot de passe incorrects</p>";
-
                 }
                 echo "</div>";
             }
