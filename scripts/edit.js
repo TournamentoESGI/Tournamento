@@ -21,6 +21,10 @@ window.addEventListener('mouseup', function(e) {
 
 function saveTournament() {
 	var tournamentPools = Array.from(document.getElementsByClassName("anchor")[0].children)
+	var tournamentParticipants = Array.from(document.getElementById("participants-container").children)
+		.map(participant => participant.children[0])
+		.filter(participant => participant !== undefined)
+
 	var dataHolder = document.getElementById("tournament-data")
 	dataHolder.innerHTML = ""
 	dataHolder.hidden = true;
@@ -35,7 +39,7 @@ function saveTournament() {
 		})
 
 		let poolParticipantsList = Array.from(pool.getElementsByClassName("participants")[0].children)
-		poolParticipantsList = poolParticipantsList.map(element => element.children[0])
+		poolParticipantsList = poolParticipantsList.map(element => element.children[0]).filter(element => element !== undefined)
 
 		poolParticipantsList.forEach(element => {
 			var poolParticipant = document.createElement("input");
@@ -48,4 +52,12 @@ function saveTournament() {
 			dataHolder.appendChild(poolParticipant)
 		})
 	})
+
+	tournamentParticipants.forEach(participant => {
+		console.log(participant)
+		var participantData = document.createElement("input");
+		participantData.name = "participant[";
+	})
+
+	
 }

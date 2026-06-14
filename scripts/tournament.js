@@ -95,17 +95,6 @@ tournamentsList.forEach(tournament => {
 		pool.style.left = pool.dataset.x+"px";
 		pool.style.top = pool.dataset.y+"px";
 
-		var poolParticipants = Array.from(pool.getElementsByClassName("participants")[0].children);
-		poolParticipants.forEach(poolPlayer => {
-			poolPlayer.addEventListener('click', function(e) {
-				if (selectedTournament == tournament) {
-					if (e.target.className == "delete") {
-						poolPlayer.remove();
-						tournament.focus()
-					}
-				}
-			})
-		})
 
 		pool.addEventListener('dblclick', function(e) {
 			if (editMode) {

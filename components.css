@@ -31,6 +31,12 @@
 	border-radius: var(--small);
 }
 
+@media print {
+	.graph-column .fill {
+		visibility: visible;
+	}
+}
+
 .graph-column .fill {
 	width: 100%;
 	background-color: var(--c-primary);
@@ -163,7 +169,7 @@
 	padding: var(--small);
 }
 
-.pool > .participants > * {
+.participant {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -174,14 +180,14 @@
 	padding: var(--small);
 }
 
-.pool > .participants > div > p {
+.participant > p {
 	pointer-events: none;
 	color: var(--c-text-light);
 	margin: 0;
 	user-select: none;
 }
 
-.pool > div > div > button {
+.participant > button {
 	border-radius: var(--small);
 	border: none;
 	aspect-ratio: 1;
@@ -192,3 +198,4 @@
 .pool.selected {
 	outline: var(--c-primary) 4px solid;
 }
+

@@ -1,3 +1,9 @@
+@media print {
+	main > div {
+		height: 100vh;
+	}
+}
+
 main > div {
 	height: fit-content;
 	display: flex;
@@ -9,6 +15,7 @@ main > div {
 main > h1 {
 	padding: var(--medium);
 }
+
 
 .graph-section {
 	display: flex;
