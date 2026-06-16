@@ -25,7 +25,6 @@
 		if (!file_exists(DIR_PAGES.$page.".php")) {
 			displayPageNotFound();
 		}
-
 	?>
 
 	<head>

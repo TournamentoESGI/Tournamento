@@ -1,4 +1,8 @@
 <header>
+    <?php 
+    include_once('./components/security.php');
+    isBanned(); 
+    ?>
     <a href=<?php print getPagePath("")?>><img src="./assets/logo.svg" alt="logo"></a>
     <nav id="nav">
         <ul>
