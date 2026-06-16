@@ -42,7 +42,7 @@ $admin = $stmt->fetch();
 
             <div class="bottom-container-dashboard">
                 <div class="top-button">
-                    <button><a href="<?= getPagePath("banned") ?>">Bannis</a></button>
+                    <button><a href="<?= getPagePath("") ?>">Bannis</a></button>
                     <button><a href="<?= getPagePath("auto_mail") ?>">Mail Recurrent</a></button>
                     <button><a href="<?= getPagePath("newsletter") ?>">Newsletter</a></button>
                 </div>

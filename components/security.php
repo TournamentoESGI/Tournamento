@@ -6,19 +6,6 @@ function verifieCompteConnecte() {
 	}
 }
 
-function isBanned() {
-    if (!isset($_SESSION['is_banned'])) {
-        return;
-    } else {
-        $banned = $_SESSION['is_banned'];
-    
-        if ($banned === 1) {
-            displayPageNotFound();
-            exit;
-        }
-    }
-}
-
 function verifieRoleAdmin() {
     $user_role = $_SESSION['role'] ?? null;
     
