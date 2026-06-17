@@ -43,10 +43,10 @@ if (isset($_POST['submit'])) {
 	$valuesPools = [];
 	$valuesParticipants = [];
 
+	sendDebug($_POST['participants']);
 	foreach($_POST['pools'] as $pool) {
 		$infos = [$tournament_id, $pool['id'], "'".$pool['name']."'", round($pool['x']), round($pool['y'])];
 		array_push($valuesPools, "(".implode(",", $infos).")");
-		sendDebug($sql);
 
 		$participants = key_exists('participants', $pool)?$pool['participants']:[];
 		foreach(array_keys($participants) as $participantId) {
@@ -66,7 +66,6 @@ if (isset($_POST['submit'])) {
 	if (count($valuesParticipants) > 0) {
 		$sql = "INSERT INTO participants(id, nickname, user, pool, tournament) VALUES ".implode(", ", $valuesParticipants).";";
 		$stmt = $pdo->prepare($sql);
-		sendDebug($sql);
 		$stmt->execute();
 	}
 }

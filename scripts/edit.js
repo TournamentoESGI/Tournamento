@@ -53,11 +53,14 @@ function saveTournament() {
 		})
 	})
 
+
 	tournamentParticipants.forEach(participant => {
-		console.log(participant)
 		var participantData = document.createElement("input");
-		participantData.name = "participant[";
+		participantData.name = "participants["+participant.dataset.id+"]";
+		participantData.value = participant.dataset.user;
+		dataHolder.appendChild(participantData);
 	})
+	//Array.from(dataHolder.children).forEach(element => console.log(element.name));
 
 	
 }

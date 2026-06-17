@@ -100,6 +100,8 @@
 	outline: 2px solid black;
 }
 
+
+
 .tournament-display {
 	opacity: 0.75;
 	width: 100%;
@@ -122,6 +124,10 @@
 	height: 1px;
 	background-color: var(--c-primary);
 	opacity: 0.2;
+}
+
+.tournament-display > h2 {
+	user-select: none;
 }
 
 .center {
