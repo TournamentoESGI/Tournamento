@@ -15,6 +15,9 @@ makeDatabase();
 
 if ($runner != "cli") {
 	include_once("./systems/tests.php");
+	if (isset($_GET['url'])) {
+		echo "<script> window.location.replace('".$_GET['url']."')</script>";
+	}
 }
 else {
 	include_once("./systems/tests_prod.php");

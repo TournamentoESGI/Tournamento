@@ -40,27 +40,29 @@ function saveTournament() {
 
 		let poolParticipantsList = Array.from(pool.getElementsByClassName("participants")[0].children)
 		poolParticipantsList = poolParticipantsList.map(element => element.children[0]).filter(element => element !== undefined)
+		poolParticipantsList = poolParticipantsList.map(element => element.dataset.id)
 
-		poolParticipantsList.forEach(element => {
-			var poolParticipant = document.createElement("input");
-			poolParticipant.name = "pools["+id+"][participants][" + element.dataset.id + "][nickname]"; 
-			poolParticipant.value = element.textContent	
-			dataHolder.appendChild(poolParticipant)
-			var poolParticipant = document.createElement("input");
-			poolParticipant.name = "pools["+id+"][participants][" + element.dataset.id + "][user]"; 
-			poolParticipant.value = element.dataset.user
-			dataHolder.appendChild(poolParticipant)
-		})
+
+
+		var poolParticipants = document.createElement("input");
+		poolParticipants.name = "pools["+id+"][participants]"; 
+		poolParticipants.value = poolParticipantsList.toString()
+		dataHolder.appendChild(poolParticipants);
 	})
 
 
 	tournamentParticipants.forEach(participant => {
 		var participantData = document.createElement("input");
-		participantData.name = "participants["+participant.dataset.id+"]";
+		participantData.name = "participants["+participant.dataset.id+"][user]";
 		participantData.value = participant.dataset.user;
 		dataHolder.appendChild(participantData);
-	})
-	//Array.from(dataHolder.children).forEach(element => console.log(element.name));
 
-	
+
+		var participantData = document.createElement("input");
+		participantData.name = "participants["+participant.dataset.id+"][nickname]";
+		participantData.value = participant.textContent;
+		dataHolder.appendChild(participantData);
+	})
+
+	//Array.from(dataHolder.children).forEach(child => { console.log(child.name + ";" + child.value) });
 }

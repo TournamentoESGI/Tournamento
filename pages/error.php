@@ -54,9 +54,23 @@ if ($runner != "cli") {
 	if ($debugPageMessage) {
 		echo "<h1>Debugger :</h1>";
 		echo "<div class='debug'>";
-		if (str_contains($debugPageMessage,"\n")) {
-			foreach(explode("\n",$debugPageMessage) as $debug) {
-				echo "<p>".$debug."</p>";
+		if (str_contains($debugPageMessage,"\n;")) {
+			$debugPageMessage = explode("\n;",$debugPageMessage);
+			array_pop($debugPageMessage);
+			foreach($debugPageMessage as $debug) {
+				echo "<div class='line";
+				if (str_contains($debug, "\n")) {
+					echo " json'><pre>";
+					foreach(explode("\n",$debug) as $jsonLine) {
+						echo "<p>".$jsonLine."</p>";
+					}
+					echo "</pre></div>";
+				}
+				else {
+					echo "'>";
+					echo "<p>".$debug."</p>";
+					echo "</div>";
+				}
 			}
 		}
 		echo "</div>";

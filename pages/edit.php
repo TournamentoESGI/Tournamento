@@ -16,6 +16,7 @@ function getPoolUpsertSQL($id, $posX, $posY, $title) {
 	return $result;
 }
 
+
 $sql = "SELECT title, author FROM tournaments WHERE id = ".$_GET['id'].";";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
@@ -42,28 +43,53 @@ if (isset($_POST['submit'])) {
 	$sql = "";
 	$valuesPools = [];
 	$valuesParticipants = [];
+	$valuesPoolsParticipants = [];
 
-	sendDebug($_POST['participants']);
-	foreach($_POST['pools'] as $pool) {
-		$infos = [$tournament_id, $pool['id'], "'".$pool['name']."'", round($pool['x']), round($pool['y'])];
-		array_push($valuesPools, "(".implode(",", $infos).")");
 
-		$participants = key_exists('participants', $pool)?$pool['participants']:[];
-		foreach(array_keys($participants) as $participantId) {
-			$participantNickname = $participants[$participantId]["nickname"];
-			$participantUserId = $participants[$participantId]["user"];
+	if (isset($_POST['pools'])) {
+		foreach($_POST['pools'] as $pool) {
+			$infos = [$tournament_id, $pool['id'], "'".$pool['name']."'", round($pool['x']), round($pool['y'])];
+			if (isset($pool['participants'])) {
+				$valuesPoolsParticipants[$pool['id']] = $pool['participants'];
+			}
+			array_push($valuesPools, "(".implode(",", $infos).")");
+		}
 
-			$infos = [$participantId, "'".$participantNickname."'", $participantUserId, $pool['id'], $tournament_id];
-			array_push($valuesParticipants, "(".implode(",", $infos).")");
+		if (count($valuesPools) > 0) {
+			$sql = "INSERT INTO pools(tournament, id, title, posX, posY) VALUES ".implode(", ", $valuesPools).";";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
 		}
 	}
-	if (count($valuesPools) > 0) {
-		$sql = "INSERT INTO pools(tournament, id, title, posX, posY) VALUES ".implode(", ", $valuesPools).";";
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute();
+
+	sendDebug($valuesPoolsParticipants);
+	
+	if (isset($_POST['participants'])) {
+		$participantsData = $_POST['participants'];
+		foreach(array_keys($participantsData) as $participantId) {
+			$infos = $participantsData[$participantId];
+			$participantPool = "NULL";
+
+			foreach(array_keys($valuesPoolsParticipants) as $poolKey) {
+
+				$participantId = strval($participantId);
+				$poolKey = strval($poolKey);
+
+				$values = explode(",",$valuesPoolsParticipants[$poolKey]);
+
+				if (in_array($participantId, $values)) {
+					$participantPool = $poolKey;
+				}
+			}
+
+			$infos = [$participantId, $infos['nickname'], $infos['user'], $participantPool, $tournament_id];
+			array_push($valuesParticipants, $infos);
+		}
 	}
 
+
 	if (count($valuesParticipants) > 0) {
+		sendDebug($valuesParticipants);
 		$sql = "INSERT INTO participants(id, nickname, user, pool, tournament) VALUES ".implode(", ", $valuesParticipants).";";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute();
