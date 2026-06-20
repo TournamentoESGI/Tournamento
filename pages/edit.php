@@ -30,7 +30,6 @@ if (count($results) == 0 && ($results['author']==$_SESSION['id'] || hasAdminRole
 $results = current($results);
 $tournament_title = $results['title'];
 if (isset($_POST['submit'])) {
-	sendDebug($_POST);
 	$sql = "DELETE FROM pools WHERE tournament = ".$tournament_id."; UPDATE tournaments SET title = '".$_POST['title']."' WHERE id = ".$tournament_id.";";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
@@ -62,8 +61,6 @@ if (isset($_POST['submit'])) {
 		}
 	}
 
-	sendDebug($valuesPoolsParticipants);
-	
 	if (isset($_POST['participants'])) {
 		$participantsData = $_POST['participants'];
 		foreach(array_keys($participantsData) as $participantId) {
@@ -82,17 +79,18 @@ if (isset($_POST['submit'])) {
 				}
 			}
 
-			$infos = [$participantId, $infos['nickname'], $infos['user'], $participantPool, $tournament_id];
+			$infos = [$participantId, "'".$infos['nickname']."'", $infos['user'], $participantPool, $tournament_id];
 			array_push($valuesParticipants, $infos);
 		}
 	}
 
 
 	if (count($valuesParticipants) > 0) {
-		sendDebug($valuesParticipants);
-		$sql = "INSERT INTO participants(id, nickname, user, pool, tournament) VALUES ".implode(", ", $valuesParticipants).";";
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute();
+		foreach($valuesParticipants as $participant) {
+			$sql = "INSERT INTO participants(id, nickname, user, pool, tournament) VALUES (".implode(", ", $participant).");";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+		}
 	}
 }
 ?>
@@ -132,7 +130,6 @@ displayTournament($tournament_id, true)
 					$stmt->execute([$tournament_id]);
 					$result = $stmt->fetchAll();
 					foreach($result as $participant) {
-						sendDebug($participant);
 						echo "<script hidden>
 							var participantsListContainer = document.getElementById('participants-container');
 							addParticipantToContainer(participantsListContainer, ".$participant['id'].",".$participant["user"].", '".$participant['nickname']."', true)
