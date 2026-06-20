@@ -29,11 +29,6 @@ function generatePools($pools, $participants, $editable=false) {
 			echo "<div class='participants'>";
 			foreach($participants as $player) {
 				if ($player['pool'] == $pool['id']) {
-					$isUser = $_SESSION['id'];
-					sendDebug($_SESSION);
-					sendDebug($player);
-					sendDebug($isUser);
-
 					echo "<script hidden>
 						var poolContainer = Array.from(document.getElementsByClassName('pool')).filter((pool) => pool.dataset.id == ".$pool['id'].")[0].children[1];
 						addParticipantToContainer(poolContainer,".$player["id"].",".$player["user"].",'".$player["nickname"]."', ".($editable?"true":"false").");
@@ -47,7 +42,7 @@ function generatePools($pools, $participants, $editable=false) {
 }
 
 function displayTournament($tournamentId, $editable=false) {
-	echo '<script src="./scripts/tournament_participant.js"></script>';
+	echo '<script src="./scripts/tournament_components.js"></script>';
 	echo '<script>
 		var userId = '.$_SESSION['id'].'
 	</script>';

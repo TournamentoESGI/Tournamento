@@ -56,6 +56,14 @@ if (isset($_POST['submit'])) {
 			$infos = [$tournament_id, $pool['id'], "'".$pool['name']."'", round($pool['x']), round($pool['y'])];
 			if (isset($pool['participants'])) {
 				$valuesPoolsParticipants[$pool['id']] = $pool['participants'];
+
+				$emptyParticipants = explode(",",$pool['participants']);
+				foreach($emptyParticipants as $empty) {
+					if ($empty == -1) {
+						$values = ["''", "-1", $pool['id'], $tournament_id];
+						array_push($valuesParticipants, $values);
+					}
+				}
 			}
 			array_push($valuesPools, "(".implode(",", $infos).")");
 		}
@@ -90,21 +98,25 @@ if (isset($_POST['submit'])) {
 		}
 	}
 
-
 	if (count($valuesParticipants) > 0) {
 		foreach($valuesParticipants as $participant) {
-			$sql = "INSERT INTO participants(id, nickname, user, pool, tournament) VALUES (".implode(", ", $participant).");";
+			$userId = $participant[1];
+			if ($userId == "-1") {
+				$sql = "INSERT INTO participants(nickname, user, pool, tournament) VALUES (".implode(", ", $participant).")";
+			}
+			else {
+				$sql = "INSERT INTO participants(id, nickname, user, pool, tournament) VALUES (".implode(", ", $participant).");";
+			}
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 		}
 	}
 
-	header('Location: ?page=edit&id='.$tournament_id.'');
+	//header('Location: ?page=edit&id='.$tournament_id.'');
 }
 elseif (isset($_POST['submit_public'])) {
 	$sql = "UPDATE tournaments SET status = 'open' WHERE id = ?;";
 	$stmt = $pdo->prepare($sql);
-	sendDebug($sql);
 	$stmt->execute([$tournament_id]);
 	
 }

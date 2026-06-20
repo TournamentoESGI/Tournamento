@@ -89,6 +89,14 @@ form > button:hover {
 	overflow-y: scroll;
 }
 
+#infos p {
+	user-select: none;
+}
+
+#participants-container > .participant.empty-user {
+	visibility: hidden;
+}
+
 .editor {
 	overflow: visible;
 	position: relative;

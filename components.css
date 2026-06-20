@@ -213,6 +213,10 @@
 	color: var(--c-text-dark);
 }
 
+.participant.empty-user {
+	background-color: var(--c-dark-teal);
+}
+
 .participant > p {
 	pointer-events: none;
 	margin: 0;

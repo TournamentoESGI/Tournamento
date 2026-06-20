@@ -8,7 +8,6 @@ tournamentsList.forEach(tournament => {
 	var participantsList = Array.from(tournament.getElementsByClassName("participants")[0].children);
 	var poolsList = Array.from(tournament.getElementsByClassName("pools")[0].children);
 	var anchor = tournament.getElementsByClassName("anchor")[0];
-	var selection = tournament.getElementsByClassName("selection")[0];
 	var selectedPool = null;
 	var scaler = tournament.getElementsByClassName("scaler")[0];
 	var moving = false
@@ -91,6 +90,13 @@ tournamentsList.forEach(tournament => {
 			poolTitle.disabled = true;
 			pool.dataset.name = poolTitle.value
 		})
+		var poolAdd = pool.getElementsByClassName("add")[0];
+		if (poolAdd) {
+			poolAdd.addEventListener('click', function(e) {
+				var poolParticipants = pool.getElementsByClassName("participants")[0];
+				addParticipantToContainer(poolParticipants, -1, -1, "", true);
+			})
+		}
 
 		pool.style.left = pool.dataset.x+"px";
 		pool.style.top = pool.dataset.y+"px";

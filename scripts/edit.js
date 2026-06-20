@@ -19,6 +19,10 @@ window.addEventListener('mouseup', function(e) {
 	}
 })
 
+document.getElementById('button-create').addEventListener('click', e => {
+	
+});
+
 function saveTournament() {
 	var tournamentPools = Array.from(document.getElementsByClassName("anchor")[0].children)
 	var tournamentParticipants = Array.from(document.getElementById("participants-container").children)
