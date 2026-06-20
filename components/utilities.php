@@ -41,7 +41,7 @@ function sendDebug($message) {
 	}
 	$clean_message = str_replace("'", '"', $clean_message);
 	$debugPageMessage = $debugPageMessage.$clean_message."\n;";
-	echo "<script>console.log('".$clean_message."')</script>";
+	echo "<script>console.log(`".$clean_message."`)</script>";
 }
 
 function sendLog($message, $tag="") {

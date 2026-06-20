@@ -100,6 +100,7 @@ tournamentsList.forEach(tournament => {
 			if (editMode) {
 				poolTitle.disabled = false;
 				poolTitle.focus()
+				poolTitle.setSelectionRange(poolTitle.value.length, poolTitle.value.length);
 			}
 		})
 	

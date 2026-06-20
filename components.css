@@ -158,15 +158,35 @@
 	outline: solid 2px var(--c-primary);
 }
 
-.pool > .pool-title {	
-	pointer-events: none;
-	padding: var(--small);
-	background-color: var(--c-primary);
+.pool > .bar {
+	display: flex;
+	flex-direction: row;
 	min-width: fit-content;
-	text-wrap: nowrap;
-	color: var(--c-text-light);
-	border: 0;
+	background-color: var(--c-primary);
+	padding: var(--small);
 }
+
+.pool > .bar > input, .pool > .bar > input:disabled {
+	background-color: transparent;
+	border: none;
+	color: var(--c-text-light);
+	text-wrap: nowrap;
+	pointer-events: none;
+}
+
+.pool > .bar > input:focus {
+	outline: none;
+	color: var(--c-accent);
+}
+
+.pool > .bar > button {
+	line-height: normal;
+	border: 2px solid var(--c-accent);
+	border-radius: var(--medium);
+	background-color: var(--c-primary);
+	color: var(--c-text-light);
+}
+
 
 .pool > .participants {
 	display: flex;
@@ -184,16 +204,23 @@
 	border-radius: var(--small);
 	background-color: var(--c-primary-light);
 	padding: var(--small);
+	color: var(--c-text-light);
+}
+
+.participant.current-user {
+	outline: 2px solid var(--c-primary);
+	background-color: var(--c-accent);
+	color: var(--c-text-dark);
 }
 
 .participant > p {
 	pointer-events: none;
-	color: var(--c-text-light);
 	margin: 0;
 	user-select: none;
 }
 
 .participant > button {
+	line-height: normal;
 	border-radius: var(--small);
 	border: none;
 	aspect-ratio: 1;

@@ -17,17 +17,23 @@ function getPoolUpsertSQL($id, $posX, $posY, $title) {
 }
 
 
-$sql = "SELECT title, author FROM tournaments WHERE id = ".$_GET['id'].";";
+$sql = "SELECT title, author, status FROM tournaments WHERE id = ".$_GET['id'].";";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $results = $stmt->fetchAll();
 
 
-if (count($results) == 0 && ($results['author']==$_SESSION['id'] || hasAdminRole())) {
+if (count($results) == 0) {
 	displayPageNotFound();
 }
 
 $results = current($results);
+
+
+if (!($results['author']==$_SESSION['id'] || hasAdminRole()) || $results['status']!='edit') {
+	displayPageNotFound();
+}
+
 $tournament_title = $results['title'];
 if (isset($_POST['submit'])) {
 	$sql = "DELETE FROM pools WHERE tournament = ".$tournament_id."; UPDATE tournaments SET title = '".$_POST['title']."' WHERE id = ".$tournament_id.";";
@@ -92,6 +98,15 @@ if (isset($_POST['submit'])) {
 			$stmt->execute();
 		}
 	}
+
+	header('Location: ?page=edit&id='.$tournament_id.'');
+}
+elseif (isset($_POST['submit_public'])) {
+	$sql = "UPDATE tournaments SET status = 'open' WHERE id = ?;";
+	$stmt = $pdo->prepare($sql);
+	sendDebug($sql);
+	$stmt->execute([$tournament_id]);
+	
 }
 ?>
 
@@ -121,6 +136,9 @@ displayTournament($tournament_id, true)
 			<div id="tournament-data">
 			</div>
 			<button name="submit" type="submit" onclick="saveTournament()">Save</button>
+		</form>
+		<form method="POST" action="<?php echo "?page=edit&id=".$tournament_id?>">
+			<button name="submit_public">Open Tournament</button>
 		</form>
 		<div style='height: 100%; display: flex; flex-direction: column; position: relative'>
 			<p>Participants</p>

@@ -33,7 +33,7 @@ tournaments (
     author INT,
     title VARCHAR(50),
     description VARCHAR(255) DEFAULT '',
-    status ENUM('ouvert','fermer'),
+    status ENUM('edit','open','closed') DEFAULT 'edit',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     start_date DATE,
     end_date DATE

@@ -18,14 +18,25 @@ function generatePools($pools, $participants, $editable=false) {
 	echo "<div class='pools' hidden>";
 	foreach($pools as $pool) {
 		echo "<div class='pool' data-id='".$pool['id']."' data-name='".$pool['title']."' data-x=".$pool["posX"]." data-y=".$pool["posY"]." style='height: fit-content'>";
-			echo "<input class='pool-title' value=".$pool['title']."></input>";
+			echo "
+				<div class='bar'>
+				<input class='pool-title' value=".$pool['title']."></input> ".
+				($editable?" <button class='add'>+</button>":"")
+				. "
+				</div>
+			";
+
 			echo "<div class='participants'>";
 			foreach($participants as $player) {
 				if ($player['pool'] == $pool['id']) {
+					$isUser = $_SESSION['id'];
+					sendDebug($_SESSION);
+					sendDebug($player);
+					sendDebug($isUser);
 
 					echo "<script hidden>
 						var poolContainer = Array.from(document.getElementsByClassName('pool')).filter((pool) => pool.dataset.id == ".$pool['id'].")[0].children[1];
-						addParticipantToContainer(poolContainer,".$player["id"].",".$player["user"].",'".$player["nickname"]."', true);
+						addParticipantToContainer(poolContainer,".$player["id"].",".$player["user"].",'".$player["nickname"]."', ".($editable?"true":"false").");
 					</script>";
 				}
 			}
@@ -36,32 +47,9 @@ function generatePools($pools, $participants, $editable=false) {
 }
 
 function displayTournament($tournamentId, $editable=false) {
-	echo '
-	<script>
-		function addParticipantToContainer(parent, id, user, nickname, editMode=false) {
-			const container = document.createElement("div");
-			container.className = "participant";
-			parent.appendChild(container);
-
-			const nicknameTag = document.createElement("p");
-			nicknameTag.dataset.id = id;
-			nicknameTag.dataset.user = user;
-			nicknameTag.textContent = nickname;
-			container.appendChild(nicknameTag);
-
-			if (editMode) {
-				const deleteButton = document.createElement("button");
-				deleteButton.textContent = "X";
-				deleteButton.className = "delete";
-				container.appendChild(deleteButton);
-				deleteButton.addEventListener("click", function(e) {
-					if (e.target.className == "delete") {
-						container.remove();
-					}
-				})
-			}
-
-		}
+	echo '<script src="./scripts/tournament_participant.js"></script>';
+	echo '<script>
+		var userId = '.$_SESSION['id'].'
 	</script>';
 
 	echo "<div class='tournament-display' tabindex='0'  data-edit=".($editable?"true":"false").">";

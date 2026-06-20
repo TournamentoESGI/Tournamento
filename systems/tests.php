@@ -50,13 +50,13 @@ INSERT INTO participants(user, pool, tournament, nickname)
 VALUES(2, 2, 1, 'Tacosinus');
 
 INSERT INTO participants(user, pool, tournament, nickname)
-VALUES(2, 2, 1, 'Bourgimignon');
+VALUES(3, 2, 1, 'Bourgimignon');
 
 INSERT INTO participants(user, pool, tournament, nickname)
-VALUES(3, 3, 1, 'Pimento');
+VALUES(4, 3, 1, 'Pimento');
 
 INSERT INTO participants(user, pool, tournament, nickname)
-VALUES(2, 2, 1, 'Pizzama');
+VALUES(5, 2, 1, 'Pizzama');
 
 
 
