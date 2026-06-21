@@ -47,11 +47,13 @@ if (isset($_POST['submit'])) {
 
 	$sql = "";
 	$valuesPools = [];
+	$valuesNewPools = [];
 	$valuesParticipants = [];
 	$valuesPoolsParticipants = [];
 
 
 	if (isset($_POST['pools'])) {
+		sendDebug($_POST['pools']);
 		foreach($_POST['pools'] as $pool) {
 			$infos = [$tournament_id, $pool['id'], "'".$pool['name']."'", round($pool['x']), round($pool['y'])];
 			if (isset($pool['participants'])) {
@@ -65,11 +67,24 @@ if (isset($_POST['submit'])) {
 					}
 				}
 			}
-			array_push($valuesPools, "(".implode(",", $infos).")");
+			if ($pool['id'] == -1) {
+				sendDebug($infos);
+				unset($infos[1]);
+				sendDebug($infos);
+				array_push($valuesNewPools, "(".implode(",", $infos).")");
+			}
+			else {
+				array_push($valuesPools, "(".implode(",", $infos).")");
+			}
 		}
 
 		if (count($valuesPools) > 0) {
 			$sql = "INSERT INTO pools(tournament, id, title, posX, posY) VALUES ".implode(", ", $valuesPools).";";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+		}
+		if (count($valuesNewPools) > 0) {
+			$sql = "INSERT INTO pools(tournament, title, posX, posY) VALUES ".implode(", ", $valuesNewPools).";";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 		}

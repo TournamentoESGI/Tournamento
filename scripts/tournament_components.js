@@ -1,3 +1,6 @@
+var selectedTournament = null
+var selectedPool = null;
+
 function addParticipantToContainer(parent, id, user, nickname="", editMode=false) {
 	const container = document.createElement("div")
 	let isUser = userId==id
@@ -22,4 +25,65 @@ function addParticipantToContainer(parent, id, user, nickname="", editMode=false
 			}
 		})
 	}
+}
+
+function addPoolToTournament(tournament, id, title, posX, posY, editMode=false) {
+	var pool = document.createElement("div");
+	pool.className = "pool";
+	pool.dataset.id = id
+	pool.dataset.name = title
+	pool.dataset.x = posX
+	pool.dataset.y = posY
+
+	tournament.appendChild(pool)
+
+	var bar = document.createElement("div");
+	bar.className = "bar";
+	pool.appendChild(bar)
+	
+	var input = document.createElement("input");
+	input.className = "pool-title"
+	input.value = title
+	bar.appendChild(input)
+
+	if (editMode) {
+		var button = document.createElement("button");
+		button.className = "add"
+		button.textContent = "+"
+		bar.appendChild(button)
+	}
+
+	var participants = document.createElement("div");
+	participants.className='participants'
+	pool.appendChild(participants);
+	
+	input.disabled = true;
+	input.addEventListener('focusout', function(e) {
+		input.disabled = true;
+		pool.dataset.name = input.value
+	})
+
+	if (button) {
+		button.addEventListener('click', function(e) {
+			addParticipantToContainer(participants, -1, -1, "", true);
+		})
+	}
+
+	pool.style.left = posX+"px";
+	pool.style.top = posY+"px";
+
+	pool.addEventListener('dblclick', function(e) {
+		if (editMode) {
+			input.disabled = false;
+			input.focus()
+			input.setSelectionRange(0, input.value.length);
+		}
+	})
+
+	pool.addEventListener('mousedown', function(e) {
+		if (e.button == 0) {
+			console.log(selectedPool);
+			selectedPool = pool
+		}
+	})
 }

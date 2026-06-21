@@ -15,34 +15,27 @@ function generateParticipantsList($participants) {
 
 
 function generatePools($pools, $participants, $editable=false) {
-	echo "<div class='pools' hidden>";
+	$isEditable = ($editable?"true":"false");
 	foreach($pools as $pool) {
-		echo "<div class='pool' data-id='".$pool['id']."' data-name='".$pool['title']."' data-x=".$pool["posX"]." data-y=".$pool["posY"]." style='height: fit-content'>";
-			echo "
-				<div class='bar'>
-				<input class='pool-title' value=".$pool['title']."></input> ".
-				($editable?" <button class='add'>+</button>":"")
-				. "
-				</div>
-			";
+		echo "<script>
+			var tournament = document.getElementsByClassName('anchor')[0];
+			console.log(tournament)
+			addPoolToTournament(tournament, ".$pool['id'].",'".$pool['title']."',".$pool['posX'].",".$pool['posY'].",".$isEditable.")
+		</script>";
 
-			echo "<div class='participants'>";
-			foreach($participants as $player) {
-				if ($player['pool'] == $pool['id']) {
-					echo "<script hidden>
-						var poolContainer = Array.from(document.getElementsByClassName('pool')).filter((pool) => pool.dataset.id == ".$pool['id'].")[0].children[1];
-						addParticipantToContainer(poolContainer,".$player["id"].",".$player["user"].",'".$player["nickname"]."', ".($editable?"true":"false").");
-					</script>";
-				}
+		foreach($participants as $player) {
+			if ($player['pool'] == $pool['id']) {
+				echo "<script hidden>
+					var poolContainer = Array.from(document.getElementsByClassName('pool')).filter((pool) => pool.dataset.id == ".$pool['id'].")[0].children[1];
+					addParticipantToContainer(poolContainer,".$player["id"].",".$player["user"].",'".$player["nickname"]."', ".$isEditable.");
+				</script>";
 			}
-			echo "</div>";
-		echo "</div>";
+		}
 	}
-	echo "</div>";
 }
 
 function displayTournament($tournamentId, $editable=false) {
-	echo '<script src="./scripts/tournament_components.js"></script>';
+	echo '<script src="'.createNoCacheSource("./scripts/tournament_components.js").'"></script>';
 	echo '<script>
 		var userId = '.$_SESSION['id'].'
 	</script>';
@@ -68,7 +61,6 @@ function displayTournament($tournamentId, $editable=false) {
 	$participantsList = $stmt->fetchAll();
 
 	generateParticipantsList($participantsList);
-	generatePools($poolsList, $participantsList, $editable);
 	
 	echo "<h2 style='text-align: center'>".$tournamentInfos["title"]."</h2>";
 
@@ -76,6 +68,7 @@ function displayTournament($tournamentId, $editable=false) {
 	echo "<div class='scaler'>";
 	echo "<div class='center'>";
 	echo "<div class='anchor'>";
+	generatePools($poolsList, $participantsList, $editable);
 	echo "</div>";
 	echo "</div>";
 	echo "</div>";

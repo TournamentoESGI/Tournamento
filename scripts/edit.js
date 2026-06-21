@@ -1,7 +1,7 @@
 var infos = document.getElementById('infos')
 var participantsContainer = document.getElementById('participants-container')
 var participantsList = Array.from(participantsContainer.children)
-
+var anchor = document.getElementsByClassName("anchor")[0]
 var draggedParticipant = null
 
 participantsContainer.addEventListener('mousedown', function(e) {
@@ -20,11 +20,11 @@ window.addEventListener('mouseup', function(e) {
 })
 
 document.getElementById('button-create').addEventListener('click', e => {
-	
+	addPoolToTournament(anchor , -1, "New Pool", 0, 0, true)
 });
 
 function saveTournament() {
-	var tournamentPools = Array.from(document.getElementsByClassName("anchor")[0].children)
+	var tournamentPools = Array.from(anchor.children).filter(element => element.className == "pool")
 	var tournamentParticipants = Array.from(document.getElementById("participants-container").children)
 		.map(participant => participant.children[0])
 		.filter(participant => participant !== undefined)
@@ -45,8 +45,6 @@ function saveTournament() {
 		let poolParticipantsList = Array.from(pool.getElementsByClassName("participants")[0].children)
 		poolParticipantsList = poolParticipantsList.map(element => element.children[0]).filter(element => element !== undefined)
 		poolParticipantsList = poolParticipantsList.map(element => element.dataset.id)
-
-
 
 		var poolParticipants = document.createElement("input");
 		poolParticipants.name = "pools["+id+"][participants]"; 
