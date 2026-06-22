@@ -94,7 +94,7 @@ form > button:hover {
 }
 
 #participants-container > .participant.empty-user {
-	visibility: hidden;
+	display: none;
 }
 
 .editor {

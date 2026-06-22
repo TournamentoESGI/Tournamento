@@ -150,7 +150,6 @@
 }
 
 .pool {
-	overflow: hidden;
 	border-radius: var(--small);
 	position: absolute;
 	width: fit-content;
@@ -164,6 +163,7 @@
 	min-width: fit-content;
 	background-color: var(--c-primary);
 	padding: var(--small);
+	gap: var(--medium);
 }
 
 .pool > .bar > input, .pool > .bar > input:disabled {
@@ -172,6 +172,8 @@
 	color: var(--c-text-light);
 	text-wrap: nowrap;
 	pointer-events: none;
+	width: fit-content;
+	field-sizing: content;
 }
 
 .pool > .bar > input:focus {
@@ -187,12 +189,39 @@
 	color: var(--c-text-light);
 }
 
+.pool .content {
+	display: flex;
+	flex-direction: row;
+	width: fit-content;
+	align-items: center;
+}
 
-.pool > .participants {
+.pool .content > button {
+	position: absolute;
+	right: -32px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: content;
+}
+
+.pool .participants {
 	display: flex;
 	flex-direction: column;
 	gap: var(--small);
 	padding: var(--small);
+}
+
+.pool button.link {
+	position: relative;
+}
+
+.pool div.link {
+	position: relative;
+	padding: 2px;
+	min-width: 2px;
+	min-height: 2px;
+	background-color: var(--c-primary);
+	zindex: -1;
 }
 
 .participant {

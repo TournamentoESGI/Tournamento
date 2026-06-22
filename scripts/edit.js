@@ -5,15 +5,31 @@ var anchor = document.getElementsByClassName("anchor")[0]
 var draggedParticipant = null
 
 participantsContainer.addEventListener('mousedown', function(e) {
-	if (e.target.className == "participant") {
+	console.log(e)
+	if (e.target.className.includes("participant")) {
 		draggedParticipant = e.target
 	}
 })
 
 window.addEventListener('mouseup', function(e) {
+
+	const dropTarget = document.elementFromPoint(e.clientX, e.clientY);
 	if (draggedParticipant) {
-		if (e.target.className == "pool") {
-			var poolParticipants = e.target.getElementsByClassName("participants")
+		if (dropTarget.className.includes("empty-user")) {
+			var dropPoolParticipants = dropTarget.parentElement
+			if (dropPoolParticipants.className == "participants") {
+				draggedParticipant = draggedParticipant.firstChild;
+				console.log(dropTarget)
+
+				var targetEmptyData = Array.from(participantsContainer.children)
+					.filter(element => element.className.includes("empty-user"))
+					.map(element => element.firstChild)
+					.filter(element => element.dataset.id == dropTarget.firstChild.dataset.id)[0]
+					.parentElement
+				targetEmptyData.remove();
+				dropTarget.remove();
+				addParticipantToContainer(dropPoolParticipants, -1, draggedParticipant.dataset.id, draggedParticipant.textContent, true);
+			}
 		}
 		draggedParticipant = null
 	}
@@ -44,7 +60,7 @@ function saveTournament() {
 
 		let poolParticipantsList = Array.from(pool.getElementsByClassName("participants")[0].children)
 		poolParticipantsList = poolParticipantsList.map(element => element.children[0]).filter(element => element !== undefined)
-		poolParticipantsList = poolParticipantsList.map(element => element.dataset.id)
+		poolParticipantsList = poolParticipantsList.map(element => element.dataset.id+";"+element.dataset.user)
 
 		var poolParticipants = document.createElement("input");
 		poolParticipants.name = "pools["+id+"][participants]"; 

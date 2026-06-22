@@ -26,7 +26,7 @@ function generatePools($pools, $participants, $editable=false) {
 		foreach($participants as $player) {
 			if ($player['pool'] == $pool['id']) {
 				echo "<script hidden>
-					var poolContainer = Array.from(document.getElementsByClassName('pool')).filter((pool) => pool.dataset.id == ".$pool['id'].")[0].children[1];
+					var poolContainer = Array.from(document.getElementsByClassName('pool')).filter((pool) => pool.dataset.id == ".$pool['id'].")[0].getElementsByClassName('participants')[0];
 					addParticipantToContainer(poolContainer,".$player["id"].",".$player["user"].",'".$player["nickname"]."', ".$isEditable.");
 				</script>";
 			}

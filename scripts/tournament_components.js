@@ -27,6 +27,31 @@ function addParticipantToContainer(parent, id, user, nickname="", editMode=false
 	}
 }
 
+function makeLinkTo(from, to) {
+	from.addEventListener('load', function(e) {
+		console.log(e)
+	});
+
+	to = document.createElement("div");
+	to.style.left = "0px";
+	to.style.top = "20px";
+
+	var link = document.createElement("div");
+	link.className = "link";
+
+	var originX = from.offsetLeft;
+	var originY = from.offsetTop;
+	var targetX = to.offsetLeft;
+	var targetY = to.offsetTop;
+
+	var width = Math.sqrt(originX-targetX)**2
+
+	console.log(targetX);
+	console.log(targetY);
+	from.appendChild(link);
+
+}
+
 function addPoolToTournament(tournament, id, title, posX, posY, editMode=false) {
 	var pool = document.createElement("div");
 	pool.className = "pool";
@@ -53,9 +78,13 @@ function addPoolToTournament(tournament, id, title, posX, posY, editMode=false) 
 		bar.appendChild(button)
 	}
 
+	var content = document.createElement("div");
+	content.className = "content";
+	pool.appendChild(content);
+
 	var participants = document.createElement("div");
 	participants.className='participants'
-	pool.appendChild(participants);
+	content.appendChild(participants);
 	
 	input.disabled = true;
 	input.addEventListener('focusout', function(e) {
@@ -86,4 +115,14 @@ function addPoolToTournament(tournament, id, title, posX, posY, editMode=false) 
 			selectedPool = pool
 		}
 	})
+
+	var linkButton = document.createElement("button");
+	linkButton.className = "link";
+	linkButton.textContent = ">";
+	content.appendChild(linkButton);
+
+	var anchor = document.getElementsByClassName("anchor")[0]
+
+	makeLinkTo(linkButton, anchor);
+
 }
