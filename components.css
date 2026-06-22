@@ -215,7 +215,7 @@
 }
 
 .pool div.link {
-	position: relative;
+	position: absolute;
 	padding: 2px;
 	min-width: 2px;
 	min-height: 2px;

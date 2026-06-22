@@ -39,15 +39,18 @@ function makeLinkTo(from, to) {
 	var link = document.createElement("div");
 	link.className = "link";
 
-	var originX = from.offsetLeft;
-	var originY = from.offsetTop;
-	var targetX = to.offsetLeft;
-	var targetY = to.offsetTop;
+	console.log(from);
+	var originX = from.clientLeft;
+	var originY = from.clientTop;
+	var targetX = to.clientLeft;
+	var targetY = to.clientTop;
 
-	var width = Math.sqrt(originX-targetX)**2
+	console.log(originX, originY)
+	console.log(targetX, targetY)
 
-	console.log(targetX);
-	console.log(targetY);
+	var length = Math.sqrt(Math.pow((originX-targetX),2)+Math.pow(originY-targetY, 2))
+	link.style.width = length+"px";
+
 	from.appendChild(link);
 
 }
