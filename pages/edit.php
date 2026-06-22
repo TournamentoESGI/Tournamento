@@ -59,25 +59,26 @@ if (isset($_POST['submit'])) {
 				$valuesPoolsParticipants[$pool['id']] = $pool['participants'];
 
 				$emptyParticipants = explode(",",$pool['participants']);
-				foreach($emptyParticipants as $empty) {
-					$emptyData = explode(";",$empty);
-					$participantId = $emptyData[0];
-					$userId = $emptyData[1];
-					if ($participantId == "-1") {
-						if ($userId == "-1") {
-							$values = ["-1", "''", "-1", $pool['id'], $tournament_id];
-						}
-						else {
-							sendDebug($_POST['participants']);
-							foreach(array_keys($_POST['participants']) as $participantUserId) {
-								if ($userId == $participantUserId) {
-									sendDebug($empty);
-									$values = [$participantId, "'".$_POST['participants'][$participantUserId]["nickname"]."'", $userId, $pool['id'], $tournament_id];
-									break;
+				if ($pool['participants'] != "") {
+					foreach($emptyParticipants as $empty) {
+						$emptyData = explode(";",$empty);
+						$participantId = $emptyData[0];
+						$userId = $emptyData[1];
+						if ($participantId == "-1") {
+							if ($userId == "-1") {
+								$values = ["-1", "''", "-1", $pool['id'], $tournament_id];
+							}
+							else {
+								sendDebug($_POST['participants']);
+								foreach(array_keys($_POST['participants']) as $participantUserId) {
+									if ($userId == $participantUserId) {
+										$values = [$participantId, "'".$_POST['participants'][$participantUserId]["nickname"]."'", $userId, $pool['id'], $tournament_id];
+										break;
+									}
 								}
 							}
+							array_push($valuesParticipants, $values);
 						}
-						array_push($valuesParticipants, $values);
 					}
 				}
 			}
