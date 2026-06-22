@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function(_event) {
 
 var tournamentsList = Array.from(document.getElementsByClassName("tournament-display"));
 
+
 tournamentsList.forEach(tournament => {
 	var anchor = tournament.getElementsByClassName("anchor")[0];
 	var scaler = tournament.getElementsByClassName("scaler")[0];
@@ -12,6 +13,13 @@ tournamentsList.forEach(tournament => {
 		tournament.focus()
 	}
 
+	function navigateBy(x, y) {
+		let left = parseInt(anchor.style.left.split("px")[0])
+		let top = parseInt(anchor.style.top.split("px")[0])
+		anchor.style.left = left+x+"px";
+		anchor.style.top = top+y+"px";
+	}
+
 	var zoom = 1.0
 
 	anchor.style.left = "0px";
@@ -19,14 +27,19 @@ tournamentsList.forEach(tournament => {
 
 	tournament.addEventListener('wheel', function(e) {
 		if (selectedTournament == tournament) {
-			e.preventDefault()
-			if (e.deltaY < 0) {
-				zoom = Math.min(zoom+0.1, 3);
+			if (e.ctrlKey) {
+				e.preventDefault()
+				if (e.deltaY < 0) {
+					zoom = Math.min(zoom+0.1, 3);
+				}
+				if (e.deltaY > 0) {
+					zoom = Math.max(zoom-0.1, 0.2);
+				}
+				scaler.style.scale = zoom
 			}
-			if (e.deltaY > 0) {
-				zoom = Math.max(zoom-0.1, 0.2);
+			else {
+				navigateBy(-e.deltaX, -e.deltaY)
 			}
-			scaler.style.scale = zoom
 		}
 	})
 
@@ -56,10 +69,7 @@ tournamentsList.forEach(tournament => {
 		var vX= e.movementX/zoom
 		var vY= e.movementY/zoom
 		if (moving) {
-			let left = parseInt(anchor.style.left.split("px")[0])
-			let top = parseInt(anchor.style.top.split("px")[0])
-			anchor.style.left = left+vX+"px";
-			anchor.style.top = top+vY+"px";
+			navigateBy(vX, vY);
 		}
 		if (selectedPool && editMode) {
 			let left = parseInt(selectedPool.style.left.split("px")[0])
