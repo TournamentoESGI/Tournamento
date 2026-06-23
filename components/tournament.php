@@ -35,9 +35,11 @@ function generatePools($pools, $participants, $editable=false) {
 }
 
 function displayTournament($tournamentId, $editable=false) {
+	$id = isset($_SESSION['id'])?$_SESSION['id']:-1;
+
 	echo '<script src="'.createNoCacheSource("./scripts/tournament_components.js").'"></script>';
 	echo '<script>
-		var userId = '.$_SESSION['id'].'
+		var userId = '.$id.'
 	</script>';
 
 	echo "<div class='tournament-display' tabindex='0'  data-edit=".($editable?"true":"false").">";
