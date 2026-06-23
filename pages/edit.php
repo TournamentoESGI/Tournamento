@@ -16,44 +16,154 @@ function getPoolUpsertSQL($id, $posX, $posY, $title) {
 	return $result;
 }
 
-$sql = "SELECT title, author FROM tournaments WHERE id = ".$_GET['id'].";";
+
+$sql = "SELECT title, author, status FROM tournaments WHERE id = ".$_GET['id'].";";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $results = $stmt->fetchAll();
 
 
-if (count($results) == 0 && ($results['author']==$_SESSION['id'] || hasAdminRole())) {
+if (count($results) == 0) {
 	displayPageNotFound();
 }
 
 $results = current($results);
+
+
+if (!($results['author']==$_SESSION['id'] || hasAdminRole()) || $results['status']!='edit') {
+	displayPageNotFound();
+}
+
 $tournament_title = $results['title'];
 if (isset($_POST['submit'])) {
-	sendDebug($_POST);
-	$sql = "DELETE FROM pools WHERE tournament = ".$tournament_id.'; UPDATE tournaments SET title = "'.$_POST['title'].'" WHERE id = '.$tournament_id.';';
+	$sql = "DELETE FROM pools WHERE tournament = ".$tournament_id."; UPDATE tournaments SET title = '".$_POST['title']."' WHERE id = ".$tournament_id.";";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
-	sendDebug($sql);
+
+	$sql = "DELETE FROM participants WHERE tournament = ".$tournament_id.";";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
 	$tournament_title = $_POST['title'];
-	
-	foreach($_POST['pools'] as $pool) {
-		sendDebug($pool);
-		$sql = "INSERT INTO pools(tournament, id, title, posX, posY) VALUES(".$tournament_id.",".$pool['id'].",'".$pool['name']."',".$pool['x'].",".$pool['y'].");";
-		sendDebug($pool);
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute();
+
+	$sql = "";
+	$valuesPools = [];
+	$valuesNewPools = [];
+	$valuesParticipants = [];
+	$valuesPoolsParticipants = [];
+
+
+	if (isset($_POST['pools'])) {
+		foreach($_POST['pools'] as $pool) {
+			$infos = [$tournament_id, $pool['id'], "'".$pool['name']."'", round($pool['x']), round($pool['y'])];
+			if (isset($pool['participants'])) {
+				$valuesPoolsParticipants[$pool['id']] = $pool['participants'];
+
+				$emptyParticipants = explode(",",$pool['participants']);
+				if ($pool['participants'] != "") {
+					foreach($emptyParticipants as $empty) {
+						$emptyData = explode(";",$empty);
+						$participantId = $emptyData[0];
+						$userId = $emptyData[1];
+						if ($participantId == "-1") {
+							if ($userId == "-1") {
+								$values = ["-1", "''", "-1", $pool['id'], $tournament_id];
+							}
+							else {
+								sendDebug($_POST['participants']);
+								foreach(array_keys($_POST['participants']) as $participantUserId) {
+									if ($userId == $participantUserId) {
+										$values = [$participantId, "'".$_POST['participants'][$participantUserId]["nickname"]."'", $userId, $pool['id'], $tournament_id];
+										break;
+									}
+								}
+							}
+							array_push($valuesParticipants, $values);
+						}
+					}
+				}
+			}
+			if ($pool['id'] == -1) {
+				unset($infos[1]);
+				array_push($valuesNewPools, "(".implode(",", $infos).")");
+			}
+			else {
+				array_push($valuesPools, "(".implode(",", $infos).")");
+			}
+		}
+
+		if (count($valuesPools) > 0) {
+			$sql = "INSERT INTO pools(tournament, id, title, posX, posY) VALUES ".implode(", ", $valuesPools).";";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+		}
+		if (count($valuesNewPools) > 0) {
+			$sql = "INSERT INTO pools(tournament, title, posX, posY) VALUES ".implode(", ", $valuesNewPools).";";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+		}
 	}
+
+	if (isset($_POST['participants'])) {
+		$participantsData = $_POST['participants'];
+		sendDebug($participantsData);
+		sendDebug($valuesPoolsParticipants);
+		foreach(array_keys($participantsData) as $participantId) {
+			$infos = $participantsData[$participantId];
+			$participantPool = "NULL";
+
+			foreach(array_keys($valuesPoolsParticipants) as $poolKey) {
+				$participantId = strval($participantId);
+				$poolKey = strval($poolKey);
+
+				$values = explode(",",$valuesPoolsParticipants[$poolKey]);
+				$values = array_map(function($val) {
+					return explode(";",$val)[0];
+				},$values);
+
+
+				if (in_array($participantId, $values)) {
+					$participantPool = $poolKey;
+				}
+			}
+
+			$infos = [$participantId, "'".$infos['nickname']."'", $infos['user'], $participantPool, $tournament_id];
+			array_push($valuesParticipants, $infos);
+		}
+	}
+
+	if (count($valuesParticipants) > 0) {
+		foreach($valuesParticipants as $participant) {
+			$participantId = $participant[0];
+			$userId = $participant[2];
+			if ($participantId == "-1") {
+				unset($participant[0]);
+				$sql = "INSERT INTO participants(nickname, user, pool, tournament) VALUES (".implode(", ", $participant).")";
+			}
+			else {
+				$sql = "INSERT INTO participants(id, nickname, user, pool, tournament) VALUES (".implode(", ", $participant).");";
+			}
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+		}
+	}
+
+	//header('Location: ?page=edit&id='.$tournament_id.'');
+}
+elseif (isset($_POST['submit_public'])) {
+	$sql = "UPDATE tournaments SET status = 'open' WHERE id = ?;";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([$tournament_id]);
+	
 }
 ?>
 
 <div class="editor">
 
 <?php
-
 include_once('./components/tournament.php');
 displayTournament($tournament_id, true)
-
 ?>
+
 </div>
 <div class="tool-container">
 	<div class="toolbar">
@@ -73,19 +183,25 @@ displayTournament($tournament_id, true)
 			<div id="tournament-data">
 			</div>
 			<button name="submit" type="submit" onclick="saveTournament()">Save</button>
-		<form>
-		<p>Participants</p>
-		<div id="participants-container">
-			<?php
-				$stmt = $pdo->prepare("SELECT nickname FROM participants WHERE tournament=?");
-				$stmt->execute([$tournament_id]);
-				$result = $stmt->fetchAll();
-				foreach($result as $participant) {
-					echo "<div class='participant'>";
-					echo $participant['nickname'];
-					echo "</div>";
-				}
-			?>
+		</form>
+		<form method="POST" action="<?php echo "?page=edit&id=".$tournament_id?>">
+			<button name="submit_public">Open Tournament</button>
+		</form>
+		<div style='height: 100%; display: flex; flex-direction: column; position: relative'>
+			<p>Participants</p>
+			<div id="participants-container">
+				<?php
+					$stmt = $pdo->prepare("SELECT id, nickname, user FROM participants WHERE tournament=?");
+					$stmt->execute([$tournament_id]);
+					$result = $stmt->fetchAll();
+					foreach($result as $participant) {
+						echo "<script hidden>
+							var participantsListContainer = document.getElementById('participants-container');
+							addParticipantToContainer(participantsListContainer, ".$participant['id'].",".$participant["user"].", '".$participant['nickname']."', true)
+						</script>";
+					}
+				?>
+			</div>
 		</div>
 	</div>
 </div>

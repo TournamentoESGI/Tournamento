@@ -87,6 +87,13 @@ header {
     box-shadow: var(--shadow-soft);
 }
 
+@media print {
+	header {
+		display: none;
+	}
+}
+
+
 hr {
     width: 100%;
     height: 2px;
@@ -149,6 +156,12 @@ footer {
     background-color: var(--c-dark-teal);
 }
 
+@media print {
+	footer {
+		display: none;
+	}
+}
+
 footer nav ul {
     display: flex;
     list-style: none;
@@ -198,6 +211,12 @@ footer nav ul li a:hover {
     background-color: var(--c-text-dark);
     border-radius: 3px;
     transition: 0.3s;
+}
+
+@media print {
+	.export-btn {
+		display: none;
+	}
 }
 
 .export-btn {

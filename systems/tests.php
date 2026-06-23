@@ -22,6 +22,8 @@ VALUES ('SaulGoodman', 'Jimmy', 'McGuill', '2004-01-01', '33 56 78 90 12', 'bcs@
 INSERT INTO users (username, first_name, last_name, date_of_birth, phone, email_address, password, role, current_balance, is_verified)
 VALUES ('Ignacio', 'Nacho', 'Varga', '2004-01-01', '32 56 78 90 12', 'ign@gmail.com', '".$password."', 'Membre', 0, 1);
 
+
+
 INSERT INTO tournaments(author, title)
 VALUES(1, 'My tournament');
 
@@ -30,6 +32,7 @@ VALUES(1, 'A');
 
 INSERT INTO tournaments(author, title)
 VALUES(1, 'B');
+
 
 
 INSERT INTO pools(title, number, tournament, posX, posY)
@@ -46,17 +49,23 @@ VALUES(1, 1, 1, 'Mergez');
 INSERT INTO participants(user, pool, tournament, nickname)
 VALUES(2, 2, 1, 'Tacosinus');
 
-INSERT INTO participants(user, tournament, nickname)
-VALUES(2, 1, 'Tacosinus');
-INSERT INTO participants(user, tournament, nickname)
-VALUES(3, 1, 'Pimento');
+INSERT INTO participants(user, pool, tournament, nickname)
+VALUES(3, 2, 2, 'Bourgimignon');
+
+INSERT INTO participants(user, pool, tournament, nickname)
+VALUES(4, 3, 2, 'Pimento');
+
+INSERT INTO participants(user, pool, tournament, nickname)
+VALUES(5, 2, 2, 'Pizzama');
+
+
 
 INSERT INTO paris(id_participant, id_parieur, somme, status)
 VALUES(1, 1, 50, 1);
+
 INSERT INTO paris(id_participant, id_parieur, somme, status)
 VALUES(3, 1, 70, 2);
-INSERT INTO participants(user, pool, tournament, nickname)
-VALUES(2, 2, 1, 'Pizzama');
+
 ";
 
 for ($i = 1; $i <= 20; $i++) {
@@ -66,13 +75,13 @@ for ($i = 1; $i <= 20; $i++) {
     ";
 }
 
-for ($u = 1; $u <= 20; $u++) {
+/*for ($u = 1; $u <= 20; $u++) {
     $position = rand(1, 5);
     $sql .= "
     INSERT INTO participants(user, tournament, nickname, position)
     VALUES($u, 1, 'Player$u', $position);
     ";
-}
+}*/
 
 testSQL($sql);
 ?>

@@ -31,6 +31,12 @@
 	border-radius: var(--small);
 }
 
+@media print {
+	.graph-column .fill {
+		visibility: visible;
+	}
+}
+
 .graph-column .fill {
 	width: 100%;
 	background-color: var(--c-primary);
@@ -94,6 +100,8 @@
 	outline: 2px solid black;
 }
 
+
+
 .tournament-display {
 	opacity: 0.75;
 	width: 100%;
@@ -118,6 +126,10 @@
 	opacity: 0.2;
 }
 
+.tournament-display > h2 {
+	user-select: none;
+}
+
 .center {
 	position: relative;
 	top: 50%;
@@ -138,7 +150,6 @@
 }
 
 .pool {
-	overflow: hidden;
 	border-radius: var(--small);
 	position: absolute;
 	width: fit-content;
@@ -146,24 +157,73 @@
 	outline: solid 2px var(--c-primary);
 }
 
-.pool > .pool-title {	
-	pointer-events: none;
-	padding: var(--small);
-	background-color: var(--c-primary);
+.pool > .bar {
+	display: flex;
+	flex-direction: row;
 	min-width: fit-content;
-	text-wrap: nowrap;
-	color: var(--c-text-light);
-	border: 0;
+	background-color: var(--c-primary);
+	padding: var(--small);
+	gap: var(--medium);
 }
 
-.pool > .participants {
+.pool > .bar > input, .pool > .bar > input:disabled {
+	background-color: transparent;
+	border: none;
+	color: var(--c-text-light);
+	text-wrap: nowrap;
+	pointer-events: none;
+	width: fit-content;
+	field-sizing: content;
+}
+
+.pool > .bar > input:focus {
+	outline: none;
+	color: var(--c-accent);
+}
+
+.pool > .bar > button {
+	line-height: normal;
+	border: 2px solid var(--c-accent);
+	border-radius: var(--medium);
+	background-color: var(--c-primary);
+	color: var(--c-text-light);
+}
+
+.pool .content {
+	display: flex;
+	flex-direction: row;
+	width: fit-content;
+	align-items: center;
+}
+
+.pool .content > button {
+	position: absolute;
+	right: -32px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: content;
+}
+
+.pool .participants {
 	display: flex;
 	flex-direction: column;
 	gap: var(--small);
 	padding: var(--small);
 }
 
-.pool > .participants > * {
+.pool button.link {
+}
+
+.pool div.link {
+	position: absolute;
+	padding: 2px;
+	min-width: 2px;
+	min-height: 2px;
+	background-color: var(--c-primary);
+	zindex: -1;
+}
+
+.participant {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -172,16 +232,27 @@
 	border-radius: var(--small);
 	background-color: var(--c-primary-light);
 	padding: var(--small);
+	color: var(--c-text-light);
 }
 
-.pool > .participants > div > p {
+.participant.current-user {
+	outline: 2px solid var(--c-primary);
+	background-color: var(--c-accent);
+	color: var(--c-text-dark);
+}
+
+.participant.empty-user {
+	background-color: var(--c-dark-teal);
+}
+
+.participant > p {
 	pointer-events: none;
-	color: var(--c-text-light);
 	margin: 0;
 	user-select: none;
 }
 
-.pool > div > div > button {
+.participant > button {
+	line-height: normal;
 	border-radius: var(--small);
 	border: none;
 	aspect-ratio: 1;
@@ -192,3 +263,4 @@
 .pool.selected {
 	outline: var(--c-primary) 4px solid;
 }
+

@@ -34,13 +34,14 @@ function sendDebug($message) {
 	global $debugPageMessage;
 	$clean_message = "";
 	if (is_array($message)) {
-		$clean_message = json_encode($message);
+		$clean_message = json_encode($message, JSON_PRETTY_PRINT);
 	}
 	else {
 		$clean_message = $message;
 	}
-	$debugPageMessage = $debugPageMessage.$clean_message."\n";
-	echo "<script>console.log('$clean_message')</script>";
+	$clean_message = str_replace("'", '"', $clean_message);
+	$debugPageMessage = $debugPageMessage.$clean_message."\n;";
+	echo "<script>console.log(`".$clean_message."`)</script>";
 }
 
 function sendLog($message, $tag="") {

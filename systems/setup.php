@@ -33,7 +33,7 @@ tournaments (
     author INT,
     title VARCHAR(50),
     description VARCHAR(255) DEFAULT '',
-    status ENUM('ouvert','fermer'),
+    status ENUM('edit','open','closed') DEFAULT 'edit',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     start_date DATE,
     end_date DATE
@@ -45,12 +45,10 @@ pools (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	number INT,
 	tournament INT,
-	UNIQUE KEY pool (number, tournament),
 	title VARCHAR(50) DEFAULT 'New pool',
-	posX INT,
-	posY INT,
+	posX INT DEFAULT 0,
+	posY INT DEFAULT 0,
     id_vainqueur INT DEFAULT NULL
-
 )
 ");
 
@@ -58,7 +56,7 @@ createTable("
 participants (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	user INT NOT NULL,
-	pool INT NOT NULL,
+	pool INT,
 	tournament INT,
 	nickname VARCHAR(20),
     position INT DEFAULT NULL

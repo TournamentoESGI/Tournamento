@@ -15,30 +15,34 @@ function generateParticipantsList($participants) {
 
 
 function generatePools($pools, $participants, $editable=false) {
-	echo "<div class='pools' hidden>";
+	$isEditable = ($editable?"true":"false");
 	foreach($pools as $pool) {
-		echo "<div class='pool' data-id='".$pool['id']."' data-name='".$pool['title']."' data-x=".$pool["posX"]." data-y=".$pool["posY"]." style='height: fit-content'>";
-		echo "<input class='pool-title' value=".$pool['title']."></input>";
-		echo "<div class='participants'>";
+		echo "<script>
+			var tournament = document.getElementsByClassName('anchor')[0];
+			console.log(tournament)
+			addPoolToTournament(tournament, ".$pool['id'].",'".$pool['title']."',".$pool['posX'].",".$pool['posY'].",".$isEditable.")
+		</script>";
+
 		foreach($participants as $player) {
 			if ($player['pool'] == $pool['id']) {
-				echo "<div>";
-				echo "<p data-id='".$player['id']."'>".$player['nickname']."</p>";
-				if ($editable) {
-						echo "<button class='delete'>X</button>";
-				}
-				echo "</div>";
+				echo "<script hidden>
+					var poolContainer = Array.from(document.getElementsByClassName('pool')).filter((pool) => pool.dataset.id == ".$pool['id'].")[0].getElementsByClassName('participants')[0];
+					addParticipantToContainer(poolContainer,".$player["id"].",".$player["user"].",'".$player["nickname"]."', ".$isEditable.");
+				</script>";
 			}
 		}
-		echo "</div>";
-		echo "</div>";
 	}
-	echo "</div>";
 }
 
 function displayTournament($tournamentId, $editable=false) {
-	echo "<div class='tournament-display' tabindex='0'  data-edit=".($editable?"true":"false").">";
+	$id = isset($_SESSION['id'])?$_SESSION['id']:-1;
 
+	echo '<script src="'.createNoCacheSource("./scripts/tournament_components.js").'"></script>';
+	echo '<script>
+		var userId = '.$id.'
+	</script>';
+
+	echo "<div class='tournament-display' tabindex='0'  data-edit=".($editable?"true":"false").">";
 
 	global $pdo;
 	
@@ -53,13 +57,12 @@ function displayTournament($tournamentId, $editable=false) {
 	$poolsList = $stmt->fetchAll();
 
 
-	$sql = "SELECT id, nickname, pool FROM participants WHERE tournament = ?";
+	$sql = "SELECT id, user, nickname, pool FROM participants WHERE tournament = ?";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute([$tournamentId]);
 	$participantsList = $stmt->fetchAll();
 
 	generateParticipantsList($participantsList);
-	generatePools($poolsList, $participantsList, $editable);
 	
 	echo "<h2 style='text-align: center'>".$tournamentInfos["title"]."</h2>";
 
@@ -67,6 +70,7 @@ function displayTournament($tournamentId, $editable=false) {
 	echo "<div class='scaler'>";
 	echo "<div class='center'>";
 	echo "<div class='anchor'>";
+	generatePools($poolsList, $participantsList, $editable);
 	echo "</div>";
 	echo "</div>";
 	echo "</div>";
