@@ -39,6 +39,7 @@ tournamentsList.forEach(tournament => {
 			}
 			else {
 				navigateBy(-e.deltaX, -e.deltaY)
+				e.preventDefault()
 			}
 		}
 	})
