@@ -41,7 +41,8 @@ function test($callable, $excepted='') {
 function testSQL($sqlQuery) {
 	global $pdo;
 	try {
-		$pdo->exec($sqlQuery);
+		$stmt = $pdo->prepare($sqlQuery);
+		$stmt->execute();
 		echo "[OK]";
 	}
 	catch (Exception $ex) {
