@@ -6,6 +6,29 @@ function verifieCompteConnecte() {
 	}
 }
 
+function isBanned() {
+    if (!isset($_SESSION['id'])) {
+        return;
+    }
+    global $pdo;
+
+    if (!isset($pdo) || !($pdo instanceof PDO)) {
+        return;
+    }
+    try {
+        $stmt = $pdo->prepare("SELECT COUNT(id) FROM banned WHERE user_id = ?");
+        $stmt->execute([$_SESSION['id']]);
+        $count = (int) $stmt->fetchColumn();
+        if ($count > 0) {
+            displayPageNotFound();
+            exit;
+        }
+    } catch (Exception $ex) {
+        displayPageError('Erreur lors de la vérification du statut de bannissement.');
+        exit;
+    }
+}
+
 function verifieRoleAdmin() {
     $user_role = $_SESSION['role'] ?? null;
     

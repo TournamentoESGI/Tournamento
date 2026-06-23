@@ -198,19 +198,23 @@ body {
     border-radius: var(--medium);
     padding: var(--large);
     height: 100%;
-    .stars {
+}
+
+.testi-card .stars {
     color: var(--c-accent);
     margin-bottom: var(--medium);
-    }
-    h5 {
+}
+
+.testi-card h5 {
     color: var(--c-text-light);
     font-weight: bold;
     margin: 0;
-    }
-    h6, .testi-card p {
+}
+
+.testi-card h6,
+.testi-card p {
     color: var(--c-white);
     margin: 0;
-    }
 }
 
 .avatar {

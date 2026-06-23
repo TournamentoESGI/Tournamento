@@ -1,9 +1,6 @@
 <?php
 include_once("./components/captcha.php");
 
-//$avis = file("reviews.txt");
-
-
 ?>
 
 <section class="hero-section">
@@ -182,28 +179,61 @@ include_once("./components/captcha.php");
 
     <div class="row g-3">
 
-      <?php $testimonials = [
-        ['name' => 'Marc D.', 'role' => 'Participant ● Paris', 'text' => '"Plateforme solide, service client rapide, que du bon !"'],
-        ['name' => 'Marc D.', 'role' => 'Participant ● Paris', 'text' => '"Plateforme solide, service client rapide, que du bon !"'],
-        ['name' => 'Marc D.', 'role' => 'Participant ● Paris', 'text' => '"Plateforme solide, service client rapide, que du bon !"'],
-        ['name' => 'Marc D.', 'role' => 'Participant ● Paris', 'text' => '"Plateforme solide, service client rapide, que du bon !"'],
-      ]; ?>
-
-      <?php foreach ($testimonials as $t): ?>
       <div class="col-12 col-sm-6 col-xl-3">
         <div class="testi-card">
           <div class="stars">★ ★ ★ ★ ★</div>
           <div class="d-flex align-items-center gap-2 mb-3">
             <div class="avatar"></div>
             <div>
-              <h5><?echo $t['name']?></h5>
-              <h6><?echo $t['role']?></h6>
+              <h5>Marc D.</h5>
+              <h6>Participant ● Paris</h6>
             </div>
           </div>
-          <p><?$t['text']?></p>
+          <p>Plateforme solide, service client rapide, que du bon !</p>
         </div>
       </div>
-      <?php endforeach; ?>
+
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="testi-card">
+          <div class="stars">★ ★ ★ ★ ★</div>
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="avatar"></div>
+            <div>
+              <h5>Lucie B.</h5>
+              <h6>Organisatrice ● Lyon</h6>
+            </div>
+          </div>
+          <p>Très simple d'utilisation, j'ai organisé mon premier tournoi en 10 minutes.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="testi-card">
+          <div class="stars">★ ★ ★ ★ ☆</div>
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="avatar"></div>
+            <div>
+              <h5>Thomas R.</h5>
+              <h6>Participant ● Marseille</h6>
+            </div>
+          </div>
+          <p>Bonne expérience globale, quelques améliorations possibles mais solide.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="testi-card">
+          <div class="stars">★ ★ ★ ★ ★</div>
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="avatar"></div>
+            <div>
+              <h5>Sofia M.</h5>
+              <h6>Parieur ● Toulouse</h6>
+            </div>
+          </div>
+          <p>Interface fluide et paris sécurisés, je recommande.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
