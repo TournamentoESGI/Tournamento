@@ -2,7 +2,7 @@
     <div class="login-texte">
         <h1>Bon retour,<br>Prêt à parier ?</h1>
         <p>Tournamento est la plateforme idéale pour organiser et regarder des tournois !
-             Si vous êtes embitieux et souhaitez participer à un tournoi pour gagner de l'argent,
+             Si vous êtes ambitieux et souhaitez participer à un tournoi pour gagner de l'argent,
               n'hésitez pas et sautez dans l'arène !
         </p>
         <img src="assets/second_logo.png" alt="Logo" class="second-logo">
@@ -46,10 +46,9 @@
                 $user = $stmt->fetch();
 
                 if ($user && password_verify($password, $user['password'])) {
-                    if ($user['force_logout'] == 1) {
-                        $stmt = $pdo->prepare("UPDATE users SET force_logout = 0 WHERE id = ?");
-                        $stmt->execute([$user['id']]);
-                    }
+                    
+                    $stmtUpdate = $pdo->prepare("UPDATE users SET force_logout = 0, last_activity = NOW(), inactive_mail_sent = 0 WHERE id = ?");
+                    $stmtUpdate->execute([$user['id']]);
 
                     $_SESSION['id'] = $user['id'];
                     $_SESSION['username'] = $username;

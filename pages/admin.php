@@ -34,7 +34,7 @@ $admin = $stmt->fetch();
             <div class="mid-container-dashboard">
                 <h1>Option de navigation :</h1>
                 <div class="container-button-nav">
-                    <button><a href="<?= getPagePath("statistics") ?>">Tournoi</a></button>
+                    <button><a href="<?= getPagePath("online") ?>">Membre en ligne</a></button>
                     <button><a href="<?= getPagePath("gestion_droit") ?>">Profil utilisateur</a></button>
                     <button><a href="<?= getPagePath("statistics") ?>">Statistiques</a></button>
                 </div>
