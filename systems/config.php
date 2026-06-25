@@ -34,4 +34,28 @@ try {
 } catch (Exception $ex) {
     displayPageError($ex->getMessage());
 }
+
+if (isset($_SESSION['id'])) {
+    try {
+        $stmt = $pdo->prepare("UPDATE users SET last_activity = NOW() WHERE id = ?");
+        $stmt->execute([$_SESSION['id']]);
+
+        $stmt = $pdo->prepare("SELECT force_logout FROM users WHERE id = ?");
+        $stmt->execute([$_SESSION['id']]);
+        $userStatus = $stmt->fetch();
+
+        if ($userStatus && $userStatus['force_logout'] == 1) {
+            $stmt = $pdo->prepare("UPDATE users SET force_logout = 0 WHERE id = ?");
+            $stmt->execute([$_SESSION['id']]);
+
+            session_destroy();
+            
+            header("Location: ?page=login");
+            exit;
+        }
+    } catch (PDOException $e) {
+        error_log("Erreur lors de la mise à jour de l'activité : " . $e->getMessage());
+    }
+}
+
 ?>
