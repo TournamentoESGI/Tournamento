@@ -68,5 +68,7 @@
 		}
 		includeJsFiles();
 		?>
+
+		<script src="./scripts/checkoutOnline.js"></script>
 	</body>
 </html>

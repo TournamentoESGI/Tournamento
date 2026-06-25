@@ -35,7 +35,7 @@ $admin = $stmt->fetch();
                 <h1>Option de navigation :</h1>
                 <div class="container-button-nav">
                     <button><a href="<?= getPagePath("statistics") ?>">Tournoi</a></button>
-                    <button><a href="<?= getPagePath("statistics") ?>">Profil utilisateur</a></button>
+                    <button><a href="<?= getPagePath("gestion_droit") ?>">Profil utilisateur</a></button>
                     <button><a href="<?= getPagePath("statistics") ?>">Statistiques</a></button>
                 </div>
             </div>

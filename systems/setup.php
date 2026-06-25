@@ -14,6 +14,8 @@ users (
     profil_picture VARCHAR(255) DEFAULT './assets/profil_picture/default_profile_picture.png',
     role VARCHAR(10) DEFAULT 'Membre',
     current_balance INT DEFAULT 0,
+    last_activity DATETIME DEFAULT CURRENT_TIMESTAMP,
+    force_logout TINYINT(1) DEFAULT 0,
     is_verified TINYINT(1) NOT NULL DEFAULT 0
 )
 ");

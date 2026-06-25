@@ -1,5 +1,3 @@
-
-
 <div class="login-presentation">
     <div class="login-texte">
         <h1>Bon retour,<br>Prêt à parier ?</h1>
@@ -39,26 +37,32 @@
 
             <?php
             echo "<div class='erreurs'>";
-			if (isset($_POST['login'])) {
+            if (isset($_POST['login'])) {
                 $username = trim($_POST['username']);
                 $password = $_POST['password'];
-                $stmt = $pdo->prepare("SELECT id, password, role FROM users WHERE username = ?");
+                
+                $stmt = $pdo->prepare("SELECT id, password, role, force_logout FROM users WHERE username = ?");
                 $stmt->execute([$username]);
                 $user = $stmt->fetch();
+
                 if ($user && password_verify($password, $user['password'])) {
+                    if ($user['force_logout'] == 1) {
+                        $stmt = $pdo->prepare("UPDATE users SET force_logout = 0 WHERE id = ?");
+                        $stmt->execute([$user['id']]);
+                    }
+
                     $_SESSION['id'] = $user['id'];
-					$_SESSION['username'] = $username;
-					$_SESSION['role'] = $user['role'];
+                    $_SESSION['username'] = $username;
+                    $_SESSION['role'] = $user['role'];
+                    
                     sendLog("Connexion", "user_connect");
                     header("Location: ?page=profil");
                     exit;
-
                 } else {
                     echo "<p>Identifiants ou Mot de passe incorrects</p>";
-
                 }
-                echo "</div>";
             }
+            echo "</div>";
             ?>
         </div>
     </div>
