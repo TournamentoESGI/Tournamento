@@ -16,6 +16,7 @@ users (
     current_balance INT DEFAULT 0,
     last_activity DATETIME DEFAULT CURRENT_TIMESTAMP,
     force_logout TINYINT(1) DEFAULT 0,
+    inactive_mail_sent TINYINT(1) DEFAULT 0,
     is_verified TINYINT(1) NOT NULL DEFAULT 0
 )
 ");
