@@ -4,7 +4,7 @@
         <ul>
             <?php
             if(isset($_SESSION['id'])) {
-                print "<li><a href=".getPagePath("config_tournoi").">Organiser un Tournoi</a></li>";
+                print "<li><a href=".getPagePath("organize").">Organiser un Tournoi</a></li>";
             } else {
                 print "<li><a href=".getPagePath("login").">Organiser un Tournoi</a></li>";
             }

@@ -1,0 +1,19 @@
+form input, textarea {
+	background-color: var(--c-dark-teal);
+	color: var(--c-accent);
+	border: none;
+	outline: 2px solid var(--c-dark-teal);
+}
+
+form#organize {
+	padding: var(--large);
+	display: flex;
+	flex-direction: column;
+	gap: var(--small);
+}
+
+button {
+	background-color: var(--c-accent);
+	color: var(--c-text-dark);
+	border-radius: var(--small);
+}
