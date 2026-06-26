@@ -20,7 +20,7 @@ $results = $stmt->fetchAll();
 </div>
 	<form action="?page=preview">
     <button class="btn-inscrire">S'inscrire</button>
-</form>
+	</form>
 
 <div class="preview-participants">
     <?php

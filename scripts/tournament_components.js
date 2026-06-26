@@ -119,13 +119,13 @@ function addPoolToTournament(tournament, id, title, posX, posY, editMode=false) 
 		}
 	})
 
-	var linkButton = document.createElement("button");
+	/*var linkButton = document.createElement("button");
 	linkButton.className = "link";
 	linkButton.textContent = ">";
 	content.appendChild(linkButton);
 
 	var anchor = document.getElementsByClassName("anchor")[0]
 
-	makeLinkTo(linkButton, anchor);
+	makeLinkTo(linkButton, anchor);*/
 
 }

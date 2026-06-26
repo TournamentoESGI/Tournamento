@@ -233,6 +233,7 @@
 	background-color: var(--c-primary-light);
 	padding: var(--small);
 	color: var(--c-text-light);
+	text-wrap: nowrap;
 }
 
 .participant.current-user {
