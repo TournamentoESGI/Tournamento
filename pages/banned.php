@@ -7,10 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['unban_id'])) {
         $id = (int) $_POST['unban_id'];
-
         $stmt = $pdo->prepare("DELETE FROM banned WHERE user_id = ?");
         $stmt->execute([$id]);
-
         $success = "Utilisateur débanni.";
     }
 
@@ -49,66 +47,73 @@ $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<h2>Bannir un membre</h2>
+<div class="background-presentation">
 
-<?php if ($error): ?>
-    <div class="erreurs"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></div>
-<?php endif; ?>
-<?php if ($success): ?>
-    <div class="success"><?php echo htmlspecialchars($success, ENT_QUOTES, 'UTF-8'); ?></div>
-<?php endif; ?>
+    <h1>Gestion des bans</h1>
 
-<form method="POST">
-    <label>Membre :</label>
-    <select name="user_id" required>
-        <?php foreach ($users as $u): ?>
-            <option value="<?php echo (int)$u['id']; ?>"><?php echo htmlspecialchars($u['username'], ENT_QUOTES, 'UTF-8'); ?></option>
-        <?php endforeach; ?>
-    </select>
+    <div class="ban-all">
 
-    <br><br>
+        <div class="ban-form-section">
+            <h2>Bannir un membre</h2>
 
-    <label>Motif :</label>
-    <textarea name="motif" required></textarea>
+            <?php if ($error): ?>
+                <div class="erreurs"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></div>
+            <?php endif; ?>
+            <?php if ($success): ?>
+                <div class="success"><p><?php echo htmlspecialchars($success, ENT_QUOTES, 'UTF-8'); ?></p></div>
+            <?php endif; ?>
 
-    <br><br>
+            <form method="POST">
+                <label>Membre :</label>
+                <select name="user_id" required>
+                    <?php foreach ($users as $u): ?>
+                        <option value="<?php echo (int)$u['id']; ?>"><?php echo htmlspecialchars($u['username'], ENT_QUOTES, 'UTF-8'); ?></option>
+                    <?php endforeach; ?>
+                </select>
 
-    <button type="submit">Bannir</button>
-</form>
+                <br><br>
 
-<h2>Liste des membres bannis</h2>
+                <label>Motif :</label>
+                <textarea name="motif" required></textarea>
 
-<?php if (empty($bannedUsers)): ?>
+                <br><br>
 
-<p>Aucun membre banni.</p>
-
-<?php else: ?>
-
-<table>
-    <tr>
-        <td><b>Username</b></td>
-        <td><b>Nom</b></td>
-        <td><b>Prénom</b></td>
-        <td><b>Motif</b></td>
-        <td><b>Date</b></td>
-        <td><b>Action</b></td>
-    </tr>
-
-    <?php foreach ($bannedUsers as $user): ?>
-    <tr>
-        <td><?php echo htmlspecialchars($user['username'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td><?php echo htmlspecialchars($user['last_name'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td><?php echo htmlspecialchars($user['first_name'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td><?php echo htmlspecialchars($user['motif'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td><?php echo htmlspecialchars($user['ban_date'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td>
-            <form method="POST" style="display:inline;">
-                <input type="hidden" name="unban_id" value="<?php echo (int)$user['id']; ?>">
-                <button type="submit">Débannir</button>
+                <button type="submit" class="btn-bannir">Bannir</button>
             </form>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-</table>
+        </div>
 
-<?php endif; ?>
+        <div class="ban-liste">
+            <h2>Membres bannis</h2>
+
+            <?php if (empty($bannedUsers)): ?>
+                <p>Aucun membre banni.</p>
+            <?php else: ?>
+                <div class="ban-head ban-row">
+                    <p>Username</p>
+                    <p>Nom</p>
+                    <p>Prénom</p>
+                    <p>Motif</p>
+                    <p>Date</p>
+                    <p>Action</p>
+                </div>
+                <?php foreach ($bannedUsers as $user): ?>
+                    <div class="ban-membre ban-row">
+                        <p><?php echo htmlspecialchars($user['username'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p><?php echo htmlspecialchars($user['last_name'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p><?php echo htmlspecialchars($user['first_name'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p><?php echo htmlspecialchars($user['motif'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p><?php echo htmlspecialchars($user['ban_date'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p>
+                            <form method="POST">
+                                <input type="hidden" name="unban_id" value="<?php echo (int)$user['id']; ?>">
+                                <button type="submit" class="btn-debannir">Débannir</button>
+                            </form>
+                        </p>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+
+    </div>
+
+</div>

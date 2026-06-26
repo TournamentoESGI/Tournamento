@@ -22,26 +22,34 @@ try {
 }
 ?>
 
-<h1>Membres en ligne actuellement</h1>
+<div class="background-presentation">
 
-<?= $message ?>
+    <h1>Membres en ligne actuellement</h1>
 
-<div>
-    <div>
-        <span>Utilisateur</span>
-        <span>Action</span>
+    <?php if ($message): ?>
+        <div class="online-message"><?php echo $message; ?></div>
+    <?php endif; ?>
+
+    <div class="online-all">
+        <div class="online-liste">
+            <div class="online-head online-row">
+                <p>Utilisateur</p>
+                <p>Action</p>
+            </div>
+
+            <?php if (count($onlineUsers) > 0): ?>
+                <?php foreach ($onlineUsers as $user): ?>
+                    <div class="online-membre online-row">
+                        <p><?php echo htmlspecialchars($user['username']); ?></p>
+                        <p>
+                            <a href="?page=online&disconnect_user=<?php echo $user['id']; ?>" class="btn-deconnecter" onclick="return confirm('Déconnecter cet utilisateur ?');">Déconnecter</a>
+                        </p>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p style="padding: var(--medium);">Aucun membre n'est en ligne.</p>
+            <?php endif; ?>
+        </div>
     </div>
 
-    <?php if (count($onlineUsers) > 0): ?>
-        <?php foreach ($onlineUsers as $user): ?>
-            <div>
-                <span><?= htmlspecialchars($user['username']) ?></span>
-                <span>
-                    <a href="?page=online&disconnect_user=<?= $user['id'] ?>" onclick="return confirm('Déconnecter cet utilisateur ?');">Déconnecter</a>
-                </span>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>Aucun membre n'est en ligne.</p>
-    <?php endif; ?>
 </div>

@@ -1,0 +1,122 @@
+.background-presentation {
+    background-image: url("../assets/background.png");
+    background-size: cover;
+    min-height: 100%;
+    padding: var(--medium);
+}
+
+h1 {
+    color: var(--c-text-light);
+    font-weight: bold;
+}
+
+h2 {
+    color: var(--c-text-light);
+    font-size: var(--medium);
+    font-weight: bold;
+    padding-bottom: var(--small);
+}
+
+.ban-all {
+    display: flex;
+    flex-direction: column;
+    gap: var(--large);
+    padding: var(--medium);
+}
+
+.ban-form-section {
+    flex: 1;
+    background-color: var(--c-dark-teal);
+    border: 3px solid var(--c-accent);
+    border-radius: var(--medium);
+    padding: var(--medium);
+    color: var(--c-text-light);
+
+    select, textarea {
+        width: 100%;
+        background-color: var(--c-dark-teal);
+        color: var(--c-text-light);
+        border-radius: var(--medium);
+        padding: 6px 12px;
+    }
+}
+
+.ban-liste {
+    flex: 2;
+    background-color: var(--c-dark-teal);
+    border: 3px solid var(--c-accent);
+    border-radius: var(--medium);
+    padding: var(--medium);
+    color: var(--c-text-light);
+}
+
+.ban-head {
+    padding-bottom: var(--medium);
+}
+
+.ban-head > * {
+    padding-left: var(--medium);
+    padding-right: var(--medium);
+    font-weight: bold;
+}
+
+.ban-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr 1fr 1fr;
+}
+
+.ban-membre > * {
+    padding-top: var(--medium);
+    padding-bottom: var(--medium);
+    padding-left: var(--medium);
+    width: 100%;
+    border-top: 3px solid var(--c-accent);
+}
+
+.success p {
+    color: #00b300;
+    border-left: 3px solid #00b300;
+    padding: var(--small);
+    border-radius: var(--small);
+    margin: var(--small) 0;
+}
+
+.erreurs {
+    color: var(--c-red);
+    border-left: 3px solid var(--c-red);
+    padding: var(--small);
+    border-radius: var(--small);
+    margin: var(--small) 0;
+}
+
+.btn-bannir {
+    padding: var(--small);
+    border-radius: var(--small);
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--c-red);
+    color: var(--c-text-light);
+    border: none;
+    margin-top: var(--medium);
+}
+
+.btn-debannir {
+    padding: var(--small);
+    border-radius: var(--small);
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--c-dark-teal);
+    color: var(--c-text-light);
+    border: 2px solid var(--c-accent);
+}
+
+.btn-debannir:hover {
+    background-color: var(--c-accent);
+    color: var(--c-text-dark);
+}
+
+@media screen and (max-width: 1024px) {
+    .ban-all {
+        flex-direction: column;
+    }
+}
