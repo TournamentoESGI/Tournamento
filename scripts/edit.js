@@ -19,14 +19,16 @@ window.addEventListener('mouseup', function(e) {
 			var dropPoolParticipants = dropTarget.parentElement
 			if (dropPoolParticipants.className == "participants") {
 				draggedParticipant = draggedParticipant.firstChild;
-				console.log(dropTarget)
-
+				console.log(Array.from(participantsContainer.children).filter(element => element.className.includes("empty-user")));
+				console.log(dropTarget.firstChild.dataset.id);
 				var targetEmptyData = Array.from(participantsContainer.children)
 					.filter(element => element.className.includes("empty-user"))
 					.map(element => element.firstChild)
-					.filter(element => element.dataset.id == dropTarget.firstChild.dataset.id)[0]
-					.parentElement
-				targetEmptyData.remove();
+					.filter(element => element.dataset.id == dropTarget.firstChild.dataset.id)
+				if (targetEmptyData.length > 0) {
+					targetEmptyData = targetEmptyData[0].parentElement
+					targetEmptyData.remove();
+				}
 				dropTarget.remove();
 				addParticipantToContainer(dropPoolParticipants, -1, draggedParticipant.dataset.id, draggedParticipant.textContent, true);
 			}
