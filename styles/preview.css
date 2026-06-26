@@ -1,0 +1,28 @@
+.btn-inscrire {
+    padding: var(--small) var(--large);
+    border-radius: var(--small);
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--c-accent);
+    color: var(--c-text-dark);
+    border: none;
+    margin: var(--medium);
+}
+
+.btn-inscrire:hover {
+    filter: brightness(0.85);
+}
+
+.preview-participants {
+    background-color: var(--c-dark-teal);
+    border: var(--tiny) solid var(--c-accent);
+    border-radius: var(--medium);
+    margin: var(--medium);  
+    color: var(--c-text-light);
+}
+
+.preview-participants p {
+    border-top: var(--tiny) solid var(--c-accent);
+    padding: var(--medium);
+    margin: 0;
+}
