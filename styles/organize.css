@@ -3,6 +3,8 @@ form input, textarea {
 	color: var(--c-accent);
 	border: none;
 	outline: 2px solid var(--c-dark-teal);
+	padding: var(--small);
+	border-radius: var(--small);
 }
 
 form#organize {
@@ -16,4 +18,27 @@ button {
 	background-color: var(--c-accent);
 	color: var(--c-text-dark);
 	border-radius: var(--small);
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--small);
+	padding: var(--small);
+}
+
+.list > a {
+	border-radius: var(--medium);
+	background-color: var(--c-dark-teal);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: start;
+	padding: var(--medium);
+	text-decoration: none;
+}
+
+.list > a > * {
+	margin: 0;
+	color: var(--c-text-light);
 }
