@@ -31,7 +31,7 @@ INSERT INTO users (
     'Linux',
     '1969-11-06',
     '01 23 45 67 89',
-    'fsananes@esgi.fr',
+    'fsananes@esgi.com',
     '".$password_admin."',
     'Admin',
     10000,
