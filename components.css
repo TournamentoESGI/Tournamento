@@ -155,6 +155,7 @@
 	width: fit-content;
 	background-color: var(--c-accent);
 	outline: solid 2px var(--c-primary);
+	overflow: hidden;
 }
 
 .pool > .bar {
