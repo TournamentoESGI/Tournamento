@@ -88,13 +88,25 @@ function addPoolToTournament(tournament, id, title, posX, posY, editMode=false) 
 	var participants = document.createElement("div");
 	participants.className='participants'
 	content.appendChild(participants);
-	
+
 	input.disabled = true;
 	input.addEventListener('focusout', function(e) {
 		input.disabled = true;
 		pool.dataset.name = input.value
 	})
 
+	input.addEventListener('keydown', function(e) {
+		if (e.key === "Enter") {
+			console.log(input.value);
+			if (input.value == "") {
+				pool.remove()
+			}
+			else {
+				input.blur();
+			}
+		}
+	})
+	
 	if (button) {
 		button.addEventListener('click', function(e) {
 			addParticipantToContainer(participants, -1, -1, "", true);
@@ -112,9 +124,9 @@ function addPoolToTournament(tournament, id, title, posX, posY, editMode=false) 
 		}
 	})
 
+
 	pool.addEventListener('mousedown', function(e) {
 		if (e.button == 0) {
-			console.log(selectedPool);
 			selectedPool = pool
 		}
 	})
