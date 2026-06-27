@@ -7,10 +7,9 @@ $password_admin = password_hash("AdminSanane01234.!", PASSWORD_DEFAULT);
 
 $sql = "
 INSERT INTO users (
-    id, username, first_name, last_name, date_of_birth,
+    username, first_name, last_name, date_of_birth,
     phone, email_address, password, role, current_balance, is_verified
 ) VALUES (
-    1,
     'sanane',
     'Frédéric',
     'Sanane',
@@ -24,10 +23,9 @@ INSERT INTO users (
 );
 
 INSERT INTO users (
-    id, username, first_name, last_name, date_of_birth,
+    username, first_name, last_name, date_of_birth,
     phone, email_address, password, role, current_balance, is_verified
 ) VALUES (
-    1,
     'adminsanane',
     'Debian',
     'Linux',
