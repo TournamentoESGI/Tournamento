@@ -11,15 +11,15 @@ INSERT INTO users (
     phone, email_address, password, role, current_balance, is_verified
 ) VALUES (
     1,
-    'Le patron',
+    'sanane',
     'Frédéric',
     'Sanane',
     '1969-11-06',
     '12 34 56 78 90',
     'fsananes@esgi.fr',
     '".$password_sanane."',
-    'Admin',
-    10000,
+    'Membre',
+    10,
     1
 );
 
@@ -28,7 +28,7 @@ INSERT INTO users (
     phone, email_address, password, role, current_balance, is_verified
 ) VALUES (
     1,
-    'Le sinistre',
+    'adminsanane',
     'Debian',
     'Linux',
     '1969-11-06',
