@@ -1,3 +1,4 @@
 .env
+composer.json
 assets/captchas/
 vendor

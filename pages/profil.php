@@ -103,7 +103,7 @@ $totalParis = $stmt->fetchColumn();
                 <h2>Solde disponible :</h2>
                 <p class="solde-montant"><?php echo $user['current_balance'];?> €</p>
                 <div class="solde-boutons">
-                    <button class="btn-deposer"><a href="<?= getPagePath('depot') ?>">+ Déposer</a></button>
+                    <button class="btn-deposer">+ Déposer</button>
                     <button class="btn-retirer">- Retirer</button>
                 </div>
             </div>
