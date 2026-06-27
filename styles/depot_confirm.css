@@ -1,0 +1,38 @@
+.background-presentation {
+    background-image: url("../assets/background.png");
+    background-size: cover;
+    min-height: 100%;
+    padding: var(--extra-large);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.depot-confirm {
+    background-color: var(--c-dark-teal);
+    border-radius: var(--small);
+    padding: var(--extra-large);
+    color: var(--c-text-light);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.depot-confirm h1 {
+    color: var(--c-accent);
+    margin-bottom: var(--medium);
+}
+
+.depot-confirm p {
+    margin-bottom: var(--large);
+}
+
+.btn-retour {
+    display: inline-block;
+    padding: var(--small) var(--large);
+    background-color: var(--c-accent);
+    color: var(--c-dark-teal);
+    border-radius: var(--small);
+    font-weight: bold;
+    text-decoration: none;
+}
