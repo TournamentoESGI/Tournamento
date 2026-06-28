@@ -53,7 +53,7 @@ function saveTournament() {
 
 	tournamentPools.forEach(pool => {
 		const id = pool.dataset.id;
-		["id", "x", "y", "name"].forEach(data => {
+		["id", "x", "y", "name", "winner"].forEach(data => {
 			var poolData = document.createElement("input");
 			poolData.name = "pools["+id+"]["+data+"]";
 			poolData.value = pool.dataset[data]
@@ -81,6 +81,11 @@ function saveTournament() {
 		var participantData = document.createElement("input");
 		participantData.name = "participants["+participant.dataset.id+"][nickname]";
 		participantData.value = participant.textContent;
+		dataHolder.appendChild(participantData);
+
+		var participantData = document.createElement("input");
+		participantData.name = "participants["+participant.dataset.id+"][winner]";
+		participantData.value = (participant.dataset.winner)?particpant.dataset.winner:false;
 		dataHolder.appendChild(participantData);
 	})
 

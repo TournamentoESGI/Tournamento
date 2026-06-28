@@ -43,6 +43,7 @@ function displayTournament($tournamentId, $editable=false) {
 	</script>';
 
 	echo "<div class='tournament-display' tabindex='0'  data-edit=".($editable?"true":"false").">";
+	echo "<button class='center-button'>O</button>";
 
 	global $pdo;
 	

@@ -11,7 +11,6 @@ if (!rightClickMenu) {
 	deleteParticipant.textContent = "Delete";
 	rightClickMenu.appendChild(deleteParticipant);
 	deleteParticipant.addEventListener('click', function(e) {
-		console.log(e);
 		menuParticipant.remove();
 		rightClickMenu.style.display = "none";
 	})
@@ -20,6 +19,10 @@ if (!rightClickMenu) {
 	winParticipant.id = "right-click-win";
 	winParticipant.textContent = "Set winner";
 	rightClickMenu.appendChild(winParticipant);
+	winParticipant.addEventListener('click', function(e) {
+		menuParticipant.className = "winner participant";
+		Array.from(menuParticipant.children)[0].dataset.winner = true
+	});
 
 	rightClickMenu.addEventListener('focusout', function(e) {
 		rightClickMenu.style.display = "none";
@@ -53,6 +56,7 @@ function addParticipantToContainer(parent, id, user, nickname="", editMode=false
 				rightClickMenu.style.left = e.clientX+"px";
 				rightClickMenu.style.top = e.clientY+"px";
 				rightClickMenu.style.display = "";
+				document.getElementById("right-click-win").style.display = (menuParticipant.className.includes("empty-user"))?"none":""
 			}
 
 		})

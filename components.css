@@ -130,6 +130,14 @@
 	user-select: none;
 }
 
+.tournament-display > button {
+	position: absolute;
+	border-radius: 50%;
+	border: none;
+	background-color: var(--c-primary);
+	color: var(--c-accent);
+}
+
 .center {
 	position: relative;
 	top: 50%;
@@ -245,6 +253,12 @@
 
 .participant.empty-user {
 	background-color: var(--c-dark-teal);
+}
+
+.participant.winner {
+	outline: var(--c-primary) solid 2px;
+	color: var(--c-text-dark);
+	background-color: var(--c-gold);
 }
 
 .participant > p {

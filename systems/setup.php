@@ -62,6 +62,7 @@ participants (
 	pool INT,
 	tournament INT,
 	nickname VARCHAR(20),
+	winner TINYINT DEFAULT 0,
     position INT DEFAULT NULL
 )
 ");

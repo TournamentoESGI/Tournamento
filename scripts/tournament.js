@@ -8,6 +8,13 @@ tournamentsList.forEach(tournament => {
 	var scaler = tournament.getElementsByClassName("scaler")[0];
 	var moving = false
 	var editMode = tournament.dataset.edit=="true"?true:false
+	var centerButton = tournament.getElementsByClassName("center-button")[0];
+
+	centerButton.addEventListener('click', function(e) {
+		anchor.style.left = "0px";
+		anchor.style.left = "0px";
+	});
+
 	if (editMode) {
 		selectedTournament = tournament
 		tournament.focus()
