@@ -147,7 +147,7 @@ if (isset($_POST['submit'])) {
 		}
 	}
 
-	//header('Location: ?page=edit&id='.$tournament_id.'');
+	header('Location: ?page=edit&id='.$tournament_id.'');
 }
 elseif (isset($_POST['submit_public'])) {
 	$sql = "UPDATE tournaments SET status = 'open' WHERE id = ?;";

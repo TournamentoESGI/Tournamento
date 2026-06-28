@@ -1,3 +1,33 @@
+var rightClickMenu = document.getElementById("right-click");
+var menuParticipant = null;
+
+if (!rightClickMenu) {
+	rightClickMenu = document.createElement("div");
+	rightClickMenu.id = "right-click";
+	rightClickMenu.style.display = "none";
+
+	var deleteParticipant = document.createElement("button");
+	deleteParticipant.id = "right-click-delete";
+	deleteParticipant.textContent = "Delete";
+	rightClickMenu.appendChild(deleteParticipant);
+	deleteParticipant.addEventListener('click', function(e) {
+		console.log(e);
+		menuParticipant.remove();
+		rightClickMenu.style.display = "none";
+	})
+
+	var winParticipant = document.createElement("button");
+	winParticipant.id = "right-click-win";
+	winParticipant.textContent = "Set winner";
+	rightClickMenu.appendChild(winParticipant);
+
+	rightClickMenu.addEventListener('focusout', function(e) {
+		rightClickMenu.style.display = "none";
+	})
+
+	document.body.appendChild(rightClickMenu);
+}
+
 var selectedTournament = null
 var selectedPool = null;
 
@@ -15,6 +45,26 @@ function addParticipantToContainer(parent, id, user, nickname="", editMode=false
 	container.appendChild(nicknameTag);
 
 	if (editMode) {
+		document.addEventListener('contextmenu', function(e) {
+			var target = e.target;
+			if (target.className.includes("participant")) {
+				e.preventDefault();
+				menuParticipant = target;
+				rightClickMenu.style.left = e.clientX+"px";
+				rightClickMenu.style.top = e.clientY+"px";
+				rightClickMenu.style.display = "";
+			}
+
+		})
+
+		document.addEventListener('click', function(e) {
+			if (e.buttons == 0) {
+				if (!e.target.id.includes("right-click")) {
+					rightClickMenu.style.display = "none";
+				}
+			}
+		})
+
 		const deleteButton = document.createElement("button");
 		deleteButton.textContent = "X";
 		deleteButton.className = "delete";
