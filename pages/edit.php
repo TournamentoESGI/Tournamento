@@ -66,13 +66,12 @@ if (isset($_POST['submit'])) {
 						$userId = $emptyData[1];
 						if ($participantId == "-1") {
 							if ($userId == "-1") {
-								$values = ["-1", "''", "-1", $pool['id'], $tournament_id];
+								$values = ["-1", "''", "-1", $pool['id'], $tournament_id, 0];
 							}
 							else {
-								sendDebug($_POST['participants']);
 								foreach(array_keys($_POST['participants']) as $participantUserId) {
 									if ($userId == $participantUserId) {
-										$values = [$participantId, "'".$_POST['participants'][$participantUserId]["nickname"]."'", $userId, $pool['id'], $tournament_id];
+										$values = [$participantId,"'".$_POST['participants'][$participantUserId]["nickname"]."'",$userId,$pool['id'],$tournament_id,0];
 										break;
 									}
 								}
@@ -125,8 +124,8 @@ if (isset($_POST['submit'])) {
 					$participantPool = $poolKey;
 				}
 			}
-
-			$infos = [$participantId, "'".$infos['nickname']."'", $infos['user'], $participantPool, $tournament_id];
+			sendDebug($infos);
+			$infos = [$participantId, "'".$infos['nickname']."'", $infos['user'], $participantPool, $tournament_id, $infos['winner']];
 			array_push($valuesParticipants, $infos);
 		}
 	}
@@ -137,11 +136,12 @@ if (isset($_POST['submit'])) {
 			$userId = $participant[2];
 			if ($participantId == "-1") {
 				unset($participant[0]);
-				$sql = "INSERT INTO participants(nickname, user, pool, tournament) VALUES (".implode(", ", $participant).")";
+				$sql = "INSERT INTO participants(nickname, user, pool, tournament, winner) VALUES (".implode(", ", $participant).")";
 			}
 			else {
-				$sql = "INSERT INTO participants(id, nickname, user, pool, tournament) VALUES (".implode(", ", $participant).");";
+				$sql = "INSERT INTO participants(id, nickname, user, pool, tournament, winner) VALUES (".implode(", ", $participant).");";
 			}
+			sendDebug($sql);
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 		}
@@ -167,9 +167,6 @@ displayTournament($tournament_id, true)
 </div>
 <div class="tool-container">
 	<div class="toolbar">
-		<button>
-			<h1> S </h1>
-		</button>
 		<button id="button-create">
 			<h1> P </h1>
 		</button>
@@ -197,7 +194,7 @@ displayTournament($tournament_id, true)
 					foreach($result as $participant) {
 						echo "<script hidden>
 							var participantsListContainer = document.getElementById('participants-container');
-							addParticipantToContainer(participantsListContainer, ".$participant['id'].",".$participant["user"].", '".$participant['nickname']."', true)
+							addParticipantToContainer(participantsListContainer,".$participant['id'].",".$participant["user"].",'".$participant['nickname']."',true)
 						</script>";
 					}
 				?>
