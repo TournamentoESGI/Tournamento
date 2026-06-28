@@ -6,6 +6,16 @@ function verifieCompteConnecte() {
 	}
 }
 
+function verifieCompteRedirige() {
+	if (!isset($_SESSION['id'])) {
+		header('Location: ?page=login');
+	}
+	else {
+		return true;
+	}
+	return false;
+}
+
 function isBanned() {
     if (!isset($_SESSION['id'])) {
         return;

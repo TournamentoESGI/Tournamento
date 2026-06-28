@@ -63,7 +63,6 @@ participants (
 	tournament INT,
 	nickname VARCHAR(20),
     position INT DEFAULT NULL
-
 )
 ");
 

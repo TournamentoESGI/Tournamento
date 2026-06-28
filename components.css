@@ -266,3 +266,29 @@
 	outline: var(--c-primary) 4px solid;
 }
 
+
+#right-click {
+	position: absolute;
+	width: fit-content;
+	height: fit-content;
+
+	display: flex;
+	flex-direction: column;
+
+	background-color: var(--c-primary);
+	padding: var(--small);
+	gap: var(--small);
+	border-radius: var(--small);
+}
+
+#right-click button {
+	position: relative;
+	border: none;
+	border-bottom: 2px solid var(--c-primary-light);
+	color: var(--c-text-light);
+	background-color: transparent;
+}
+
+#right-click button:hover {
+	color: var(--c-accent);
+}

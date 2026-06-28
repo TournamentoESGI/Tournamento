@@ -43,20 +43,20 @@ VALUES('Test pool', 2, 1, 300, 0);
 
 
 
-INSERT INTO participants(user, pool, tournament, nickname)
-VALUES(1, 1, 1, 'Mergez');
+--INSERT INTO participants(user, pool, tournament, nickname)
+--VALUES(1, 1, 1, 'Mergez');
 
-INSERT INTO participants(user, pool, tournament, nickname)
-VALUES(2, 2, 1, 'Tacosinus');
+--INSERT INTO participants(user, pool, tournament, nickname)
+--VALUES(2, 2, 1, 'Tacosinus');
 
-INSERT INTO participants(user, pool, tournament, nickname)
-VALUES(3, 2, 1, 'Bourgimignon');
+--INSERT INTO participants(user, pool, tournament, nickname)
+--VALUES(3, 2, 1, 'Bourgimignon');
 
-INSERT INTO participants(user, pool, tournament, nickname)
-VALUES(4, 3, 1, 'Pimento');
+--INSERT INTO participants(user, pool, tournament, nickname)
+--VALUES(4, 3, 1, 'Pimento');
 
-INSERT INTO participants(user, pool, tournament, nickname)
-VALUES(5, 2, 1, 'πzzama');
+--INSERT INTO participants(user, pool, tournament, nickname)
+--VALUES(5, 2, 1, 'πzzama');
 
 
 
