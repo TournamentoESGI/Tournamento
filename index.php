@@ -68,7 +68,7 @@
 		}
 		includeJsFiles();
 		?>
-
+		<script src="./scripts/matrix.js"></script>
 		<script src="./scripts/checkoutOnline.js"></script>
 	</body>
 </html>
