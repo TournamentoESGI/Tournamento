@@ -9,14 +9,12 @@ function createTable($new_table) {
 }
 
 function deleteDatabase() {
-	global $tables, $pdo;
+    global $tables, $pdo;
+    $pdo->exec("SET FOREIGN_KEY_CHECKS = 0;");
     foreach (array_reverse($tables) as $table) {
-		$pdo->exec("
-			SET FOREIGN_KEY_CHECKS = 0;
-			DROP TABLE IF EXISTS " . $table["name"] . ";
-			SET FOREIGN_KEY_CHECKS = 1;"
-		);
+        $pdo->exec("DROP TABLE IF EXISTS " . $table["name"] . ";");
     }
+    $pdo->exec("SET FOREIGN_KEY_CHECKS = 1;");
 }
 
 function makeDatabase() {
